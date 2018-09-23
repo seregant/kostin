@@ -72,19 +72,35 @@
 		exit;
 	}
 
-	$sql = "insert into kostin_booking 
+	$sql1 = "insert into kostin_booking 
 					(book_id,book_name,book_addr,book_date,book_email,book_idnty,book_idntyfile,book_status,book_bdate) values (
 					'$id_booking','$nama','$alamat','$curr_date','$email','$idntty','$pictDst','$status','$bdate')";
+	
+	$insertBooking = mysqli_query($conn, $sql1);
 
-	$excecQuery = mysqli_query($conn, $sql);
-
-	if (!$excecQuery) {
-		echo "Gagal Simpan, sliahkan diulangi! <br /> ";
+	if (!$insertBooking) {
+		echo "Gagal Simpan data bookin, sliahkan diulangi! <br /> ";
 		echo mysqli_error($conn);
 		echo "<br/> <input type='button' value='kembali'
 				onClick='self.history.back()'> ";
 		exit;
 	} else {
 		echo "Simpan data berhasil";
+	}	
+	
+	foreach ($_POST['add-on'] as $selected_ao) {
+		$sql2 = "insert into kostin_booking_ao
+				(book_id,ao_id)
+				values('$id_booking','$selected_ao')";
+		$insertAddonBooking = mysqli_query($conn, $sql2);	
+		if (!$insertAddonBooking) {
+			echo "Gagal Simpan data addon dipilih<br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+				onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Berhasil tambah data tabel booking_ao";
+		}
 	}
 ?>

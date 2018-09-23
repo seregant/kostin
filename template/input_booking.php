@@ -63,14 +63,14 @@
                   
                   <table>
                     <td>
-                        <input type="checkbox" name="add-on" value="tv"> Televisi <br>
-                        <input type="checkbox" name="add-on" value="meja"> Meja <br>
-                        <input type="checkbox" name="add-on" value="kulkas"> Kulkas <br>
+                        <input type="checkbox" name="add-on[]" value="AO001"> Televisi <br>
+                        <input type="checkbox" name="add-on[]" value="AO002"> Meja <br>
+                        <input type="checkbox" name="add-on[]" value="AO003"> Kulkas <br>
                     </td>
                     <td>
-                      <input type="checkbox" name="add-on" value="kipas"> Kipas Angin <br>
-                      <input type="checkbox" name="add-on" value="ac"> AC <br>
-                      <input type="checkbox" name="add-on" value="ricecook"> Rice Cooker <br>
+                      <input type="checkbox" name="add-on[]" value="AO004"> Kipas Angin <br>
+                      <input type="checkbox" name="add-on[]" value="AO005"> AC <br>
+                      <input type="checkbox" name="add-on[]" value="AO006"> Rice Cooker <br>
                     </td>
                   </table>
                 </center>
