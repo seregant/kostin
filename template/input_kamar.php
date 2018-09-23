@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>R-Library - Register</title>
+  <title>Kostin Kamar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/ong" href="images/favicon.png">
@@ -18,7 +18,7 @@
         <div class="col-md-12">
         <div class="reg-form">
           <center>
-            <form name="registrasi" onsubmit="return regValidation()" action="index.html" method="get">
+            <form name="registrasi" onsubmit="return regValidation()" action="../module/input_data.php" method="post" id="form-kamar">
             <table width="70%">
               <tr>
                 <th colspan="3"><center><h2>Tambah Kamar</h2></center></th>
@@ -31,18 +31,18 @@
               <tr>
                 <td>Panjang Kamar</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><input type="text" name="kodebook"></td>
+                <td><input type="text" name="panjang"></td>
               </tr>
               <tr>
                 <td>Lebar Kamar</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><input type="password" name="psw"></td>
+                <td><input type="text" name="lebar"></td>
               </tr>
                <tr>
                 <td>Harga Sewa</td>
                 <td>&nbsp;:&nbsp;</td>
                 <td>
-                  <input type="text" name="kodebook">
+                  <input type="text" name="price">
                 </td>
               </tr>              
                 </center>
@@ -51,7 +51,7 @@
               <tr>
                 <td>Keterangan</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><textarea></textarea></td>
+                <td><textarea name="keterangan" form="form-kamar"></textarea></td>
               </tr>
                 <td colspan="3">
                   <center>

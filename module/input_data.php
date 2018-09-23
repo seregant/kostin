@@ -14,8 +14,15 @@
 		
 		$date = new DateTime();
 		$timestamp = $date->getTimestamp();
-		$id_booking = "BO".$timestamp;
 
+		$bookingData = getAllData("kostin_booking");
+		$bookingRow = 0;
+		if (!is_null($bookingData)) {
+			$bookingRow = mysqli_num_rows($bookingData)+1;
+		}
+
+		$id_booking = "BO".sprintf('%08d', $bookingRow);
+		
 		$isValid = "yes";
 
 		$pict_foto = $_FILES['ktp_pict']['name'];
@@ -69,12 +76,12 @@
 			}
 		}
 		
-		$usedEmail = getBookData();
+		$usedEmail = getAllData("kostin_booking");
 		foreach ($usedEmail as $usedEmails) {
 			if(strcasecmp($email, $usedEmails['book_email'])==0){
-			echo "Email $email sudah dipakai<br>";
-			$isValid = "no";
-		}
+				echo "Email $email sudah dipakai<br>";
+				$isValid = "no";
+			}
 		}
 
 		if ($isValid == "no"){
@@ -118,11 +125,212 @@
 		}
 	}
 
+	function insertMasterAddon(){
+		include '../config/database.php';
+		include 'get_data.php';
+		$nama = $_POST['nama'];
+		$spec = $_POST['spec'];
+		$stock = $_POST['stock'];
+		$price = $_POST['price'];
+
+		$addonData = getAllData("kostin_addons");
+		$addonRow = 0;
+
+		if (!is_null($addonData)) {
+			$addonRow=mysqli_num_rows($addonData)+1;
+		}
+
+		$id_ao = "AO".sprintf('%03d', $addonRow);
+
+		$isValid = "yes";
+
+		if (strlen(trim($nama))==0){
+			echo "Kolom Nama Harus Diisi! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($spec))==0){
+			echo "Lengkapi data spesifikasi add-on! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($price))==0){
+			echo "Lengkapi data harga add-on! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($stock))==0){
+			echo "Lengkapi data stock add-on! <br/>";
+			$isValid = "no";
+		}
+
+		if ($isValid == "no"){
+			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
+			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
+			exit;
+		}
+
+		$sql = "insert into kostin_addons 
+					(ao_id, ao_name, ao_price, ao_spec, ao_stock) values
+					('$id_ao', '$nama', $price, '$spec', $stock)";
+
+		$insertAddon = mysqli_query($conn, $sql);
+
+		if (!$insertAddon) {
+			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data addon berhasil";
+		}	
+
+	}
+
+	function insertMasterKamar(){
+		include '../config/database.php';
+		include 'get_data.php';
+		$nama = $_POST['nama'];
+		$panjang = $_POST['panjang'];
+		$lebar = $_POST['lebar'];
+		$price = $_POST['price'];
+
+		$keterangan = $_POST['keterangan'];
+		if (strlen(trim($keterangan))==0){
+			$keterangan="";
+		}
+
+		$status = "kosong";
+
+		$kamarData = getAllData("kostin_kamar");
+		$kamarRow = 0;
+
+		if (!is_null($kamarData)) {
+			$kamarRow=mysqli_num_rows($kamarData)+1;
+		}
+
+		$id_kamar = "AO".sprintf('%03d', $kamarRow);
+
+		$isValid = "yes";
+
+		if (strlen(trim($nama))==0){
+			echo "Kolom Nama kamar Harus Diisi! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($panjang))==0){
+			echo "Lengkapi data spesifikasi panjang kamar! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($lebar))==0){
+			echo "Lengkapi data lebar kamar! <br/>";
+			$isValid = "no";
+		}
+
+		if ($isValid == "no"){
+			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
+			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
+			exit;
+		}
+
+		$sql = "insert into kostin_kamar 
+					(kamar_id, kamar_status, kamar_panjang, kamar_lebar, kamar_harga, kamar_keterangan) values
+					('$id_kamar', '$status', $panjang, $lebar, $price, '$keterangan')";
+
+		$insertKamar = mysqli_query($conn, $sql);
+
+		if (!$insertKamar) {
+			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data kamar berhasil";
+		}	
+
+	}
+
+	function insertMasterOutcome(){
+		include '../config/database.php';
+		include 'get_data.php';
+		$nama = $_POST['nama'];
+		$value = $_POST['value'];
+		$date = $_POST['date'];
+		$tag = $_POST['tag'];
+
+		$keterangan = $_POST['keterangan'];
+		if (strlen(trim($keterangan))==0){
+			$keterangan="";
+		}
+
+		$outcomeData = getAllData("kostin_outcome");
+		$outcomeRow = 0;
+
+		if (!is_null($outcomeData)) {
+			$outcomeRow=mysqli_num_rows($outcomeData)+1;
+		}
+
+		$id_outcome = "AO".sprintf('%03d', $outcomeRow);
+
+		$isValid = "yes";
+
+		if (strlen(trim($nama))==0){
+			echo "Kolom Nama outcome Harus Diisi! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($value))==0){
+			echo "Lengkapi data jumlah outcome (rupiah)! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($date))==0){
+			echo "Lengkapi data tanggal outcome! <br/>";
+			$isValid = "no";
+		}
+
+		if (strlen(trim($tag))==0){
+			echo "Lengkapi data jenis pengeluaran! <br/>";
+			$isValid = "no";
+		}
+
+		if ($isValid == "no"){
+			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
+			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
+			exit;
+		}
+
+		$sql = "insert into kostin_outcome 
+					(outcm_name, outcm_value, outcm_date, outcm_tag, outcm_keterangan) values
+					('$nama', $value, '$date', '$tag', '$keterangan')";
+
+		$insertOutcome = mysqli_query($conn, $sql);
+
+		if (!$insertOutcome) {
+			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data outcome berhasil";
+		}	
+
+	}
+
 	switch ($functCall) {
 		case '_booking.php':
 				insertMasterBooking();
 			break;
-		
+
+		case '_addon.php':
+				insertMasterAddon();
+			break;
+
+		case '_kamar.php':
+				insertMasterKamar();
+			break;
+
+		case '_outcome.php':
+				insertMasterOutcome();
+			break;
+
 		default:
 			echo "Not found";
 			break;

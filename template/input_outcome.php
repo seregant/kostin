@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Kostin - Addons</title>
+  <title>Kostin Kamar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/ong" href="images/favicon.png">
@@ -18,41 +18,50 @@
         <div class="col-md-12">
         <div class="reg-form">
           <center>
-            <form name="registrasi-addon" method="post" action="../module/input_data.php" id="addon_form">
+            <form name="registrasi" onsubmit="return regValidation()" action="../module/input_data.php" method="post" id="form-outcome">
             <table width="70%">
               <tr>
-                <th colspan="3"><center><h2>Nama Add-on</h2></center></th>
+                <th colspan="3"><center><h2>Tambah Pengeluaran</h2></center></th>
               </tr>
               <tr>
-                <td>Nama</td>
+                <td>Nama Pengeluaran</td>
                 <td>&nbsp;:&nbsp;</td>
                 <td><input type="text" name="nama"></td>
               </tr>
               <tr>
-                <td>Spesifikasi</td>
+                <td>Nilai Pengeluaran</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><textarea name="spec" form="addon_form" rows="5"></textarea></td>
+                <td><input type="text" name="value"></td>
               </tr>
               <tr>
-                <td>Harga</td>
+                <td>Tanggal</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><input type="text" name="price"></td>
+                <td><input type="date" name="date"></td>
               </tr>
-              <tr>
-                <td>Stok</td>
+               <tr>
+                <td>Jenis Pengeluaran</td>
                 <td>&nbsp;:&nbsp;</td>
-                <td><input type="text" name="stock"></td>
-              </tr>
- 
-                  
-
+                <td>
+                  <select name="tag">
+                    <option value="bulanan">Bulanan</option>
+                    <option value="kondisional">Kondisional</option>
+                    <option value="belanja">Belanja</option>
+                    <option value="perbaikan">Perbaikan</option>
+                  </select>
+                </td>
+              </tr>              
                 </center>
               </td>
               </tr>
+              <tr>
+                <td>Keterangan</td>
+                <td>&nbsp;:&nbsp;</td>
+                <td><textarea name="keterangan" form="form-outcome"></textarea></td>
+              </tr>
                 <td colspan="3">
                   <center>
-                    <button type="reset" class="btn btn-sm btn-primary">Reset</button>
-                    <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                  <button type="Reset" class="btn btn-sm btn-primary">Reset</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Kirim</button>
                   </center>
                 </td>
               </tr>
