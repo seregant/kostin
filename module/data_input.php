@@ -3,7 +3,7 @@
 
 	function insertMasterBooking(){
 		include '../config/database.php';
-		include 'get_data.php';
+		include 'data_get.php';
 		$nama = $_POST['nama'];
 		$alamat = $_POST['alamat'];
 		$bdate = $_POST['tanggal-lahir'];
@@ -112,7 +112,8 @@
 			$sql2 = "insert into kostin_booking_ao
 					(book_id,ao_id)
 					values('$id_booking','$selected_ao')";
-			$insertAddonBooking = mysqli_query($conn, $sql2);	
+			$insertAddonBooking = mysqli_query($conn, $sql2);
+				
 			if (!$insertAddonBooking) {
 				echo "Gagal Simpan data addon dipilih<br /> ";
 				echo mysqli_error($conn);
@@ -127,7 +128,7 @@
 
 	function insertMasterAddon(){
 		include '../config/database.php';
-		include 'get_data.php';
+		include 'data_get.php';
 		$nama = $_POST['nama'];
 		$spec = $_POST['spec'];
 		$stock = $_POST['stock'];
@@ -187,7 +188,7 @@
 
 	function insertMasterKamar(){
 		include '../config/database.php';
-		include 'get_data.php';
+		include 'data_get.php';
 		$nama = $_POST['nama'];
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
@@ -250,7 +251,7 @@
 
 	function insertMasterOutcome(){
 		include '../config/database.php';
-		include 'get_data.php';
+		include 'data_get.php';
 		$nama = $_POST['nama'];
 		$value = $_POST['value'];
 		$date = $_POST['date'];

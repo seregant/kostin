@@ -1,3 +1,4 @@
-<h1>Upload berhasil!</h1>
 <?php
+	session_start();
+	
 ?>

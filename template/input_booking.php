@@ -18,7 +18,7 @@
         <div class="col-md-12">
         <div class="reg-form">
           <center>
-            <form name="registrasi" enctype="multipart/form-data" onsubmit="return regValidation()" action="../module/input_data.php" method="post" >
+            <form name="registrasi" enctype="multipart/form-data" onsubmit="return regValidation()" action="../module/data_input.php" method="post" >
             <table width="70%">
               <tr>
                 <th colspan="3"><center><h2>BOOKING</h2></center></th>
