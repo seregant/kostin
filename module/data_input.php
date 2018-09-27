@@ -1,6 +1,11 @@
 <?php
 	$functCall = substr($_SERVER['HTTP_REFERER'], 38);
 
+	if (empty($_POST)){
+		echo "Illegal acces!";
+		exit;
+	}
+	
 	function insertMasterBooking(){
 		include '../config/database.php';
 		include 'data_get.php';
@@ -15,7 +20,7 @@
 		$date = new DateTime();
 		$timestamp = $date->getTimestamp();
 
-		$bookingData = getAllData("kostin_booking");
+		$bookingData = getAllData("kostin_booking","*");
 		$bookingRow = 0;
 		if (!is_null($bookingData)) {
 			$bookingRow = mysqli_num_rows($bookingData)+1;
@@ -76,7 +81,7 @@
 			}
 		}
 		
-		$usedEmail = getAllData("kostin_booking");
+		$usedEmail = getAllData("kostin_booking","*");
 		foreach ($usedEmail as $usedEmails) {
 			if(strcasecmp($email, $usedEmails['book_email'])==0){
 				echo "Email $email sudah dipakai<br>";
@@ -134,7 +139,7 @@
 		$stock = $_POST['stock'];
 		$price = $_POST['price'];
 
-		$addonData = getAllData("kostin_addons");
+		$addonData = getAllData("kostin_addons","*");
 		$addonRow = 0;
 
 		if (!is_null($addonData)) {
@@ -201,7 +206,7 @@
 
 		$status = "kosong";
 
-		$kamarData = getAllData("kostin_kamar");
+		$kamarData = getAllData("kostin_kamar","*");
 		$kamarRow = 0;
 
 		if (!is_null($kamarData)) {
@@ -262,7 +267,7 @@
 			$keterangan="";
 		}
 
-		$outcomeData = getAllData("kostin_outcome");
+		$outcomeData = getAllData("kostin_outcome","*");
 		$outcomeRow = 0;
 
 		if (!is_null($outcomeData)) {
@@ -315,6 +320,66 @@
 
 	}
 
+	function insertMasterUser(){
+		include '../config/database.php';
+		include 'data_get.php';
+
+		$nama = $_POST['nama'];
+		$username = $_POST['username'];
+		$email = $_POST['mail'];
+		$pass = md5($_POST['pass']);
+		$priv = $_POST['priv'];
+
+		$existingUser = getAllData("kostin_user","*");
+		$userCount = 0;
+
+		if (!is_null($existingUser)) {
+			$userCount=mysqli_num_rows($existingUser)+1;
+		}
+
+		$id_user = sprintf('%05d', $userCount);
+
+		$isValid = "yes";
+
+		if (strlen(trim($nama))==0){
+			echo "Kolom Nama outcome Harus Diisi! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($username))==0){
+			echo "Lengkapi data nama username! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($email))==0){
+			echo "Lengkapi data email! <br/>";
+			$isValid = "no";
+		}
+
+
+		if ($isValid == "no"){
+			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
+			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
+			exit;
+		}
+
+		$sql = "insert into kostin_user 
+				(user_id, user_name, user_fullname, user_email, user_password, role_id) values 
+				('$id_user','$username','$nama', '$email', '$pass', '$priv')";
+
+		$insertUser = mysqli_query($conn, $sql);
+
+		if (!$insertUser) {
+			echo "Gagal Simpan data user, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data user berhasil";
+		}	
+
+
+	}
+
 	switch ($functCall) {
 		case '_booking.php':
 				insertMasterBooking();
@@ -330,6 +395,10 @@
 
 		case '_outcome.php':
 				insertMasterOutcome();
+			break;
+
+		case '_user.php':
+				insertMasterUser();
 			break;
 
 		default:

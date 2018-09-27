@@ -13,9 +13,15 @@
 	// 	return $result;
 	// }
 
-	function getAllData($table){
+	function getAllData($table, $columns){
 		include '../config/database.php';
-		$sql = "select * from $table";
+		if (is_array($columns)) {
+			$selCcolumns=implode(",", $columns);
+			$sql = "select (".$selCcolumns.") from $table";
+		} else {
+			$sql = "select $columns from $table";
+		}
+		
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
