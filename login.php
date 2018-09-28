@@ -14,6 +14,7 @@
 			$_SESSION['images'] = $userDatas['user_imagefile'];
 			$_SESSION['name'] = $userDatas['user_fullname'];
 			$_SESSION['userrole'] = $userDatas['role_id'];
+			$_SESSION['email'] = $userDatas['user_email'];
 			header('location:index.php');
 		} else {
 			$errMsg = "Kombinasi Email/Username dan password anda tidak cocok atau belum terdaftar!";
