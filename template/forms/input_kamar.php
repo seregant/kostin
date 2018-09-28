@@ -1,4 +1,4 @@
-<form name="registrasi" onsubmit="return regValidation()" action="../module/.php" method="post" id="form-kamar">
+<form name="registrasi" onsubmit="return regValidation()" action="../../module/.php" method="post" id="form-kamar">
   <table width="70%">
     <tr>
       <th colspan="3"><center><h2>Tambah Kamar</h2></center></th>

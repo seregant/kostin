@@ -4,7 +4,7 @@
   $userRoles = getAllData("kostin_user_role","*");
 ?>
 <script src="a/js/myScript.js"></script>
-<form name="registrasi" onsubmit="return inputUserValidation()" action="../module/data_input.php" method="post">
+<form name="registrasi" onsubmit="return inputUserValidation()" action="../../module/data_input.php" method="post">
   <table width="70%">
     <tr>
       <th colspan="3"><center><h2>Input Data User</h2></center></th>

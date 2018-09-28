@@ -1,4 +1,4 @@
-<form name="registrasi-addon" method="post" action="../module/data_input.php" id="addon_form">
+<form name="registrasi-addon" method="post" action="../../module/data_input.php" id="addon_form">
  <table width="70%">
    <tr>
      <th colspan="3"><center><h2>Nama Add-on</h2></center></th>
