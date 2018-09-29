@@ -1,0 +1,350 @@
+/* --------------------------------------
+
+1. GLOBAL-CSS
+	1.1 GENERAL-CSS
+	1.2 TYPOGRAPHY
+
+2. PRELOADER
+	2.1 LOADING
+	2.2 LOADING ANIMATION
+	
+3. SECTIONS-CSS
+	3.1 BASIC STYLE
+	
+4. HEADER-SECTION
+	4.1 BASIC STYLE
+	4.2 HEADER TOP
+	4.3 MENU
+
+	
+5. FEATURE-SECTION
+	5.1 BASIC STYLE
+
+6. BENIFIT-SECTION
+	6.1 BENIFIT LEFT
+	6.2 MOBILE VIDEO RIGHT
+
+7. CHART-SECTION
+	7.1 CHART
+	7.2 CHART BOTTOM
+	
+8. CLIENT-SECTION
+	8.1 CLIENT QUOTES
+	8.2 CLIENT IMAGES
+
+9. CONTACT-SECTION
+	9.1 BASIC STYLE
+
+10. FOOTER-SECTION
+	10.1 BASIC STYLE
+
+11. RESPONSIVE FIXES
+	11.1 HEADER TOP FIX
+	11.2 BENIFIT FIX
+	11.3 CHART FIX
+	11.4 FOOTER FIX
+
+-----------------------------------------*/
+
+/* --------------------------------------
+=========================================
+   1. GLOABL-CSS
+=========================================
+-----------------------------------------*/
+
+
+/*---------------------------------------
+   1.1 IMPORT GOOGLE WEB FONTS               
+-----------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,500,100,200,300,600,700,800,900);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,600,700);
+
+
+/*---------------------------------------
+   1.2 GENERAL CSS               
+-----------------------------------------*/
+
+
+body {
+	background: #eeeff1;
+	font-size: 16px; /* PIXEL FALLBACK */
+	font-size: 1.6rem;
+	line-height: 1.5;
+	color: #8f96a9;
+}
+
+button {
+	border-radius: 10px;
+	border-style: none;
+	color: #fff;
+	display: inline-block;
+	line-height: 54px;
+	text-align: center;
+	background: #17c4bb;
+	padding:0 20px;
+}
+
+button:hover {
+	background: #18cfc5;
+}
+
+iframe {
+	border: none;
+}
+
+/*---------------------------------------
+   1.3 TYPOGRAPHY               
+-----------------------------------------*/
+
+
+body {
+	background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6, .chart-box {
+	font-family: "Raleway", sans-serif;
+	color: #474c56;
+}
+
+h1 {
+	font-size: 48px; /* PIXEL FALLBACK */
+	font-size: 4.8rem;
+}
+
+h2 {
+	font-size: 36px; /* PIXEL FALLBACK */
+	font-size: 3.6rem;
+	margin-top: 0;
+	color: #474d56;
+	text-align: center;
+	font-weight: normal;
+
+}
+
+h3 {
+	font-size: 18px; /* PIXEL FALLBACK */
+	font-size: 1.8rem;
+	font-weight: bold;
+	color: #666;
+	padding: 10px 0;
+
+}
+
+h4 {
+	font-size: 26px; /* PIXEL FALLBACK */
+	font-size: 2.6rem;
+}
+
+p {
+	font-size: 10px; /* PIXEL FALLBACK */
+	font-size: 1rem;
+}
+
+
+/* --------------------------------------
+=========================================
+   3. SECTIONS-CSS
+=========================================
+-----------------------------------------*/
+
+/*---------------------------------------
+   3.1 BASIC STYLE               
+-----------------------------------------*/
+
+section {
+	padding: 80px 0;
+	text-align: center;
+}
+
+.separator {
+	background: #cdcdcd;
+	display: inline-block;
+	height: 1px;
+	margin: 20px 0;
+	width: 100px;
+}
+
+/* --------------------------------------
+=========================================
+   4. HEADER-SECTION
+=========================================
+-----------------------------------------*/
+
+/*---------------------------------------
+   4.1 BASIC STYLE               
+-----------------------------------------*/
+#headerHeight {
+  height: 1.5em;
+}
+.header-color {
+	background-color: #ffffff;
+}
+
+.hr-color {
+	border: 0;
+	width: 80%;
+	color: #c1c1c1;
+	background-color: #c1c1c1;
+	height: 1px;
+}
+
+
+/*---------------------------------------
+   4.2 HEADER TOP               
+-----------------------------------------*/
+
+ul.social-icons {
+	float: right;
+	padding: 0px;
+}
+
+ul.social-icons li {
+	float: left;
+	list-style: none;
+	margin: 0 0 0 10px;
+}
+ul.social-icons li a img {
+	max-width: 1em;
+}
+
+/*---------------------------------------
+   4.3 MENU               
+-----------------------------------------*/
+.logo {
+	margin: 0.2em;
+	float: left;
+	padding-top: 0.5em;
+	padding-right: 1em;
+}
+
+.paddingNav {
+	padding-left: 1em;
+}
+
+.navbar-font {
+	font-family: "Bookman Old Style";
+}
+.navbar-font-size {
+	font-size: 1em; 
+}
+
+/*---------------------------------------
+   Slider               
+-----------------------------------------*/
+.slider-img {
+	max-width: 1366px;
+	height: 100%;
+}
+/*---------------------------------------
+   Konten Offer               
+-----------------------------------------*/
+img.icon {
+	padding-top: 1em;
+	max-width: 2.7em;
+}
+
+.text {
+	font-size: 0.7em;
+	color: grey;
+	font-weight: bold;
+}
+
+
+/*----------------------------------------
+	Map Our Location
+------------------------------------------*/
+#map {
+	padding-top: 1em;
+	width: 100%;
+	height: 400px;
+	background-color: grey;
+}
+
+
+/*----------------------------------------
+	Footer
+------------------------------------------*/
+.footer {
+	background: #2D3E58;
+	padding: 40px 0;
+}
+
+.footer-logo {
+	float: left;
+	padding-left: 5em;
+}
+
+.footer-text {
+	float: right;
+    font-size: 14px;
+    color: #fff;
+    text-align: right;
+    margin: 0;
+    line-height: 33px;
+}
+
+.footer-text span {
+	color: #17c4bb;
+}
+
+/*----------------------------------------
+	Responsive Fix
+------------------------------------------*/
+@media only screen and (min-width: 319px) and (max-width: 1024px){
+	
+	/*-----------Desc--------------*/
+	h4 {
+		font-size: 14px; /* PIXEL FALLBACK */
+		font-size: 1.4rem;
+	}
+
+	h6 {
+		font-size: 8px; /* PIXEL FALLBACK */
+		font-size: 0.8rem;
+	}
+	/*---------Login btn------------*/
+	#btn-login {
+		float: none;
+	}
+	/*-----------Slider------------*/
+	.slider-img {
+		width: 100%;
+		max-width: 470px;
+		background-size: 100%;
+	}
+
+	/*-----------Offer-------------*/
+	img.icon {
+		padding-top: 0.3em;
+		max-width: 1em;
+	}
+
+	.text {
+		font-size: 10px;
+		text-align: center;
+		font-family: "Bookman Old Style";
+	}
+
+	/*-----------MAP--------------*/
+	#map {
+		margin: 0.5em;
+		width: 100%;
+		height: 220px;
+		background-color: grey;
+	}	
+
+	/*-----------FOOTER-----------*/
+	.footer-logo {
+		float: none;
+		padding-bottom: 5px;
+	}
+
+	.footer-text {
+		float: none;
+    	font-size: 10px;
+    	color: #fff;
+    	text-align: center;
+    	margin: 0;
+    	line-height: 26px;
+	}
+}
