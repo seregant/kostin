@@ -329,39 +329,6 @@
 		$pass = md5($_POST['pass']);
 		$priv = $_POST['priv'];
 
-		$date = new DateTime();
-		$timestamp = $date->getTimestamp();
-
-		$pict_foto = $_FILES['foto']['name'];
-		$pict_tmp = $_FILES['foto']['tmp_name'];
-		$pict_size = $_FILES['foto']['size'];
-		$pict_type = $_FILES['foto']['type'];
-
-		$maxPictSize = 1500000;
-		$allowedType = array("image/jpeg","image/png","image/pjpeg");
-		$pictDir = "../uploads/images/user";
-		$thumbDir = "../uploads/images/user_thumb";
-
-		if(!is_dir($pictDir))
-			mkdir($pictDir);
-
-		if(!is_dir($thumbDir))
-			mkdir($thumbDir);
-
-		$pictDst = $pictDir."/user_".$timestamp.'.'.substr($pict_type, 6);
-		$thumbDst =$thumbDir."/thmb_user".$timestamp.'.'.substr($pict_type, 6);
-
-		if($pict_size > 0) {
-			if($pict_size > $maxPictSize){
-				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
-				$isValid = "no";
-			}
-			if(!in_array($pict_type, $allowedType)){
-				echo "Tipe file gambar no dikenali!";
-				$isValid = "no";
-			}
-		}
-
 		$existingUser = getAllData("kostin_user","*");
 		$userCount = 0;
 
@@ -386,16 +353,17 @@
 			$isValid = "no";
 		}
 
-
 		if ($isValid == "no"){
 			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
 			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
 			exit;
 		}
 
+		$uploadResult = uploadImage('foto','user');
+
 		$sql = "insert into kostin_user 
 				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
-				('$id_user','$username','$nama', '$email', '$pictDst', '$thumbDst', '$pass', '$priv')";
+				('$id_user','$username','$nama', '$email', '".$uploadResult['imgDir']."', '".$uploadResult['thmbDir']."', '$pass', '$priv')";
 
 		$insertUser = mysqli_query($conn, $sql);
 
@@ -406,18 +374,58 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			if ($pict_size > 0) {
-				if (!move_uploaded_file($pict_tmp, $pictDst)) {
-					echo "Gagal upload gambar";
-					exit;
-				} else {
-					createThumbnail($pictDst, $thumbDst);
-				}
-			}
 			echo "Simpan data user berhasil";
 		}	
 
 
+	}
+
+	function uploadImage($dataIndex,$imgPrefix){
+
+		$pict_foto = $_FILES[$dataIndex]['name'];
+		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
+		$pict_size = $_FILES[$dataIndex]['size'];
+		$pict_type = $_FILES[$dataIndex]['type'];
+		$date = new DateTime();
+		$timestamp = $date->getTimestamp();
+
+		$maxPictSize = 1500000;
+		$allowedType = array("image/jpeg","image/png","image/pjpeg");
+		$pictDir = "../uploads/images/user";
+		$thumbDir = "../uploads/images/user_thumb";
+
+		if(!is_dir($pictDir))
+			mkdir($pictDir);
+
+		if(!is_dir($thumbDir))
+			mkdir($thumbDir);
+
+		$pictDst = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst =$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
+
+		if($pict_size > 0) {
+			if($pict_size > $maxPictSize){
+				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
+				$isValid = "no";
+			}
+			if(!in_array($pict_type, $allowedType)){
+				echo "Tipe file gambar no dikenali!";
+				$isValid = "no";
+			}
+		}
+
+		if ($pict_size > 0) {
+			if (!move_uploaded_file($pict_tmp, $pictDst)) {
+				echo "Gagal upload gambar";
+				$status = 'gagal';
+				exit;
+			} else {
+				createThumbnail($pictDst, $thumbDst);
+				$status = 'berhasil';
+			}
+		}
+
+		return array('imgDir' => $pictDst, 'thmbDir' => $thumbDst, 'status' => $status );
 	}
 
 	function createThumbnail($file_src, $file_dst){
