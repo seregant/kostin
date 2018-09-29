@@ -74,7 +74,7 @@
             </ul>     
             <ul class="navbar-nav ml-auto" id="btn-login">
               <li>
-                <button type="button" class="btn btn-light">Login</button>
+                <button type="button" class="btn btn-light" onclick="location.href='../../login.php'">Login</button>
               </li>
             </ul>       
           </div>
