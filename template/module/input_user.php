@@ -24,6 +24,7 @@
       <td>&nbsp;:&nbsp;</td>
       <td><input type="text" name="mail"></td>
     </tr>
+    
     <tr>
       <td>Password</td>
       <td>&nbsp;:&nbsp;</td>
