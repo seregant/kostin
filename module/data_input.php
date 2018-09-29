@@ -1,14 +1,13 @@
 <?php
-	$functCall = substr($_SERVER['HTTP_REFERER'], 38);
-
+	$functCall = substr($_SERVER['HTTP_REFERER'], 44);
 	if (empty($_POST)){
 		echo "Illegal acces!";
 		exit;
 	}
 	
 	function insertMasterBooking(){
-		include '../config/database.php';
-		include 'data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 		$nama = $_POST['nama'];
 		$alamat = $_POST['alamat'];
 		$bdate = $_POST['tanggal-lahir'];
@@ -132,8 +131,8 @@
 	}
 
 	function insertMasterAddon(){
-		include '../config/database.php';
-		include 'data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 		$nama = $_POST['nama'];
 		$spec = $_POST['spec'];
 		$stock = $_POST['stock'];
@@ -192,8 +191,8 @@
 	}
 
 	function insertMasterKamar(){
-		include '../config/database.php';
-		include 'data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 		$nama = $_POST['nama'];
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
@@ -255,8 +254,8 @@
 	}
 
 	function insertMasterOutcome(){
-		include '../config/database.php';
-		include 'data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 		$nama = $_POST['nama'];
 		$value = $_POST['value'];
 		$date = $_POST['date'];
@@ -321,14 +320,47 @@
 	}
 
 	function insertMasterUser(){
-		include '../config/database.php';
-		include 'data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		$pass = md5($_POST['pass']);
 		$priv = $_POST['priv'];
+
+		$date = new DateTime();
+		$timestamp = $date->getTimestamp();
+
+		$pict_foto = $_FILES['foto']['name'];
+		$pict_tmp = $_FILES['foto']['tmp_name'];
+		$pict_size = $_FILES['foto']['size'];
+		$pict_type = $_FILES['foto']['type'];
+
+		$maxPictSize = 1500000;
+		$allowedType = array("image/jpeg","image/png","image/pjpeg");
+		$pictDir = "../uploads/images/user";
+		$thumbDir = "../uploads/images/user_thumb";
+
+		if(!is_dir($pictDir))
+			mkdir($pictDir);
+
+		if(!is_dir($thumbDir))
+			mkdir($thumbDir);
+
+		$pictDst = $pictDir."/user_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst =$thumbDir."/thmb_user".$timestamp.'.'.substr($pict_type, 6);
+
+		if($pict_size > 0) {
+			if($pict_size > $maxPictSize){
+				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
+				$isValid = "no";
+			}
+			if(!in_array($pict_type, $allowedType)){
+				echo "Tipe file gambar no dikenali!";
+				$isValid = "no";
+			}
+		}
 
 		$existingUser = getAllData("kostin_user","*");
 		$userCount = 0;
@@ -362,8 +394,8 @@
 		}
 
 		$sql = "insert into kostin_user 
-				(user_id, user_name, user_fullname, user_email, user_password, role_id) values 
-				('$id_user','$username','$nama', '$email', '$pass', '$priv')";
+				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
+				('$id_user','$username','$nama', '$email', '$pictDst', '$thumbDst', '$pass', '$priv')";
 
 		$insertUser = mysqli_query($conn, $sql);
 
@@ -374,10 +406,48 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
+			if ($pict_size > 0) {
+				if (!move_uploaded_file($pict_tmp, $pictDst)) {
+					echo "Gagal upload gambar";
+					exit;
+				} else {
+					createThumbnail($pictDst, $thumbDst);
+				}
+			}
 			echo "Simpan data user berhasil";
 		}	
 
 
+	}
+
+	function createThumbnail($file_src, $file_dst){
+		list($w_src,$h_src,$type) = getimagesize($file_src);
+
+		switch ($type) {
+			case 1 :
+				$img_src = imagecreatefromgif($file_src);
+				break;
+			case 2 :
+				$img_src = imagecreatefromjpeg($file_src);
+				break;
+			case 3 :
+				$img_src = imagecreatefrompng($file_src);
+				break;
+		}
+		$thumb = 100;
+		if ($w_src > $h_src){
+			$w_dst = $thumb;
+			$h_dst = round($thumb / $w_src*$h_src);
+		} else {
+			$w_dst = round($thumb/$h_src*$w_src);
+			$h_dst = $thumb;
+		}
+
+		$img_dst = imagecreatetruecolor($w_dst, $h_dst);
+		imagecopyresampled($img_dst, $img_src, 0,0,0,0,$w_dst,$h_dst,$w_src,$h_src);
+		imagejpeg($img_dst, $file_dst);
+		imagedestroy($img_src);
+		imagedestroy($img_dst);
 	}
 
 	switch ($functCall) {

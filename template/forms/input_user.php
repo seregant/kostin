@@ -1,10 +1,11 @@
 <?php
-  include "../module/data_get.php";
+  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
+  include $base_url."/module/data_get.php";
   $existingUser = getAllData("kostin_user","*");
   $userRoles = getAllData("kostin_user_role","*");
 ?>
 <script src="a/js/myScript.js"></script>
-<form name="registrasi" onsubmit="return inputUserValidation()" action="../../module/data_input.php" method="post">
+<form name="registrasi" onsubmit="return inputUserValidation()" action="../../module/data_input.php" method="post" enctype="multipart/form-data">
   <table width="70%">
     <tr>
       <th colspan="3"><center><h2>Input Data User</h2></center></th>
@@ -33,6 +34,11 @@
       <td>Ulangi Password</td>
       <td>&nbsp;:&nbsp;</td>
       <td><input type="password" name="retype-pass"></td>
+    </tr>
+    <tr>
+      <td>Foto</td>
+      <td>&nbsp;:&nbsp;</td>
+      <td><input type="file" name="foto"></td>
     </tr>
      <tr>
       <td>Hak Akses</td>
