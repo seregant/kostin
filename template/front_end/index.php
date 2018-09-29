@@ -2,7 +2,7 @@
   session_start();
 
   if(!isset($_SESSION['username'])){
-    header('location:/../login.php');
+    header('login.php');
   }
 
   if(!empty($_GET['report'])) {
@@ -14,7 +14,7 @@
     include('template/index.php');
   }
 
-  include 'header.php';
+  include 'template/header.php';
 ?>
 
 <!--==========================
@@ -109,5 +109,5 @@
   <hr class="hr-color">
 
 <?php
-  include 'footer.php';
+  include 'template/footer.php';
 ?>
