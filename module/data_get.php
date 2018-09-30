@@ -11,4 +11,11 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getUserData($column, $params){
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_user where $column = '$params'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>

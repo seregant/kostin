@@ -1,0 +1,144 @@
+<?php
+	if (empty($_POST)){
+		echo "Illegal acces!";
+		exit;
+	}	
+
+	function editUserFull() {
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+
+		$nama = $_POST['nama'];
+		$username = $_POST['username'];
+		$email = $_POST['mail'];
+		$priv = $_POST['priv'];
+
+		if ($_FILES['foto']['size'] <> 0 && $_FILES['foto']['error'] <> 0){
+    		$uploadResult = uploadImage('foto','user');
+		}
+
+		$sql = "update kostin_user set
+					user_fullname = '$nama',
+					user_name = '$username',
+					user_email = '$email',
+					role_id = $priv
+				";
+
+		$updateUser = mysqli_query($conn, $sql);
+
+		if (!$updateUser) {
+			echo "Gagal Simpan data user, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data user berhasil";
+		}
+	}
+
+	function uploadImage($dataIndex,$imgPrefix){
+
+		$pict_foto = $_FILES[$dataIndex]['name'];
+		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
+		$pict_size = $_FILES[$dataIndex]['size'];
+		$pict_type = $_FILES[$dataIndex]['type'];
+		$date = new DateTime();
+		$timestamp = $date->getTimestamp();
+
+		$maxPictSize = 1500000;
+		$allowedType = array("image/jpeg","image/png","image/pjpeg");
+		$pictDir = "../uploads/images/".$imgPrefix;
+		$thumbDir = "../uploads/images/".$imgPrefix_thumb;
+
+		if(!is_dir($pictDir))
+			mkdir($pictDir);
+
+		if(!is_dir($thumbDir))
+			mkdir($thumbDir);
+
+		$pictDst = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst =$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
+
+		if($pict_size > 0) {
+			if($pict_size > $maxPictSize){
+				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
+				$isValid = "no";
+			}
+			if(!in_array($pict_type, $allowedType)){
+				echo "Tipe file gambar no dikenali!";
+				$isValid = "no";
+			}
+		}
+
+		if ($pict_size > 0) {
+			if (!move_uploaded_file($pict_tmp, $pictDst)) {
+				echo "Gagal upload gambar";
+				$status = 'gagal';
+				exit;
+			} else {
+				createThumbnail($pictDst, $thumbDst);
+				$status = 'berhasil';
+			}
+		}
+
+		return array('imgDir' => $pictDst, 'thmbDir' => $thumbDst, 'status' => $status );
+	}
+
+	function createThumbnail($file_src, $file_dst){
+		list($w_src,$h_src,$type) = getimagesize($file_src);
+
+		switch ($type) {
+			case 1 :
+				$img_src = imagecreatefromgif($file_src);
+				break;
+			case 2 :
+				$img_src = imagecreatefromjpeg($file_src);
+				break;
+			case 3 :
+				$img_src = imagecreatefrompng($file_src);
+				break;
+		}
+		$thumb = 100;
+		if ($w_src > $h_src){
+			$w_dst = $thumb;
+			$h_dst = round($thumb / $w_src*$h_src);
+		} else {
+			$w_dst = round($thumb/$h_src*$w_src);
+			$h_dst = $thumb;
+		}
+
+		$img_dst = imagecreatetruecolor($w_dst, $h_dst);
+		imagecopyresampled($img_dst, $img_src, 0,0,0,0,$w_dst,$h_dst,$w_src,$h_src);
+		imagejpeg($img_dst, $file_dst);
+		imagedestroy($img_src);
+		imagedestroy($img_dst);
+	}
+
+	switch ($_GET['category']) {
+		case '_booking.php':
+				insertMasterBooking();
+			break;
+
+		case '_addon.php':
+				insertMasterAddon();
+			break;
+
+		case '_kamar.php':
+				insertMasterKamar();
+			break;
+
+		case '_outcome.php':
+				insertMasterOutcome();
+			break;
+
+		case 'user':
+				editUserFull();
+			break;
+
+		default:
+			echo "Not found";
+			break;
+	}
+
+?>
