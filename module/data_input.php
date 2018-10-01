@@ -205,7 +205,7 @@
 
 		$status = "kosong";
 
-		$kamarData = getAllData("kostin_kamar","*");
+		$kamarData = getAllData("kostin_kamar","kamar_id");
 		$kamarRow = 0;
 
 		if (!is_null($kamarData)) {

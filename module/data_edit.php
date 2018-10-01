@@ -48,6 +48,46 @@
 		}
 	}
 
+	function editKamar(){
+		include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
+		include $base_url.'/config/database.php';
+		include $base_url.'/module/data_get.php';
+
+		$nama = $_POST['nama'];
+		$panjang = $_POST['panjang'];
+		$lebar = $_POST['lebar'];
+		$price = $_POST['price'];
+		$keterangan = $_POST['keterangan'];
+		
+		if (strlen(trim($keterangan))==0){
+			$keterangan="";
+		}
+
+		$kamarData = getAllData("kostin_kamar","kamar_id");
+		$kamarRow = 0;
+
+		if (!is_null($kamarData)) {
+			$kamarRow=mysqli_num_rows($kamarData)+1;
+		}
+
+		$id_kamar = "AO".sprintf('%03d', $kamarRow);
+
+		$sql = "update kostin_kamar set 
+				";
+
+		$insertKamar = mysqli_query($conn, $sql);
+
+		if (!$insertKamar) {
+			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data kamar berhasil";
+		}
+	}
+
 	function uploadImage($dataIndex,$imgPrefix){
 
 		$pict_foto = $_FILES[$dataIndex]['name'];

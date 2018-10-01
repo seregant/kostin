@@ -18,4 +18,11 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getRoomData($params){
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_kamar where kamar_id = '$params'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>
