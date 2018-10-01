@@ -3,10 +3,18 @@
   include $base_url."/module/data_get.php";
 
   if(isset($_GET['edit'])){
-    $action = '../../module/data_edit.php?category=user';
     $existingUser = getUserData('user_id',$_GET['user_id']);
     $rows = mysqli_fetch_assoc($existingUser);
     $buttonVal = "Simpan";
+
+    if ($rows['role_id']=='00001'){
+      $category = 'user_admin';
+    } else {
+      $category = 'user_admin';
+    }
+
+    $action = '../../module/data_edit.php?category='.$category.'&id='.$_GET['user_id'];
+
   } else {
     $action = '../../module/data_input.php';
     $existingUser = getAllData("kostin_user","*");
@@ -77,22 +85,40 @@
       <td><input type="file" name="foto"></td>
     </tr>
     <?php
-      if ($rows['role_id']=='00001') {
-        echo '
-          <tr>
-            <td>Hak Akses</td>
-            <td>&nbsp;:&nbsp;</td>
-            <td>
-              <select name="priv">
-        ';
-        foreach ($userRoles as $roles) {
-              echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+      if (isset($_GET['edit'])){
+        if ($rows['role_id']=='00001') {
+          echo '
+            <tr>
+              <td>Hak Akses</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>
+                <select name="priv">
+          ';
+            foreach ($userRoles as $roles) {
+                  echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+            }
+          echo '</select>
+              </td>
+            </tr>
+          ';
         }
+      } else if (!isset($_GET['edit'])) {
         echo '
-              </select>
-            </td>
-          </tr>
-        ';
+            <tr>
+              <td>Hak Akses</td>
+              <td>&nbsp;:&nbsp;</td>
+              <td>
+                <select name="priv">
+          ';
+            foreach ($userRoles as $roles) {
+                  echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+            }
+          echo '</select>
+              </td>
+            </tr>
+          ';
+      } else {
+        echo '';
       }
     ?>
       </center>

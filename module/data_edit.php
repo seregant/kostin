@@ -5,25 +5,36 @@
 	}	
 
 	function editUserFull() {
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
+		include $base_url.'/config/database.php';
+		include $base_url.'/module/data_get.php';
 
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
-		$priv = $_POST['priv'];
-
-		if ($_FILES['foto']['size'] <> 0 && $_FILES['foto']['error'] <> 0){
-    		$uploadResult = uploadImage('foto','user');
-		}
+		
+		$userData = getUserData('user_id',$_GET['id']);
+		$userDatas = mysqli_fetch_assoc($userData);
 
 		$sql = "update kostin_user set
 					user_fullname = '$nama',
 					user_name = '$username',
-					user_email = '$email',
-					role_id = $priv
+					user_email = '$email'
 				";
 
+		if (isset($_POST['priv'])) {
+			$sql .= ", role_id = '".$_POST['priv']."'";
+		}
+
+		if ($_FILES['foto']['size'] > 0){
+			unlink($userDatas['user_imagefile']);
+    		unlink($userDatas['user_imagethumb']);
+    		$uploadResult = uploadImage('foto','user');
+    		$sql .= ", user_imagefile = '".$uploadResult['imgDir']."',
+					user_imagethumb = '".$uploadResult['thmbDir']."'";
+		}
+
+		$sql .= " where user_id='".$_GET['id']."'";
 		$updateUser = mysqli_query($conn, $sql);
 
 		if (!$updateUser) {
@@ -49,7 +60,7 @@
 		$maxPictSize = 1500000;
 		$allowedType = array("image/jpeg","image/png","image/pjpeg");
 		$pictDir = "../uploads/images/".$imgPrefix;
-		$thumbDir = "../uploads/images/".$imgPrefix_thumb;
+		$thumbDir = "../uploads/images/".$imgPrefix."_thumb";
 
 		if(!is_dir($pictDir))
 			mkdir($pictDir);
@@ -132,7 +143,7 @@
 				insertMasterOutcome();
 			break;
 
-		case 'user':
+		case 'user_admin':
 				editUserFull();
 			break;
 
