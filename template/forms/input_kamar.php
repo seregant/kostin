@@ -5,7 +5,7 @@
   if(isset($_GET['room_id'])){
     $dataKamar = getRoomData($_GET['room_id']);
     $data = mysqli_fetch_assoc($dataKamar);
-    $action = "../../module/data_input.php?room_id=".$_GET['room_id'];
+    $action = "../../module/data_edit.php?category=room&room_id=".$_GET['room_id'];
   } else {
     $action = "../../module/data_input.php";
   }
@@ -19,10 +19,10 @@
     <tr>
       <td>No Kamar</td>
       <td>&nbsp;:&nbsp;</td>
-      <td><input type="text" name="nama" 
+      <td><input type="text" name="nomor" 
         <?php 
           if(isset($_GET['edit'])){
-            echo 'value="'.$data['kamar_id'].'"';
+            echo 'value="'.$data['kamar_id'].'" readonly';
           }
         ?>
         "></td>

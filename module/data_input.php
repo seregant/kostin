@@ -193,7 +193,6 @@
 	function insertMasterKamar(){
 		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
 		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
-		$nama = $_POST['nama'];
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
 		$price = $_POST['price'];
@@ -216,10 +215,6 @@
 
 		$isValid = "yes";
 
-		if (strlen(trim($nama))==0){
-			echo "Kolom Nama kamar Harus Diisi! <br/>";
-			$isValid = "no";
-		}
 		if (strlen(trim($panjang))==0){
 			echo "Lengkapi data spesifikasi panjang kamar! <br/>";
 			$isValid = "no";

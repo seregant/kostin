@@ -53,7 +53,6 @@
 		include $base_url.'/config/database.php';
 		include $base_url.'/module/data_get.php';
 
-		$nama = $_POST['nama'];
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
 		$price = $_POST['price'];
@@ -61,6 +60,19 @@
 		
 		if (strlen(trim($keterangan))==0){
 			$keterangan="";
+		}
+
+
+		$sql = "update kostin_kamar set 
+					kamar_panjang = '$panjang',
+					kamar_lebar = '$lebar',
+					kamar_harga = $price,
+					kamar_keterangan = '$keterangan'
+				";
+
+		if (isset($_POST['status'])) {
+			$status = $_POST['status'];
+			$sql .= ", kamar_status = '$status'";
 		}
 
 		$kamarData = getAllData("kostin_kamar","kamar_id");
@@ -72,12 +84,11 @@
 
 		$id_kamar = "AO".sprintf('%03d', $kamarRow);
 
-		$sql = "update kostin_kamar set 
-				";
+		$sql .= " where kamar_id = ".$_GET['room_id'];
 
-		$insertKamar = mysqli_query($conn, $sql);
+		$editKamar = mysqli_query($conn, $sql);
 
-		if (!$insertKamar) {
+		if (!$editKamar) {
 			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
 			echo mysqli_error($conn);
 			echo "<br/> <input type='button' value='kembali'
@@ -179,8 +190,8 @@
 				insertMasterKamar();
 			break;
 
-		case '_outcome.php':
-				insertMasterOutcome();
+		case 'room':
+				editKamar();
 			break;
 
 		case 'user_admin':
