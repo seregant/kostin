@@ -522,7 +522,7 @@
 				insertMasterAddon();
 			break;
 
-		case 'kamar':
+		case 'room':
 				insertMasterKamar();
 			break;
 

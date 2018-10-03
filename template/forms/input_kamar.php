@@ -7,7 +7,7 @@
     $data = mysqli_fetch_assoc($dataKamar);
     $action = "../../module/data_edit.php?category=room&room_id=".$_GET['room_id'];
   } else {
-    $action = "../../module/data_input.php";
+    $action = "../../module/data_input.php?category=room";
   }
 
 ?>
