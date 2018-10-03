@@ -416,6 +416,22 @@
 			exit;
 		} else {
 			echo "Update data kamar berhasil!";
+			foreach ($_POST['add-on'] as $selected_ao) {
+				$sql2 = "insert into kostin_sewa_ao
+						(sewa_id,ao_id)
+						values('$sewaId','$selected_ao')";
+				$insertAddonBooking = mysqli_query($conn, $sql2);
+					
+				if (!$insertAddonBooking) {
+					echo "Gagal Simpan data addon dipilih<br /> ";
+					echo mysqli_error($conn);
+					echo "<br/> <input type='button' value='kembali'
+						onClick='self.history.back()'> ";
+					exit;
+				} else {
+					echo "Berhasil tambah data tabel booking_ao";
+				}
+			}
 		}	
 	}
 

@@ -16,7 +16,7 @@
     $action = '../../module/data_edit.php?category='.$category.'&id='.$_GET['user_id'];
 
   } else {
-    $action = '../../module/data_input.php';
+    $action = '../../module/data_input.php?category=user';
     $existingUser = getAllData("kostin_user","*");
     $buttonVal = "Tambah";
   }

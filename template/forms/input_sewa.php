@@ -14,7 +14,7 @@
   $dataKamar = getAvailRoom();
   $dataAddOn = getAllData('kostin_addons', array('ao_id', 'ao_name'));
 
-  if(is_null($dataKamar)){
+  if(mysqli_num_rows($dataKamar)==0){
     echo "Kamar penuh!";
   }
 ?>
@@ -60,10 +60,29 @@
       <td>
         <input type="date" name="checkin">
       </td>
-    </tr>             
-      </center>
-    </td>
     </tr>
+    <tr>
+      <td colspan="3">
+        <center>
+          <h3>Add ons : </h3>
+          <table>
+            <tr>
+              <td>
+                  <input type="checkbox" name="add-on[]" value="AO001"> Televisi <br>
+                  <input type="checkbox" name="add-on[]" value="AO002"> Meja <br>
+                  <input type="checkbox" name="add-on[]" value="AO003"> Kulkas <br>
+              </td>
+              <td>
+                <input type="checkbox" name="add-on[]" value="AO004"> Kipas Angin <br>
+                <input type="checkbox" name="add-on[]" value="AO005"> AC <br>
+                <input type="checkbox" name="add-on[]" value="AO006"> Rice Cooker <br>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+    <tr>             
       <td colspan="3">
         <center>
           <button type="Reset" class="btn btn-sm btn-primary">Reset</button>
