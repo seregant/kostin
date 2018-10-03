@@ -1,5 +1,4 @@
 <?php
-	$functCall = substr($_SERVER['HTTP_REFERER'], 44);
 	if (empty($_POST)){
 		echo "Illegal acces!";
 		exit;
@@ -375,6 +374,51 @@
 
 	}
 
+	function insertMasterSewa(){
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+
+		$getUser = getUserData('user_name',$_POST['user']);
+		$dataUser = mysqli_fetch_assoc($getUser);
+		$dataSewa = getAllData('kostin_sewa','sewa_id');
+		$sewaCount = 0;
+
+		if(!is_null($dataSewa)) {
+			$sewaCount = mysqli_num_rows($dataSewa)+1;
+		}
+
+		$sewaId = "SW".sprintf('%03d', $sewaCount);
+		$durasi = 30;
+
+		$sql = "insert into kostin_sewa 
+				(sewa_id, kamar_id, user_id, sewa_in, sewa_durasi) values
+				('$sewaId','".$_POST['kamar']."','".$dataUser['user_id']."','".$_POST['checkin']."', $durasi)";
+		$sql2 = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = '".$_POST['kamar']."'";	
+
+		$insertSewa = mysqli_query($conn, $sql);
+		$updateKamar = mysqli_query($conn, $sql2);
+
+		if (!$insertSewa) {
+			echo "Gagal Simpan data sewa, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Simpan data user berhasil";
+		}
+
+		if (!$updateKamar) {
+			echo "Gagal update data kamar! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			echo "Update data kamar berhasil!";
+		}	
+	}
+
 	function uploadImage($dataIndex,$imgPrefix){
 
 		$pict_foto = $_FILES[$dataIndex]['name'];
@@ -453,25 +497,29 @@
 		imagedestroy($img_dst);
 	}
 
-	switch ($functCall) {
-		case '_booking.php':
+	switch ($_GET['category']) {
+		case 'booking':
 				insertMasterBooking();
 			break;
 
-		case '_addon.php':
+		case 'addon':
 				insertMasterAddon();
 			break;
 
-		case '_kamar.php':
+		case 'kamar':
 				insertMasterKamar();
 			break;
 
-		case '_outcome.php':
+		case 'outcome':
 				insertMasterOutcome();
 			break;
 
-		case '_user.php':
+		case 'user':
 				insertMasterUser();
+			break;
+
+		case 'sewa':
+				insertMasterSewa();
 			break;
 
 		default:

@@ -25,4 +25,18 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getRentData($params){
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_sewa where sewa_id = '$params'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
+
+	function getAvailRoom (){
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_kamar where kamar_status='kosong'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>

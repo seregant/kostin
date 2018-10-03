@@ -1,101 +1,3 @@
-function showForm(){
-	var x = document.getElementById('loginform');
-	var y = document.getElementById('regLink');
-	if (x.style.display == 'inline') {
-		x.style.display = 'none';
-		y.style.display = 'inline'
-	} else {
-		x.style.display = 'inline';
-		y.style.display = 'none'
-	}
-
-}
-
-
-function showFeatured(){
-var x =  document.getElementById('featuredMenu');
-var y =  document.getElementById('categoriesMenu');
-var z =  document.getElementById('infoMenu');
-
-y.style.display = 'none';
-z.style.display = 'none';
-
-	if (x.style.display == 'inline') {
-		x.style.display = 'none';
-	} else {
-		x.style.display = 'inline';
-	}
-}
-
-function showCategories(){
-var x =  document.getElementById('featuredMenu');
-var y =  document.getElementById('categoriesMenu');
-var z =  document.getElementById('infoMenu');
-
-x.style.display = 'none';
-z.style.display = 'none';
-
-	if (y.style.display == 'inline') {
-		y.style.display = 'none';
-	} else {
-		y.style.display = 'inline';
-	}
-}
-
-function showInfo(){
-var x =  document.getElementById('featuredMenu');
-var y =  document.getElementById('categoriesMenu');
-var z =  document.getElementById('infoMenu');
-
-x.style.display = 'none';
-y.style.display = 'none';
-
-	if (z.style.display == 'inline') {
-		z.style.display = 'none';
-	} else {
-		z.style.display = 'inline';
-	}
-}
-
-function collapseAll() {
-
-	var x =  document.getElementById('featuredMenu');
-	var y =  document.getElementById('categoriesMenu');
-	var z =  document.getElementById('infoMenu');
-	x.style.display = 'none';
-	y.style.display = 'none';
-	z.style.display = 'none';	
-}
-
-function resetFilter(){
-	document.getElementById("filterForm").reset();
-}
-
-
-function showFilter(){
-	var filter = document.getElementById("filterbox");
-
-	if (filter.style.display == 'inline'){
-		filter.style.display = 'none';
-	} else {
-		filter.style.display = 'inline';
-	}
-
-	
-}
-
-
-function loadData() {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      showData(this);
-    }
-  };
-  xmlhttp.open("GET", "data.xml", true);
-  xmlhttp.send();
-}
-
 function inputUserValidation() {
 	var nama = document.forms["registrasi"]["nama"].value;
 	var username = document.forms["registrasi"]["username"].value;
@@ -104,8 +6,6 @@ function inputUserValidation() {
 	var password2 = document.forms["registrasi"]["retype-pass"].value;
 	var atpos = mail.indexOf("@");
     var dotpos = mail.lastIndexOf(".");
-
-    var usernameData = ["<?php echo 'test';?>"];
 
     if (nama == "") {
         alert("Nama harus di isi");
@@ -134,6 +34,28 @@ function inputUserValidation() {
     } else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
         alert("Alamat E-mail tidak valid");
         document.forms["registrasi"]["mail"].focus();
+        return false;
+    } else {
+    	return true;
+    }
+}
+
+function inputSewaValidation() {
+	var username = document.forms["sewa"]["user"].value;
+	var kamar = document.forms["sewa"]["kamar"].value;
+	var tanggal = document.forms["sewa"]["checkin"].value;
+
+    if (username == "") {
+        alert("Kolom username harus diisi");
+        document.forms["sewa"]["user"].focus();
+        return false;
+    } else if (kamar == "") {
+        alert("Kamar harus dipilih!");
+        document.forms["sewa"]["kamar"].focus();
+        return false;
+    } else if (tanggal == "") {
+        alert("Pilih tanggal Check in !");
+        document.forms["sewa"]["checkin"].focus();
         return false;
     } else {
     	return true;
