@@ -18,7 +18,7 @@
         <div class="col-md-12">
         <div class="reg-form">
           <center>
-            <form name="registrasi" onsubmit="return regValidation()" action="../../module/input_data.php" method="post" id="form-outcome">
+            <form name="registrasi" onsubmit="return regValidation()" action="../../module/data_input.php?category=outcome" method="post" id="form-outcome">
             <table width="70%">
               <tr>
                 <th colspan="3"><center><h2>Tambah Pengeluaran</h2></center></th>
@@ -32,11 +32,6 @@
                 <td>Nilai Pengeluaran</td>
                 <td>&nbsp;:&nbsp;</td>
                 <td><input type="text" name="value"></td>
-              </tr>
-              <tr>
-                <td>Tanggal</td>
-                <td>&nbsp;:&nbsp;</td>
-                <td><input type="date" name="date"></td>
               </tr>
                <tr>
                 <td>Jenis Pengeluaran</td>

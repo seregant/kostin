@@ -252,7 +252,7 @@
 		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
 		$nama = $_POST['nama'];
 		$value = $_POST['value'];
-		$date = $_POST['date'];
+		$date = date("Y-m-d H:i:s");
 		$tag = $_POST['tag'];
 
 		$keterangan = $_POST['keterangan'];
@@ -267,8 +267,8 @@
 			$outcomeRow=mysqli_num_rows($outcomeData)+1;
 		}
 
-		$id_outcome = "AO".sprintf('%03d', $outcomeRow);
-
+		$id_outcome = "OUT".sprintf('%07d', $outcomeRow);
+	
 		$isValid = "yes";
 
 		if (strlen(trim($nama))==0){
@@ -296,8 +296,8 @@
 		}
 
 		$sql = "insert into kostin_outcome 
-					(outcm_name, outcm_value, outcm_date, outcm_tag, outcm_keterangan) values
-					('$nama', $value, '$date', '$tag', '$keterangan')";
+					(outcm_id, outcm_name, outcm_value, outcm_date, outcm_tag, outcm_keterangan) values
+					('$id_outcome','$nama', $value, '$date', '$tag', '$keterangan')";
 
 		$insertOutcome = mysqli_query($conn, $sql);
 
@@ -321,6 +321,7 @@
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		$pass = md5($_POST['pass']);
+		$pass2 = md5($_POST['retype-pass']);
 		$priv = $_POST['priv'];
 
 		$existingUser = getAllData("kostin_user","*");
@@ -333,6 +334,11 @@
 		$id_user = sprintf('%05d', $userCount);
 
 		$isValid = "yes";
+
+		if (strcmp($pass, $pass2)==0){
+			echo "Validasi password salah! <br/>";
+			$isValid = "no";
+		}
 
 		if (strlen(trim($nama))==0){
 			echo "Kolom Nama outcome Harus Diisi! <br/>";

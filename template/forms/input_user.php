@@ -23,7 +23,7 @@
 
   $userRoles = getAllData("kostin_user_role","*");
 ?>
-<script src="a/js/myScript.js"></script>
+<script src="../js/myScript.js"></script>
 <form name="registrasi" onsubmit="return inputUserValidation()" action="<?php echo $action ?>" method="post" enctype="multipart/form-data">
   <table width="70%">
     <tr>
