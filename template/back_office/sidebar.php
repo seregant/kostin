@@ -61,7 +61,7 @@
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="#">Income</a>
+                                    <a href="index.php?category=report&module=income">Income</a>
                                 </li>
                                 <li>
                                     <a href="#">Outcome</a>
@@ -129,7 +129,7 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="#">Income</a>
+                                    <a href="index.php?category=report&module=income">Income</a>
                                 </li>
                                 <li>
                                     <a href="#">Outcome</a>

@@ -5,12 +5,5 @@
 		header('location:login.php');
 	}
 
-	if(!empty($_GET['report'])) {
-
-		include('template/report.php');
-	} 
-	else {
-
-		include('template/index.php');
-	}
+	include('template/index.php');
 ?>

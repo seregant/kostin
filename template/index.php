@@ -11,7 +11,8 @@
 		        if(!empty($_GET['module'])) {
 
 		          $module=$_GET['module'];
-		          include('module/'.$module.'.php');
+                  $category = $_GET['category'];
+		          include($category.'/'.$category."_".$module.'.php');
 		        } else {
 
 		          include('back_office/dashboard.php');
