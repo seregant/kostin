@@ -25,7 +25,7 @@
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
@@ -93,7 +93,7 @@
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>

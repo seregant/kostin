@@ -12,7 +12,7 @@
                             <span class="quantity">3</span>
                             <div class="notifi-dropdown js-dropdown">
                                 <div class="notifi__title">
-                                    <p>You have 3 Notifications</p>
+                                    <p><?php echo $_SESSION['images'] ?></p>
                                 </div>
                                 <div class="notifi__item">
                                     <div class="bg-c1 img-cir img-40">
@@ -50,7 +50,7 @@
                     <div class="account-wrap">
                         <div class="account-item clearfix js-item-menu">
                             <div class="image">
-                                <img src="images/icon/avatar-01.jpg" alt="<?php echo $_SESSION['name'];?>" />
+                                <img src="<?php echo $_SESSION['images']; ?>" alt="<?php echo $_SESSION['name'];?>" />
                             </div>
                             <div class="content">
                                 <a class="js-acc-btn" href="#"><?php echo $_SESSION['name']; ?></a>
@@ -59,7 +59,7 @@
                                 <div class="info clearfix">
                                     <div class="image">
                                         <a href="#">
-                                            <img src="images/icon/avatar-01.jpg" alt="<?php echo $_SESSION['name']; ?>" />
+                                            <img src="<?php echo $_SESSION['images']; ?>" alt="<?php echo $_SESSION['name']; ?>" />
                                         </a>
                                     </div>
                                     <div class="content">

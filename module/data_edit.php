@@ -110,8 +110,8 @@
 
 		$maxPictSize = 1500000;
 		$allowedType = array("image/jpeg","image/png","image/pjpeg");
-		$pictDir = "../uploads/images/".$imgPrefix;
-		$thumbDir = "../uploads/images/".$imgPrefix."_thumb";
+		$pictDir = "/uploads/images/".$imgPrefix;
+		$thumbDir = "/uploads/images/".$imgPrefix."_thumb";
 
 		if(!is_dir($pictDir))
 			mkdir($pictDir);

@@ -2,6 +2,7 @@
 	session_start();
 	include ('config/database.php');
 	include ('module/data_login.php');
+	include ('config/app.php');
 	if(isset($_POST['username'],$_POST['password'])){
 		$passHash = md5($_POST['password']);
 		$validation = userDataValidation($_POST['username'],$passHash);
@@ -11,7 +12,7 @@
 			$userDatas = mysqli_fetch_assoc($userData);
 			$_SESSION['user_id'] = $userDatas['user_id'];
 			$_SESSION['username'] = $userDatas['user_name'];
-			$_SESSION['images'] = $userDatas['user_imagefile'];
+			$_SESSION['images'] = $base_dir.$userDatas['user_imagefile'];
 			$_SESSION['name'] = $userDatas['user_fullname'];
 			$_SESSION['userrole'] = $userDatas['role_id'];
 			$_SESSION['email'] = $userDatas['user_email'];
