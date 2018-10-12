@@ -6,19 +6,24 @@
     	<?php include ('back_office/sidebar.php'); ?>
     	 <div class="page-container">
     	 	<?php include('back_office/topbar.php'); ?>
+            <dir class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <?php 
+                            if(!empty($_GET['module'])) {
 
-    	 	<?php 
-		        if(!empty($_GET['module'])) {
+                              $module=$_GET['module'];
+                              $category = $_GET['category'];
+                              include($category.'/'.$category."_".$module.'.php');
+                            } else {
 
-		          $module=$_GET['module'];
-                  $category = $_GET['category'];
-		          include($category.'/'.$category."_".$module.'.php');
-		        } else {
+                              include('back_office/dashboard.php');
+                            }
 
-		          include('back_office/dashboard.php');
-		        }
-
-		    ?>
+                        ?>
+                    </div>
+                </div>
+            </dir>
 		    <?php include('back_office/footer.php'); ?>
     	 </div>
 

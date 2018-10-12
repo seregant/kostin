@@ -6,12 +6,34 @@
   if(isset($_GET['room_id'])){
     $dataKamar = getRoomData($_GET['room_id']);
     $data = mysqli_fetch_assoc($dataKamar);
-    $action = "../../module/data_edit.php?category=room&room_id=".$_GET['room_id'];
+    $action = "module/data_edit.php?category=room&room_id=".$_GET['room_id'];
   } else {
-    $action = "../../module/data_input.php?category=room";
+    $action = "module/data_input.php?category=room";
   }
 
 ?>
+
+<div class="main-content">
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">Tambah Kamar</div>
+            <div class="card-body card-block">
+              <form name="add_kamar" action="<?php echo $action ?>">
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="template/js/myScript.js"></script>
+
 <form name="registrasi" onsubmit="return regValidation()" action="<?php echo $action ?>" method="post" id="form-kamar">
   <table width="70%">
     <tr>

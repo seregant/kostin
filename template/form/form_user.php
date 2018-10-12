@@ -13,27 +13,36 @@
       $category = 'user_admin';
     }
 
-    $action = '../../module/data_edit.php?category='.$category.'&id='.$_GET['user_id'];
+    $action = 'module/data_edit.php?category='.$category.'&id='.$_GET['user_id'];
 
   } else {
-    $action = '../../module/data_input.php?category=user';
+    $action = 'module/data_input.php?category=user';
     $existingUser = getAllData("kostin_user","*");
     $buttonVal = "Tambah";
   }
 
   $userRoles = getAllData("kostin_user_role","*");
 ?>
-<script src="../js/myScript.js"></script>
-
-<div class="main-content">
-  <div class="section__content section__content--p30">
-    <div class="container-fluid">
+<script src="template/js/myScript.js"></script>
       <div class="row">
         <div class="col-lg-6">
+          <?php
+            if (isset($_GET['isclear'])) {
+              if ($_GET['isclear']=="yes") {
+                echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                      <span class="badge badge-pill badge-success">Success</span>
+                      Simpan data berhasil
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>';
+              }
+            }
+          ?>
           <div class="card">
             <div class="card-header">Tambah User Baru</div>
             <div class="card-body card-block">
-              <form ame="registrasi" onsubmit="return inputUserValidation()" action="<?php echo $action ?>" method="post" enctype="multipart/form-data" clas="form-horizontal">
+              <form name="input-user" onsubmit="return inputUserValidation()" action="<?php echo $action ?>" method="post" enctype="multipart/form-data" clas="form-horizontal">
                 <div class="row from-group">
                   <div class="col col-md-3">
                     <label class="form-control-label">
@@ -68,7 +77,7 @@
                     <label class="form-control-label">E-mail</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" name="email" class="form-control"
+                    <input type="text" name="mail" class="form-control"
                       <?php  
                         if (isset($_GET['edit'])) {
                           echo 'value="'.$rows['user_email'].'"';
@@ -93,7 +102,7 @@
                           <label class="form-control-label">Ulangi Password</label>
                         </div>
                         <div class="col-12 col-md-9">
-                          <input type="password" name="pass" class="form-control">
+                          <input type="password" name="retype-pass" class="form-control">
                         </div>
                       </div>
                       
@@ -102,145 +111,65 @@
                 ?>
                 <div class="row from-group" style="padding-top: 15px">
                   <div class="col col-md-3">
-                    <label class="form-control-label"></label>
+                    <label for="file-input" class="form-control-label">Foto</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" name="" class="form-control">
+                    <input type="file" name="foto" class="form-control-file">
                   </div>
                 </div>
-                <div class="row from-group" style="padding-top: 15px">
-                  <div class="col col-md-3">
-                    <label class="form-control-label"></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" name="" class="form-control">
-                  </div>
+                  <?php
+                    if (isset($_GET['edit'])){
+                      echo ' <div class="row from-group" style="padding-top: 15px">';
+                      if ($rows['role_id']=='00001') {
+                        echo '
+                          <div class="col col-md-3">
+                            <label class="form-control-label">Hak Akses</label>
+                          </div>
+                          <div class="col-12 col-md-9">
+                              <select name="priv" id="select" class="form-control">
+                        ';
+                          foreach ($userRoles as $roles) {
+                                echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+                          }
+                        echo '</select>
+                            </div>';
+                        echo '</div>';
+                      }
+                    } else if (!isset($_GET['edit'])) {
+                      echo ' <div class="row from-group" style="padding-top: 15px">';
+                      echo '
+                          <div class="col col-md-3">
+                            <label class="form-control-label">Hak Akses</label>
+                          </div>
+                          <div class="col-12 col-md-9">
+                              <select name="priv" id="select" class="form-control">
+                        ';
+                          foreach ($userRoles as $roles) {
+                                echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+                          }
+                        echo '</select>
+                            </div>';
+                        echo '</div>';
+                    } else {
+                      echo '';
+                    }
+                  ?>
                 </div>
+                <div class="card-footer">
+                      <button type="submit" class="btn btn-primary btn-sm">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                      </button>
+                      <?php
+                        if (!isset($_GET['edit'])) {
+                          echo '<button type="reset" class="btn btn-danger btn-sm">
+                          <i class="fa fa-ban"></i> Reset
+                      </button>';
+                        }
+                      ?>
                 </div>
               </form>
             </div>
           </div>
         </div>
+        <?php include 'template/view/view_user.php'; ?>
       </div>
-    </div>
-  </div>
-</div>
-<form name="registrasi" onsubmit="return inputUserValidation()" action="<?php echo $action ?>" method="post" enctype="multipart/form-data">
-  <table width="70%">
-    <tr>
-      <th colspan="3"><center><h2>Input Data User</h2></center></th>
-    </tr>
-    <tr>
-      <td>Nama User</td>
-      <td>&nbsp;:&nbsp;</td>
-      <td><input type="text" name="nama" 
-        <?php  
-          if (isset($_GET['edit'])) {
-            echo 'value="'.$rows['user_fullname'].'"';
-          }
-        ?>>
-      </td>
-    </tr>
-    <tr>
-      <td>Username</td>
-      <td>&nbsp;:&nbsp;</td>
-      <td><input type="text" name="username" 
-        <?php  
-          if (isset($_GET['edit'])) {
-            echo 'value="'.$rows['user_name'].'"';
-          }
-        ?>>
-      </td>
-    </tr>
-    <tr>
-      <td>E-Mail</td>
-      <td>&nbsp;:&nbsp;</td>
-      <td><input type="text" name="mail" 
-        <?php  
-          if (isset($_GET['edit'])) {
-            echo 'value="'.$rows['user_email'].'"';
-          }
-        ?>>
-      </td>
-    </tr>
-    <?php 
-      if (!isset($_GET['edit'])) {
-        echo '
-          <div class="row from-group" style="padding-top: 15px">
-            <div class="col col-md-3">
-              <label class="form-control-label">Password</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="password" name="pass" class="form-control">
-            </div>
-          </div>
-          <div class="row from-group" style="padding-top: 15px">
-            <div class="col col-md-3">
-              <label class="form-control-label">Ulangi Password</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="password" name="pass" class="form-control">
-            </div>
-          </div>
-          
-        ';
-      }
-    ?>
-    <tr>
-      <td>Foto</td>
-      <td>&nbsp;:&nbsp;</td>
-      <td><input type="file" name="foto"></td>
-    </tr>
-    <?php
-      if (isset($_GET['edit'])){
-        if ($rows['role_id']=='00001') {
-          echo '
-            <tr>
-              <td>Hak Akses</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>
-                <select name="priv">
-          ';
-            foreach ($userRoles as $roles) {
-                  echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
-            }
-          echo '</select>
-              </td>
-            </tr>
-          ';
-        }
-      } else if (!isset($_GET['edit'])) {
-        echo '
-            <tr>
-              <td>Hak Akses</td>
-              <td>&nbsp;:&nbsp;</td>
-              <td>
-                <select name="priv">
-          ';
-            foreach ($userRoles as $roles) {
-                  echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
-            }
-          echo '</select>
-              </td>
-            </tr>
-          ';
-      } else {
-        echo '';
-      }
-    ?>
-      </center>
-    </td>
-    </tr>
-      <td colspan="3">
-        <center>
-          <?php
-            if (!isset($_GET['edit'])) {
-              echo '<button type="reset" class="btn btn-sm btn-primary">Reset</button>';
-            }
-          ?>
-          <button type="submit" class="btn btn-sm btn-primary"><?php echo $buttonVal; ?></button>
-        </center>
-      </td>
-    </tr>
-  </table>
-</form>

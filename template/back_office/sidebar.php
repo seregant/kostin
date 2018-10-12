@@ -25,7 +25,7 @@
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="index.php?category=form&module=user">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-users"></i>User
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
@@ -33,7 +33,7 @@
                             </a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="#">Pengelola</a>
+                                    <a href="index.php?category=form&module=user">Pengelola</a>
                                 </li>
                                 <li>
                                     <a href="#">Penghuni</a>
@@ -41,7 +41,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=form&module=kamar">
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>
@@ -93,7 +93,7 @@
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="index.php?category=form&module=user">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-users"></i>User
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
@@ -101,7 +101,7 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="#">Pengelola</a>
+                                    <a href="index.php?category=form&module=user">Pengelola</a>
                                 </li>
                                 <li>
                                     <a href="#">Penghuni</a>
@@ -109,7 +109,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=form&module=kamar">
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>
