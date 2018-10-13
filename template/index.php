@@ -6,7 +6,7 @@
     	<?php include ('back_office/sidebar.php'); ?>
     	 <div class="page-container">
     	 	<?php include('back_office/topbar.php'); ?>
-            <dir class="main-content">
+            <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <?php 
@@ -16,14 +16,25 @@
                               $category = $_GET['category'];
                               include($category.'/'.$category."_".$module.'.php');
                             } else {
-
-                              include('back_office/dashboard.php');
+                                if (isset($_POST['del_opr'])){
+                                    switch ($_POST['del_opr']) {
+                                        case 'user':
+                                            include('form/delete_user.php');
+                                            break;
+                                        
+                                        default:
+                                            echo "Oeration not found";
+                                            break;
+                                    }
+                                } else {
+                                    include('back_office/dashboard.php');
+                                }
                             }
 
                         ?>
                     </div>
                 </div>
-            </dir>
+            </div>
 		    <?php include('back_office/footer.php'); ?>
     	 </div>
 
