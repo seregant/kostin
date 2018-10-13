@@ -27,8 +27,8 @@
 		}
 
 		if ($_FILES['foto']['size'] > 0){
-			unlink($userDatas['user_imagefile']);
-    		unlink($userDatas['user_imagethumb']);
+			unlink("../".$userDatas['user_imagefile']);
+    		unlink("../".$userDatas['user_imagethumb']);
     		$uploadResult = uploadImage('foto','user');
     		$sql .= ", user_imagefile = '".$uploadResult['imgDir']."',
 					user_imagethumb = '".$uploadResult['thmbDir']."'";
