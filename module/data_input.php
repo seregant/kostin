@@ -324,14 +324,12 @@
 		$pass = md5($_POST['pass']);
 		$priv = $_POST['priv'];
 
-		$existingUser = getAllData("kostin_user","*");
-		$userCount = 0;
-
-		if (!is_null($existingUser)) {
-			$userCount=mysqli_num_rows($existingUser)+1;
-		}
-
-		$id_user = sprintf('%05d', $userCount);
+		$number = uniqid();
+	    $varray = str_split($number);
+	    $len = sizeof($varray);
+	    $id_user = array_slice($varray, $len-5, $len);
+	    $id_user = implode(",", $id_user);
+	    $id_user = str_replace(',', '', $id_user);
 
 		$isValid = "yes";
 

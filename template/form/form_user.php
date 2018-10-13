@@ -229,6 +229,8 @@
                                     <input type="hidden" name="del_opr" value="user">
                                     <input type="hidden" name="user_detail" value="'.$users['user_fullname'].'">
                                     <input type="hidden" name="user_id" value="'.$users['user_id'].'">
+                                    <input type="hidden" name="user_image" value="'.$users['user_imagefile'].'">
+                                    <input type="hidden" name="user_thumb" value="'.$users['user_imagethumb'].'">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                       <i class="zmdi zmdi-delete"></i></button>
                                 </form>

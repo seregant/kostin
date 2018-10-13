@@ -44,7 +44,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data user berhasil";
+			header('Location:../index.php?category=form&module=user&isclear=yes');
 		}
 	}
 
@@ -100,7 +100,7 @@
 	}
 
 	function uploadImage($dataIndex,$imgPrefix){
-
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php';
 		$pict_foto = $_FILES[$dataIndex]['name'];
 		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
 		$pict_size = $_FILES[$dataIndex]['size'];
@@ -110,18 +110,20 @@
 
 		$maxPictSize = 1500000;
 		$allowedType = array("image/jpeg","image/png","image/pjpeg");
-		$pictDir = "/uploads/images/".$imgPrefix;
-		$thumbDir = "/uploads/images/".$imgPrefix."_thumb";
+		$pictDir = "uploads/images/user";
+		$thumbDir = "uploads/images/user_thumb";
 
-		if(!is_dir($pictDir))
-			mkdir($pictDir);
+		if(!is_dir($base_url."/".$pictDir))
+			mkdir($base_url."/".$pictDir);
 
-		if(!is_dir($thumbDir))
-			mkdir($thumbDir);
+		if(!is_dir($base_url."/".$thumbDir))
+			mkdir($base_url."/".$thumbDir);
 
-		$pictDst = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
-		$thumbDst =$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
+		$pictDst = $base_url."/".$pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst = $base_url."/".$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
 
+		$pictName = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbName = $thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
 		if($pict_size > 0) {
 			if($pict_size > $maxPictSize){
 				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
@@ -144,7 +146,7 @@
 			}
 		}
 
-		return array('imgDir' => $pictDst, 'thmbDir' => $thumbDst, 'status' => $status );
+		return array('imgDir' => $pictName, 'thmbDir' => $thumbName, 'status' => $status );
 	}
 
 	function createThumbnail($file_src, $file_dst){
