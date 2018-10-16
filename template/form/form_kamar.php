@@ -114,9 +114,13 @@
                 <button type="submit" class="btn btn-primary btn-sm">
                   <i class="fa fa-dot-circle-o"></i> Simpan
                 </button>
-                <button type="reset" class="btn btn-warning btn-sm">
+               <?php
+                if (!isset($_GET['room_id'])) {
+                  echo ' <button type="reset" class="btn btn-warning btn-sm">
                   <i class="fa fa-refresh"></i> Reset
-                </button>
+                </button>';
+                }
+               ?>
                 <a href="index.php?category=view&module=kamar">
                   <button type="reset" class="btn btn-danger btn-sm">
                   <i class="fa fa-ban"></i> Canel</button>

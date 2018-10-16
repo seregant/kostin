@@ -138,14 +138,13 @@
 		$stock = $_POST['stock'];
 		$price = $_POST['price'];
 
-		$addonData = getAllData("kostin_addons","*");
-		$addonRow = 0;
-
-		if (!is_null($addonData)) {
-			$addonRow=mysqli_num_rows($addonData)+1;
-		}
-
-		$id_ao = "AO".sprintf('%03d', $addonRow);
+		$number = uniqid();
+	    $varray = str_split($number);
+	    $len = sizeof($varray);
+	    $id_ao = array_slice($varray, $len-3, $len);
+	    $id_ao = implode(",", $id_ao);
+	    $id_ao = str_replace(',', '', $id_ao);
+	    $id_ao = "AO".strtoupper($id_ao); 
 
 		$isValid = "yes";
 
@@ -185,7 +184,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data addon berhasil";
+			header("Location:../index.php?category=view&module=addon");
 		}	
 
 	}

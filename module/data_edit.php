@@ -95,7 +95,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data kamar berhasil";
+			header("Location:../index.php?category=view&module=kamar");
 		}
 	}
 
@@ -188,8 +188,8 @@
 				insertMasterAddon();
 			break;
 
-		case '_kamar.php':
-				insertMasterKamar();
+		case 'addon':
+				editAddon();
 			break;
 
 		case 'room':

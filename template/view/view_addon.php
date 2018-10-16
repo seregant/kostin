@@ -2,15 +2,16 @@
   include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
   include $base_url."/module/data_get.php";
 
-  $allRoom = getAllData('kostin_kamar','*');
+  $allAddon = getAllData('kostin_addons','*');	
 ?>
+
 <div class="row">
           <div class="col-md-12">
               <div class="overview-wrap">
-                  <h2 class="title-1">Data Kamar</h2>
-                  <a href="index.php?category=form&module=kamar">
+                  <h2 class="title-1">Data Addon</h2>
+                  <a href="index.php?category=form&module=addon">
                     <button class="btn btn-success">
-                      Tambah Kamar
+                      Tambah Addon
                     </button>
                   </a>
               </div>
@@ -22,34 +23,33 @@
                   <table class="table table-borderless table-data3">
                     <thead>
                       <tr>
-                        <th>No. Kamar</th>
-                        <th>Panjang</th>
-                        <th>Lebar</th>
-                        <th>Keterangan</th>
-                        <th>Harga Sewa</th>
-                        <th>Status</th>
+                        <th>ID Addon</th>
+                        <th>Nama</th>
+                        <th>Spesifikasi</th>
+                        <th>Harga</th>
+                        <th>Stock</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php 
-                        foreach ($allRoom as $room) {
+                        foreach ($allAddon as $addons) {
                           echo '
                             <tr>
-                              <td>'.$room['kamar_id'].'</td>
-                              <td>'.$room['kamar_panjang'].'</td>
-                              <td>'.$room['kamar_lebar'].'</td>
-                              <td>'.$room['kamar_keterangan'].'</td>
-                              <td> Rp. '.number_format($room['kamar_harga']).'</td>
-                              <td>'.$room['kamar_status'].'</td>
+                              <td>'.$addons['ao_id'].'</td>
+                              <td>'.$addons['ao_name'].'</td>
+                              <td>'.$addons['ao_spec'].'</td>
+                              <td> Rp. '.number_format($addons['ao_price']).'</td>
+                              <td>'.$addons['ao_stock'].'</td>
                               <td>
                                 <div class="table-data-feature">
-                                    <a href="index.php?category=form&module=kamar&room_id='.$room['kamar_id'].'"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <a href="index.php?category=form&module=addon&id='.$addons['ao_id'].'"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i></a>
                                     </button>
                                     <form action="index.php" method="post">
-                                        <input type="hidden" name="del_opr" value="room">
-                                        <input type="hidden" name="room_id" value="'.$room['kamar_id'].'">
+                                        <input type="hidden" name="del_opr" value="addon">
+                                        <input type="hidden" name="addon_detail" value="'.$addons['ao_name'].'">
+                                        <input type="hidden" name="addon_id" value="'.$addons['ao_id'].'">
                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                           <i class="zmdi zmdi-delete"></i></button>
                                     </form>

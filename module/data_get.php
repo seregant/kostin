@@ -39,4 +39,11 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getAddonData($aoId) {
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_addons where ao_id='".$aoId."'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>

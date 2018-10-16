@@ -2,8 +2,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        <a class="logo" href="index.php">
+                            <img src="images/icon/logo.png" alt="Kostin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
                         <li>
@@ -34,7 +34,7 @@
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=addon">
                                 <i class="fas fa-puzzle-piece"></i>Add-on</a>
                         </li>
                         <li>
@@ -66,7 +66,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo" style="background-color: #2bb1ff;">
-                <a href="#">
+                <a href="index.php">
                     <img src="images/icon/logo.png" alt="MyKost Admin" style="width: 70%; height: auto;" />
                 </a>
             </div>
@@ -74,7 +74,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
                         <li>
@@ -91,7 +91,7 @@
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=addon">
                                 <i class="fas fa-puzzle-piece"></i>Add-on</a>
                         </li>
                         <li>

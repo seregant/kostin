@@ -21,6 +21,14 @@
                                         case 'user':
                                             include('form/delete_user.php');
                                             break;
+
+                                        case 'room':
+                                            include('form/delete_kamar.php');
+                                            break;
+
+                                        case 'addon':
+                                            include('form/delete_addon.php');
+                                            break;
                                         
                                         default:
                                             echo "Oeration not found";
