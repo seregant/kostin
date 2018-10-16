@@ -24,24 +24,13 @@
                             <a href="#">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                        <li >
+                            <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
                             </a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.php?category=form&module=user">Pengelola</a>
-                                </li>
-                                <li>
-                                    <a href="#">Penghuni</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
-                            <a href="index.php?category=form&module=kamar">
+                            <a href="index.php?category=view&module=kamar">
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>
@@ -76,9 +65,9 @@
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
+            <div class="logo" style="background-color: #2bb1ff;">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
+                    <img src="images/icon/logo.png" alt="MyKost Admin" style="width: 70%; height: auto;" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -92,24 +81,13 @@
                             <a href="#">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                        <li>
+                            <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
                             </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.php?category=form&module=user">Pengelola</a>
-                                </li>
-                                <li>
-                                    <a href="#">Penghuni</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
-                            <a href="index.php?category=form&module=kamar">
+                            <a href="index.php?category=view&module=kamar">
                                 <i class="fas fa-bed"></i>Kamar</a>
                         </li>
                         <li>

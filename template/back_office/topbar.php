@@ -1,5 +1,5 @@
 <?php include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php'; ?>
-<header class="header-desktop">
+<header class="header-desktop" style="background-color: #2bb1ff;">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
             <div class="header-wrap" >
@@ -9,7 +9,7 @@
                 <div class="header-button" >
                     <div class="noti-wrap">
                         <div class="noti__item js-item-menu">
-                            <i class="zmdi zmdi-notifications"></i>
+                            <i class="zmdi zmdi-notifications" style="color: white;"></i>
                             <span class="quantity">3</span>
                             <div class="notifi-dropdown js-dropdown">
                                 <div class="notifi__title">
