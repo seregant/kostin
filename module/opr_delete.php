@@ -37,6 +37,18 @@
     }
   }
 
+  function deleteOutcome($outcmId){
+    include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+    $sql=" DELETE FROM kostin_outcome WHERE outcm_id = '".$outcmId."'";
+    $result = mysqli_query($conn, $sql);
+    if (!$result) {
+      echo "hapus pengeluaran gagal";
+      echo mysqli_error($conn);
+    } else {
+      header("Location:../index.php?category=view&module=outcome");
+    }
+  }
+
   switch ($_POST['data']) {
   	case 'user':
   	   deleteUser($_POST['user_id_delete'],$_POST['user_image_delete'],$_POST['user_thumb_delete']);
@@ -48,6 +60,10 @@
 
     case 'addon':
       deleteAddon($_POST['addon_id_delete']);
+      break;
+
+    case 'outcome':
+      deleteOutcome($_POST['outcm_id_delete']);
       break;
 
   	default:

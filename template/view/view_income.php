@@ -11,10 +11,14 @@
 	}
 
 ?>
-<div class="main-content">
-	<div class="section__content section__content--p30">
-		<div class="container-fluid">
-			<div class="row">
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1">Laporan Pemasukan</h2>
+        </div>
+    </div>
+</div>
+			<div class="row m-t-30">
 				<div class="col-lg-6">
 					<div class="table-responsive table--no-card m-b-30">
 						<table class="table table-borderless table-striped table-earning">
@@ -91,23 +95,17 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="section__content section__content--p30">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
+					
 					<div class="table-responsive table--no-card m-b-30">
 						<table class="table table-borderless table-striped table-earning">
 							<thead>
 								<tr>
-									<th>No. Pengeluaran</th>
+									<th colspan="2">
+										Pengeluaran
+									</th>
+								</tr>
+								<tr>
 									<th>Keperluan</th>
-									<th>Jenis Pengeluaran</th>
-									<th>Waktu Input</th>
 									<th>Jumlah</th>
 								</tr>
 							</thead>
@@ -116,27 +114,27 @@
 								foreach ($outcomeData as $outcme) {
 									echo "
 										<tr>
-											<td>".$outcme['outcm_id']."</td>
+											
 											<td>".$outcme['outcm_name']."</td>
-											<td>".$outcme['outcm_tag']."</td>
-											<td>".$outcme['outcm_date']."</td>
 											<td>".number_format($outcme['outcm_value'])."</td>
 										</tr>
 									";		
 								}
 							?>
 							<tr>
-								<td colspan="4">
-									Total pengeluaran : 
+								<td>
+									<strong>Total pengeluaran :</strong> 
 								</td>
-								<td colspan="2">
-									<?php echo number_format($totalPengeluaran) ?>
+								<td>
+									<strong><?php echo number_format($totalPengeluaran) ?></strong>
 								</td>
 							</tr>
-						</table>		
+							</table>		
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+		
+
+
+
+

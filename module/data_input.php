@@ -308,7 +308,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data outcome berhasil";
+			header("Location:../index.php?category=view&module=outcome");
 		}	
 
 	}

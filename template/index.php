@@ -29,6 +29,10 @@
                                         case 'addon':
                                             include('form/delete_addon.php');
                                             break;
+
+                                        case 'outcome':
+                                            include('form/delete_outcome.php');
+                                            break;
                                         
                                         default:
                                             echo "Oeration not found";

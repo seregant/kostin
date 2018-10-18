@@ -46,4 +46,11 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getOutcomeData($outcmId) {
+		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+		$sql = "select * from kostin_outcome where outcm_id='".$outcmId."'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>

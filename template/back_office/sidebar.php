@@ -38,24 +38,13 @@
                                 <i class="fas fa-puzzle-piece"></i>Add-on</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=outcome">
                                 <i class="fas fa-shopping-basket"></i>Belanja</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                        <li>
+                            <a href="index.php?category=view&module=income">
                                 <i class="fas fa-copy"></i>Laporan
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
                             </a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.php?category=report&module=income">Income</a>
-                                </li>
-                                <li>
-                                    <a href="#">Outcome</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -95,24 +84,13 @@
                                 <i class="fas fa-puzzle-piece"></i>Add-on</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=outcome">
                                 <i class="fas fa-shopping-basket"></i>Belanja</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                        <li>
+                            <a href="index.php?category=view&module=income">
                                 <i class="fas fa-copy"></i>Laporan
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
                             </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.php?category=report&module=income">Income</a>
-                                </li>
-                                <li>
-                                    <a href="#">Outcome</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>

@@ -59,6 +59,11 @@
                           ';
                         }
                       ?>
+                      <tr>
+                        <td colspan="7" style="background-color: #333333; color: white;">
+                          <center>Pagination</center>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

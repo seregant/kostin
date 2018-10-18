@@ -219,7 +219,7 @@
                         <td>'.$users['user_fullname'].'</td>
                         <td>'.$users['user_name'].'</td>
                         <td>'.$users['user_email'].'</td>
-                        <td>'.$roleName['role_name'].'</td>
+                        <td>'.ucfirst($roleName['role_name']).'</td>
                         <td>
                             <div class="table-data-feature">
                                 <a href="index.php?category=form&module=user&edit=1&user_id='.$users['user_id'].'"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
