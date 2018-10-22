@@ -1,8 +1,5 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-
-  $outcomeData = getAllData('kostin_outcome','*');
+  $outcomeData = getAllData('kostin_outcome','*', null, null);
 ?>
 <div class="row">
     <div class="col-md-12">

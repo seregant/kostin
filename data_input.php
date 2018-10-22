@@ -1,13 +1,12 @@
 <?php
-	if (empty($_POST)){
-		echo "Illegal acces!";
-		exit;
-	}
+	// if (empty($_POST)){
+	// 	echo "Illegal acces!";
+	// 	exit;
+	// }
 	
 	function insertMasterBooking(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 		$nama = $_POST['nama'];
 		$alamat = $_POST['alamat'];
 		$bdate = $_POST['tanggal-lahir'];
@@ -19,14 +18,13 @@
 		$date = new DateTime();
 		$timestamp = $date->getTimestamp();
 
-		$bookingData = getAllData("kostin_booking","*");
+		$bookingData = getAllData("kostin_booking","*", null, null);
 		$bookingRow = 0;
 		if (!is_null($bookingData)) {
 			$bookingRow = mysqli_num_rows($bookingData)+1;
 		}
 
 		$id_booking = "BO".sprintf('%08d', $bookingRow);
-		
 		$isValid = "yes";
 
 		$pict_foto = $_FILES['ktp_pict']['name'];
@@ -54,33 +52,8 @@
 			echo "Data nomor identitas harus diisi! <br/>";
 			$isValid = "no";
 		}
-
-		$maxPictSize = 1500000;
-		$allowedType = array("image/jpeg","image/png","image/pjpeg");
-		$pictDir = "uploads/images/ktp";
-		$thumbDir = "uploads/images/ktp_thumb";
-
-		if(!is_dir($pictDir))
-			mkdir($pictDir);
-
-		if(!is_dir($thumbDir))
-			mkdir($thumbDir);
-
-		$pictDst = $base_url.$pictDir."/ktp_".$timestamp;
-		$thumbDst =$base_url.$thumbDir."/thmb_ktp".$timestamp;
-
-		if($pict_size > 0) {
-			if($pict_size > $maxPictSize){
-				echo "Gambar terlalu besar. Maksimal ukuran gambar 1.5 MB.";
-				$isValid = "no";
-			}
-			if(!in_array($pict_type, $allowedType)){
-				echo "Tipe file gambar no dikenali!";
-				$isValid = "no";
-			}
-		}
 		
-		$usedEmail = getAllData("kostin_booking","*");
+		$usedEmail = getAllData("kostin_booking","*", null, null);
 		foreach ($usedEmail as $usedEmails) {
 			if(strcasecmp($email, $usedEmails['book_email'])==0){
 				echo "Email $email sudah dipakai<br>";
@@ -94,11 +67,11 @@
 			exit;
 		}
 
-
+		$uploadResult = uploadImage('ktp_pict','identity');
 
 		$sql1 = "insert into kostin_booking 
-						(book_id,book_name,book_addr,book_date,book_email,book_idnty,book_idntyfile,book_status,book_bdate) values (
-						'$id_booking','$nama','$alamat','$curr_date','$email','$idntty','$pictDst','$status','$bdate')";
+						(book_id,book_name,book_addr,book_date,book_email,book_idnty,book_idntythumb,book_idntyfile,book_status,book_bdate) values (
+						'$id_booking','$nama','$alamat','$curr_date','$email','$idntty','".$uploadResult['thmbDir']."','".$uploadResult['imgDir']."','$status','$bdate')";
 		
 		$insertBooking = mysqli_query($conn, $sql1);
 
@@ -131,8 +104,8 @@
 	}
 
 	function insertMasterAddon(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 		$nama = $_POST['nama'];
 		$spec = $_POST['spec'];
 		$stock = $_POST['stock'];
@@ -184,14 +157,14 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header("Location:../index.php?category=view&module=addon");
+			header("Location:index.php?category=view&module=addon");
 		}	
 
 	}
 
 	function insertMasterKamar(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
 		$price = $_POST['price'];
@@ -203,7 +176,7 @@
 
 		$status = "kosong";
 
-		$kamarData = getAllData("kostin_kamar","kamar_id");
+		$kamarData = getAllData("kostin_kamar","kamar_id", null, null);
 		$kamarRow = 0;
 
 		if (!is_null($kamarData)) {
@@ -248,8 +221,8 @@
 	}
 
 	function insertMasterOutcome(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 		$nama = $_POST['nama'];
 		$value = $_POST['value'];
 		$date = date("Y-m-d H:i:s");
@@ -260,7 +233,7 @@
 			$keterangan="";
 		}
 
-		$outcomeData = getAllData("kostin_outcome","*");
+		$outcomeData = getAllData("kostin_outcome","*", null, null);
 		$outcomeRow = 0;
 
 		if (!is_null($outcomeData)) {
@@ -308,14 +281,14 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header("Location:../index.php?category=view&module=outcome");
+			header("Location:index.php?category=view&module=outcome");
 		}	
 
 	}
 
 	function insertMasterUser(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
@@ -371,19 +344,19 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header('Location:../index.php?category=form&module=user&isclear=yes');
+			header('Location:index.php?category=form&module=user&isclear=yes');
 		}	
 
 
 	}
 
 	function insertMasterSewa(){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 
 		$getUser = getUserData('user_name',$_POST['user']);
 		$dataUser = mysqli_fetch_assoc($getUser);
-		$dataSewa = getAllData('kostin_sewa','sewa_id');
+		$dataSewa = getAllData('kostin_sewa','sewa_id', null, null);
 		$sewaCount = 0;
 
 		if(!is_null($dataSewa)) {
@@ -439,7 +412,7 @@
 	}
 
 	function uploadImage($dataIndex,$imgPrefix){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php';
+		include 'config/app.php';
 		$pict_foto = $_FILES[$dataIndex]['name'];
 		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
 		$pict_size = $_FILES[$dataIndex]['size'];
@@ -449,17 +422,17 @@
 
 		$maxPictSize = 1500000;
 		$allowedType = array("image/jpeg","image/png","image/pjpeg");
-		$pictDir = "uploads/images/user";
-		$thumbDir = "uploads/images/user_thumb";
+		$pictDir = "uploads/images/".$imgPrefix;
+		$thumbDir = "uploads/images/".$imgPrefix."_thumb";
 
-		if(!is_dir($base_url."/".$pictDir))
-			mkdir($base_url."/".$pictDir);
+		if(!is_dir($pictDir))
+			mkdir($pictDir);
 
-		if(!is_dir($base_url."/".$thumbDir))
-			mkdir($base_url."/".$thumbDir);
+		if(!is_dir($thumbDir))
+			mkdir($thumbDir);
 
-		$pictDst = $base_url."/".$pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
-		$thumbDst = $base_url."/".$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
+		$pictDst = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst = $thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
 
 		$pictName = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
 		$thumbName = $thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
@@ -518,6 +491,43 @@
 		imagedestroy($img_dst);
 	}
 
+	function insertMasterTagihanBooking($bookId){
+		include "config/database.php";
+		include "module/data_get.php";
+
+		$date = new DateTime();
+		$duedate = $date->add(new DateInterval('P7D'));
+		$duedate = $date->format('Y-m-d');
+
+		$tagihanData= getAllData('kostin_tagihan_booking', '*', null, null);
+		$tagihanRow = 0;
+		if (!is_null($tagihanData)) {
+			$tagihanRow = mysqli_num_rows($tagihanData)+1;
+		}
+		$id_tagihan = "TGB".sprintf('%07d', $tagihanRow);
+
+		$dataBooking  = getBookingData($bookId);
+		$bookingRow = mysqli_fetch_Assoc($dataBooking);
+
+		$dataAddon = getBookAddonData($bookId);
+		$aoPrice = 0;
+
+		foreach ($dataAddon as $addon) {
+			$sqlAddon = "select ao_price from kostin_addons where ao_id = '".$addon['ao_id']."'";
+			$priceData = mysqli_fetch_assoc(mysqli_query($conn, $sqlAddon));
+			$aoPrice += $priceData['ao_price'];
+		}
+
+		$sqlInput = "insert into kostin_tagihan_booking (tagihan_id, book_id, tagihan_jumlah, tagihan_duedate, tagihan_status)
+						 values (
+						'$id_tagihan', '$bookId', $aoPrice, '$duedate', 'pending'
+					)";
+
+		$sqlUpdate = "update kostin_booking set book_status = 'confirmed' where book_id='$bookId'";
+		$insertTagihan = mysqli_query($conn, $sqlInput);
+		$updateBooking = mysqli_query($conn, $sqlUpdate);
+	}
+
 	switch ($_GET['category']) {
 		case 'booking':
 				insertMasterBooking();
@@ -541,6 +551,10 @@
 
 		case 'sewa':
 				insertMasterSewa();
+			break;
+		case 'tagihan':
+				insertMasterTagihanBooking($_GET['book_id']);
+				header("Location:index.php?category=view&module=booking");
 			break;
 
 		default:

@@ -1,4 +1,10 @@
-<?php include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php'; ?>
+<?php 
+    include 'config/app.php';
+    include 'config/database.php';
+    include 'module/data_get.php';
+
+
+?>
 <header class="header-desktop" style="background-color: #2bb1ff;">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
@@ -13,7 +19,7 @@
                             <span class="quantity">3</span>
                             <div class="notifi-dropdown js-dropdown">
                                 <div class="notifi__title">
-                                    <p><?php echo $base_url."/".$_SESSION['images'] ?></p>
+                                   Notifikasi
                                 </div>
                                 <div class="notifi__item">
                                     <div class="bg-c1 img-cir img-40">

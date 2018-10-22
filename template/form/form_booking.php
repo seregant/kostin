@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Kostin Booking</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/ong" href="images/favicon.png">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/content.css">
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>  
-    <script type="text/javascript" src="js/myScript.js"></script>
-</head>
-<body>
-       <!--Content--> 
+
 
       <div class="row">
         <div class="col-md-12">
         <div class="reg-form">
           <center>
-            <form name="registrasi" enctype="multipart/form-data" onsubmit="return regValidation()" action="../../module/data_input.php" method="post" >
+            <form name="registrasi" enctype="multipart/form-data" onsubmit="return regValidation()" action="data_input.php?category=booking" method="post" >
             <table width="70%">
               <tr>
                 <th colspan="3"><center><h2>BOOKING</h2></center></th>
@@ -89,5 +75,3 @@
         </div>
         </div>
     </div>
-</body>
-</html>

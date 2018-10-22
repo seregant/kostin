@@ -1,14 +1,10 @@
 <?php
-  
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-
   if(isset($_GET['room_id'])){
     $dataKamar = getRoomData($_GET['room_id']);
     $data = mysqli_fetch_assoc($dataKamar);
-    $action = "module/data_edit.php?category=room&room_id=".$_GET['room_id'];
+    $action = "data_edit.php?category=room&room_id=".$_GET['room_id'];
   } else {
-    $action = "module/data_input.php?category=room";
+    $action = "data_input.php?category=room";
   }
 
 ?>

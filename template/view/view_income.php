@@ -1,10 +1,6 @@
 <?php
-	include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php';
-	include $base_url.'/config/database.php';
-	include $base_url."/module/data_get.php";
-
-	$outcomeData = getAllData('kostin_outcome','*');
-	$tagihanData = getAllData('kostin_tagihan','*');
+	$outcomeData = getAllData('kostin_outcome','*', null, null);
+	$tagihanData = getAllData('kostin_tagihan','*', null, null);
 	$totalPengeluaran = 0;
 	foreach ($outcomeData as $outcome) {
 		$totalPengeluaran += $outcome['outcm_value'];

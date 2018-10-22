@@ -1,8 +1,5 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-
-  $allAddon = getAllData('kostin_addons','*');	
+  $allAddon = getAllData('kostin_addons','*', null, null);	
 ?>
 
 <div class="row">

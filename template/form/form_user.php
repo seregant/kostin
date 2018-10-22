@@ -1,9 +1,5 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-  include $base_url."/config/database.php";
-
-  $userdata = getAllData('kostin_user','*');
+  $userdata = getAllData('kostin_user','*', null, null);
 
   if(isset($_GET['edit'])){
     $existingUser = getUserData('user_id',$_GET['user_id']);
@@ -16,15 +12,15 @@
       $category = 'user_admin';
     }
 
-    $action = 'module/data_edit.php?category='.$category.'&id='.$_GET['user_id'];
+    $action = 'data_edit.php?category='.$category.'&id='.$_GET['user_id'];
 
   } else {
-    $action = 'module/data_input.php?category=user';
-    $existingUser = getAllData("kostin_user","*");
+    $action = 'data_input.php?category=user';
+    $existingUser = getAllData("kostin_user","*", null, null);
     $buttonVal = "Tambah";
   }
 
-  $userRoles = getAllData("kostin_user_role","*");
+  $userRoles = getAllData("kostin_user_role","*",  null, null);
 
   
 ?>
@@ -140,7 +136,7 @@
                   <?php
                     if (isset($_GET['edit'])){
                       echo ' <div class="row from-group" style="padding-top: 15px">';
-                      if ($rows['role_id']=='00001') {
+                      if (!($rows['role_id']=='00001')) {
                         echo '
                           <div class="col col-md-3">
                             <label class="form-control-label">Hak Akses</label>

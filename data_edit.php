@@ -27,8 +27,8 @@
 		}
 
 		if ($_FILES['foto']['size'] > 0){
-			unlink("../".$userDatas['user_imagefile']);
-    		unlink("../".$userDatas['user_imagethumb']);
+			unlink($userDatas['user_imagefile']);
+    		unlink($userDatas['user_imagethumb']);
     		$uploadResult = uploadImage('foto','user');
     		$sql .= ", user_imagefile = '".$uploadResult['imgDir']."',
 					user_imagethumb = '".$uploadResult['thmbDir']."'";
@@ -44,14 +44,14 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header('Location:../index.php?category=form&module=user&isclear=yes');
+			header('Location:index.php?category=form&module=user&isclear=yes');
 		}
 	}
 
 	function editKamar(){
-		include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-		include $base_url.'/config/database.php';
-		include $base_url.'/module/data_get.php';
+		include "config/app.php";
+		include 'config/database.php';
+		include 'module/data_get.php';
 
 		$panjang = $_POST['panjang'];
 		$lebar = $_POST['lebar'];
@@ -75,7 +75,7 @@
 			$sql .= ", kamar_status = '$status'";
 		}
 
-		$kamarData = getAllData("kostin_kamar","kamar_id");
+		$kamarData = getAllData("kostin_kamar","kamar_id", null, null);
 		$kamarRow = 0;
 
 		if (!is_null($kamarData)) {
@@ -95,12 +95,64 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header("Location:../index.php?category=view&module=kamar");
+			header("Location:index.php?category=view&module=kamar");
 		}
 	}
 
+	function editAddon($aoId){
+		include 'config/database.php';
+		include 'module/data_get.php';
+		$nama = $_POST['nama'];
+		$spec = $_POST['spec'];
+		$stock = $_POST['stock'];
+		$price = $_POST['price'];
+		$isValid = "yes";
+
+		if (strlen(trim($nama))==0){
+			echo "Kolom Nama Harus Diisi! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($spec))==0){
+			echo "Lengkapi data spesifikasi add-on! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($price))==0){
+			echo "Lengkapi data harga add-on! <br/>";
+			$isValid = "no";
+		}
+		if (strlen(trim($stock))==0){
+			echo "Lengkapi data stock add-on! <br/>";
+			$isValid = "no";
+		}
+
+		if ($isValid == "no"){
+			echo "Masih Ada Kesalahan, Silahkan perbaiki! <br/>";
+			echo "<input type='button' value='kembali' onClick='self.history.back()'>";
+			exit;
+		}
+
+		$sql = "update kostin_addons set 
+					ao_name = '$nama', 
+					ao_price = $price, 
+					ao_spec = '$spec', 
+					ao_stock = $stock 
+					 where ao_id='$aoId'";
+
+		$insertAddon = mysqli_query($conn, $sql);
+
+		if (!$insertAddon) {
+			echo "Gagal Simpan data addon, sliahkan diulangi! <br /> ";
+			echo mysqli_error($conn);
+			echo "<br/> <input type='button' value='kembali'
+					onClick='self.history.back()'> ";
+			exit;
+		} else {
+			header("Location:index.php?category=view&module=addon");
+		}	
+
+	}
+
 	function uploadImage($dataIndex,$imgPrefix){
-		include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/app.php';
 		$pict_foto = $_FILES[$dataIndex]['name'];
 		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
 		$pict_size = $_FILES[$dataIndex]['size'];
@@ -113,14 +165,14 @@
 		$pictDir = "uploads/images/user";
 		$thumbDir = "uploads/images/user_thumb";
 
-		if(!is_dir($base_url."/".$pictDir))
-			mkdir($base_url."/".$pictDir);
+		if(!is_dir($pictDir))
+			mkdir($pictDir);
 
-		if(!is_dir($base_url."/".$thumbDir))
-			mkdir($base_url."/".$thumbDir);
+		if(!is_dir($thumbDir))
+			mkdir($thumbDir);
 
-		$pictDst = $base_url."/".$pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
-		$thumbDst = $base_url."/".$thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
+		$pictDst = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
+		$thumbDst = $thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
 
 		$pictName = $pictDir."/".$imgPrefix."_".$timestamp.'.'.substr($pict_type, 6);
 		$thumbName = $thumbDir."/thmb_".$imgPrefix.$timestamp.'.'.substr($pict_type, 6);
@@ -189,7 +241,7 @@
 			break;
 
 		case 'addon':
-				editAddon();
+				editAddon($_POST['aoId']);
 			break;
 
 		case 'room':

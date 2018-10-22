@@ -1,15 +1,11 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-  include $base_url."/config/database.php";
-
   if(isset($_GET['id'])){
     $addonData = getAddonData($_GET['id']);
     $rows = mysqli_fetch_assoc($addonData);
 
-    $action = "module/data_edit.php?category=addon&id=".$_GET['id'];
+    $action = "data_edit.php?category=addon&id=".$_GET['id'];
   } else {
-    $action = "module/data_input.php?category=addon";
+    $action = "data_input.php?category=addon";
   }
 ?>
 
@@ -82,6 +78,8 @@
             echo ' <button type="reset" class="btn btn-warning btn-sm">
             <i class="fa fa-refresh"></i> Reset
           </button>';
+          } else {
+            echo '<input type="hidden" name="aoId" value="'.$rows['ao_id'].'">';
           }
          ?>
           <a href="index.php?category=view&module=addon">

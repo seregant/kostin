@@ -21,17 +21,25 @@
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
+                        </li>
+                        <li>
+                            <a href="index.php?category=view&module=booking">
+                                <i class="fas fa-check-circle"></i>Booking</a>
                         </li>
                         <li >
                             <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
                             </a>
                         </li>
-                        <li>
-                            <a href="index.php?category=view&module=kamar">
-                                <i class="fas fa-bed"></i>Kamar</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="index.php?category=view&module=kamar">
+                                <i class="fas fa-copy"></i>Kamar
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
                         </li>
                         <li>
                             <a href="index.php?category=view&module=addon">
@@ -67,17 +75,33 @@
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&module=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
+                        </li>
+                        <li>
+                            <a href="index.php?category=view&module=booking">
+                                <i class="fas fa-check-circle"></i>Booking</a>
                         </li>
                         <li>
                             <a class="js-arrow" href="index.php?category=form&module=user">
                                 <i class="fas fa-users"></i>User
                             </a>
                         </li>
-                        <li>
-                            <a href="index.php?category=view&module=kamar">
-                                <i class="fas fa-bed"></i>Kamar</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-bed"></i>Kamar
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.php?category=view&module=kamar">Data Kamar</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?category=view&module=sewa">Data Sewa Kamar</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="index.php?category=view&module=addon">

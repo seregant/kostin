@@ -1,9 +1,5 @@
 <?php
-	include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-	include $base_url.'/config/database.php';
-	include $base_url."/module/data_get.php";
-
-	$userdata = getAllData('kostin_user','*');
+	$userdata = getAllData('kostin_user','*', null, null);
 ?>
 
 	<div class="col-lg-6">

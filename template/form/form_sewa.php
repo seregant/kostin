@@ -1,14 +1,10 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-  include $base_url."/config/database.php";
-
   if(isset($_GET['rent_id'])){
     $dataSewa = getRoomData($_GET['rent_id']);
     $data = mysqli_fetch_assoc($dataSewa);
-    $action = "../../module/data_edit.php?category=rent&rent_id=".$_GET['rent_id'];
+    $action = "data_edit.php?category=rent&rent_id=".$_GET['rent_id'];
   } else {
-    $action = "../../module/data_input.php?category=sewa";
+    $action = "data_input.php?category=sewa";
   }
 
   $dataKamar = getAvailRoom();

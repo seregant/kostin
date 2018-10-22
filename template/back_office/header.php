@@ -30,5 +30,6 @@
 
     <!-- Main CSS-->
     <link href="template/css/theme.css" rel="stylesheet" media="all">
+    <link href="template/css/tbig.css" rel="stylesheet" media="all">
 
 </head>

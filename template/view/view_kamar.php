@@ -1,8 +1,25 @@
 <?php
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
-
-  $allRoom = getAllData('kostin_kamar','*');
+  $allRoomData = getAllData('kostin_kamar','*', null, null);
+  $rows = mysqli_num_rows($allRoomData);
+  $pagination = array();
+  $limitData = 10;
+  $offset = 0;
+  $pageNum = 1;
+  
+  if ($rows > $limitData) {
+    while ($rows>=0) {
+      $pagination[] =  '<a href="index.php?category=view&module=kamar&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+      $pageNum++;
+      $rows = $rows - $limitData;
+      $offset += $limitData;
+    }
+  }
+                              
+  if (isset($_GET['offset'])) {
+     $allRoom = getAllData('kostin_kamar','*', $limitData, $_GET['offset']);
+  } else {
+    $allRoom = getAllData('kostin_kamar','*', $limitData, 0);
+  }
 ?>
 <div class="row">
           <div class="col-md-12">
@@ -41,7 +58,7 @@
                               <td>'.$room['kamar_lebar'].'</td>
                               <td>'.$room['kamar_keterangan'].'</td>
                               <td> Rp. '.number_format($room['kamar_harga']).'</td>
-                              <td>'.$room['kamar_status'].'</td>
+                              <td>'.ucfirst($room['kamar_status']).'</td>
                               <td>
                                 <div class="table-data-feature">
                                     <a href="index.php?category=form&module=kamar&room_id='.$room['kamar_id'].'"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -61,7 +78,16 @@
                       ?>
                       <tr>
                         <td colspan="7" style="background-color: #333333; color: white;">
-                          <center>Pagination</center>
+                            <center>
+                              <?php
+                                echo '<label style="color: white;">Pages : </label><br>';
+                                if (!empty($pagination)) {
+                                  foreach ($pagination as $links) {
+                                    echo $links."&nbsp;";
+                                  }
+                                }
+                              ?>
+                            </center>
                         </td>
                       </tr>
                     </tbody>
