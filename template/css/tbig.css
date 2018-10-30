@@ -1,9 +1,9 @@
 
-#table-clickable tr:hover {
+.table-clickable tr:hover {
     background-color: #ccc;
 }
 
-#table-clickable tr:hover {
+.table-clickable td:hover {
     cursor: pointer;
     background-color: #ccc;
     color: white;

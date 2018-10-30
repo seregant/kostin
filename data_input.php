@@ -1,9 +1,6 @@
 <?php
-	// if (empty($_POST)){
-	// 	echo "Illegal acces!";
-	// 	exit;
-	// }
-	
+	include 'module/send_mail.php';
+
 	function insertMasterBooking(){
 		include 'config/database.php';
 		include 'module/data_get.php';
@@ -495,37 +492,51 @@
 		include "config/database.php";
 		include "module/data_get.php";
 
-		$date = new DateTime();
-		$duedate = $date->add(new DateInterval('P7D'));
-		$duedate = $date->format('Y-m-d');
+		if (isset($_GET['deny'])) {
+			if ($_GET['deny']=='yes') {
+				$sql = "update kostin_booking set book_status = 'denied' where book_id = '".$bookId."'";
+				$editStatus = mysqli_query($conn, $sql);
 
-		$tagihanData= getAllData('kostin_tagihan_booking', '*', null, null);
-		$tagihanRow = 0;
-		if (!is_null($tagihanData)) {
-			$tagihanRow = mysqli_num_rows($tagihanData)+1;
+				if (!$editStatus) {
+					echo mysqli_error($conn);
+					echo "<br/> <input type='button' value='kembali'
+							onClick='self.history.back()'> ";
+					exit;
+				} else {
+					header("Location:index.php?category=view&module=booking");
+				}
+			}
+		} else {
+			$date = new DateTime();
+			$duedate = $date->add(new DateInterval('P7D'));
+			$duedate = $date->format('Y-m-d');
+
+			$tagihanData= getAllData('kostin_tagihan_booking', '*', null, null);
+			$tagihanRow = 0;
+			if (!is_null($tagihanData)) {
+				$tagihanRow = mysqli_num_rows($tagihanData)+1;
+			}
+			$id_tagihan = "TGB".sprintf('%07d', $tagihanRow);
+
+			$dataAddon = getBookAddonData($bookId);
+			$aoPrice = 0;
+
+			foreach ($dataAddon as $addon) {
+				$sqlAddon = "select ao_price from kostin_addons where ao_id = '".$addon['ao_id']."'";
+				$priceData = mysqli_fetch_assoc(mysqli_query($conn, $sqlAddon));
+				$aoPrice += $priceData['ao_price'];
+			}
+
+			$sqlInput = "insert into kostin_tagihan_booking (tagihan_id, book_id, tagihan_jumlah, tagihan_duedate, tagihan_status)
+							 values (
+							'$id_tagihan', '$bookId', $aoPrice, '$duedate', 'pending'
+						)";
+
+			$sqlUpdate = "update kostin_booking set book_status = 'confirmed' where book_id='$bookId'";
+			$insertTagihan = mysqli_query($conn, $sqlInput);
+			$updateBooking = mysqli_query($conn, $sqlUpdate);
+			sendMailTagihan('booking',$bookId);
 		}
-		$id_tagihan = "TGB".sprintf('%07d', $tagihanRow);
-
-		$dataBooking  = getBookingData($bookId);
-		$bookingRow = mysqli_fetch_Assoc($dataBooking);
-
-		$dataAddon = getBookAddonData($bookId);
-		$aoPrice = 0;
-
-		foreach ($dataAddon as $addon) {
-			$sqlAddon = "select ao_price from kostin_addons where ao_id = '".$addon['ao_id']."'";
-			$priceData = mysqli_fetch_assoc(mysqli_query($conn, $sqlAddon));
-			$aoPrice += $priceData['ao_price'];
-		}
-
-		$sqlInput = "insert into kostin_tagihan_booking (tagihan_id, book_id, tagihan_jumlah, tagihan_duedate, tagihan_status)
-						 values (
-						'$id_tagihan', '$bookId', $aoPrice, '$duedate', 'pending'
-					)";
-
-		$sqlUpdate = "update kostin_booking set book_status = 'confirmed' where book_id='$bookId'";
-		$insertTagihan = mysqli_query($conn, $sqlInput);
-		$updateBooking = mysqli_query($conn, $sqlUpdate);
 	}
 
 	switch ($_GET['category']) {
@@ -552,7 +563,7 @@
 		case 'sewa':
 				insertMasterSewa();
 			break;
-		case 'tagihan':
+		case 'tagihanBook':
 				insertMasterTagihanBooking($_GET['book_id']);
 				header("Location:index.php?category=view&module=booking");
 			break;

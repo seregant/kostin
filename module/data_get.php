@@ -72,9 +72,16 @@
 		return $result;
 	}
 
-	function getBookNotification(){
+	function getBookingBillData($tagihanId) {
 		include 'config/database.php';
-		$sql = "select * from kostin_booking_ao where book_id='".$sewaId."'";
+		$sql = "select * from kostin_tagihan_booking where tagihan_id='".$tagihanId."'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
+
+	function getBookingNotif() {
+		include 'config/database.php';
+		$sql = "select * from kostin_booking where book_status='pending'";
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}

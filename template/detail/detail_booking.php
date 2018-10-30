@@ -1,6 +1,7 @@
 <?php
 	$bookingData = getBookingData($_GET['id']);
 	$booking = mysqli_fetch_assoc($bookingData);
+	
 ?>
 
 <div class="row">
@@ -45,6 +46,21 @@
 									<td><?php echo $booking['book_email']; ?></td>
 								</tr>
 								<tr>
+									<td>Daftar Addon</td>
+									<td>:</td>
+									<td>
+										<ul style="list-style: none;">
+											<?php
+												$sql = "SELECT `ao_name` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$booking['book_id']."')";
+												$dataAddon = mysqli_query($conn, $sql);
+												foreach ($dataAddon as $addon) {
+												 	echo '<li>'.$addon['ao_name'].'</li>';
+												 } 
+											?>
+										</ul>
+									</td>
+								</tr>
+								<tr>
 									<td>Foto Identitas</td>
 									<td>:</td>
 									<td><img id="imgpopup" alt="<?php echo $booking['book_name'] ?>" src="<?php echo $booking['book_idntyfile'] ?>" style="width: 500px; height: auto;" >
@@ -60,8 +76,12 @@
 					<center>
 							<?php 
 								if ($booking['book_status']=='pending') {
-									echo '<a href="data_input.php?category=tagihan&book_id='.$booking['book_id'].'">
-									<button class="btn btn-success">Konfirmasi</button></a>';
+									echo '<a href="data_input.php?category=tagihanBook&book_id='.$booking['book_id'].'">
+									<button class="btn btn-success">Konfirmasi</button></a>
+									';
+
+									echo '<a href="data_input.php?category=tagihan&book_id='.$booking['book_id'].'&deny=yes">
+									<button class="btn btn-warning">Tolak</button></a>';
 								} else {
 									echo '<button class="btn btn-success" disabled="disabled">Konfirmasi</button>';
 								}

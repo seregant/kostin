@@ -2,7 +2,9 @@
     include 'config/app.php';
     include 'config/database.php';
     include 'module/data_get.php';
-
+    
+    $notifBooking = getBookingNotif();
+    $jmlNotif = mysqli_num_rows($notifBooking);
 
 ?>
 <header class="header-desktop" style="background-color: #2bb1ff;">
@@ -16,38 +18,29 @@
                     <div class="noti-wrap">
                         <div class="noti__item js-item-menu">
                             <i class="zmdi zmdi-notifications" style="color: white;"></i>
-                            <span class="quantity">3</span>
+                            <?php if ($jmlNotif > 0) {
+                                echo '<span class="quantity">'.$jmlNotif.'</span>'; 
+                            } ?>
                             <div class="notifi-dropdown js-dropdown">
                                 <div class="notifi__title">
-                                   Notifikasi
+                                   Notifikasi Booking
                                 </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c1 img-cir img-40">
-                                        <i class="zmdi zmdi-email-open"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>You got a email notification</p>
-                                        <span class="date">April 12, 2018 06:50</span>
-                                    </div>
-                                </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c2 img-cir img-40">
-                                        <i class="zmdi zmdi-account-box"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>Your account has been blocked</p>
-                                        <span class="date">April 12, 2018 06:50</span>
-                                    </div>
-                                </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c3 img-cir img-40">
-                                        <i class="zmdi zmdi-file-text"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>You got a new file</p>
-                                        <span class="date">April 12, 2018 06:50</span>
-                                    </div>
-                                </div>
+                                <?php
+                                    if ($jmlNotif > 0) {
+                                        foreach ($notifBooking as $notif) {
+                                            // echo '';
+                                            echo '<div class="notifi__item">
+                                                    <div class="bg-c1 img-cir img-40">
+                                                        <a href="index.php?category=detail&module=booking&id='.$notif['book_id'].'"><i class="zmdi zmdi-check"></i></a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <a href="index.php?category=detail&module=booking&id='.$notif['book_id'].'"><p>Booking dari : <strong>'.$notif['book_name'].'</strong></p><span class="date">'.$notif['book_date'].'</span></a>
+                                                    </div>
+                                                </div>';
+
+                                        }
+                                    }
+                                ?>
                                 <div class="notifi__footer">
                                     <a href="#">All notifications</a>
                                 </div>

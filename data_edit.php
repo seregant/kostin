@@ -232,10 +232,6 @@
 	}
 
 	switch ($_GET['category']) {
-		case '_booking.php':
-				insertMasterBooking();
-			break;
-
 		case '_addon.php':
 				insertMasterAddon();
 			break;

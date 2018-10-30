@@ -26,16 +26,16 @@
 					<?php 
 						foreach ($bookingData as $booking) {
 							if ($booking['book_status']=='pending') {
-								$color = 'red';
+								$color = 'blue';
 							} else if ($booking['book_status']=='confirmed') {
-								$color = 'orange';
-							} else {
 								$color = 'green';
+							} else if ($booking['book_status']=='denied'){
+								$color = 'red';
 							}
 
 							echo "
 								<tr>
-									<td><a href='index.php?category=detail&module=booking&id=".$booking['book_id']."'>".$booking['book_id']."</a></td>
+									<td><a href='index.php?category=detail&module=booking&id=".$booking['book_id']."'><button class='btn btn-sm btn-link'>".$booking['book_id']."</button></a></td>
 									<td>".$booking['book_name']."</td>
 									<td>".$booking['book_date']."</td>
 									<td style='color:".$color.";'>".ucfirst($booking['book_status'])."</td>
