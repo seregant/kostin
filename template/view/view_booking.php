@@ -1,5 +1,10 @@
 <?php
-	$bookingData = getAllData('kostin_booking','*', null, null);
+	if (isset($_GET['keyword'])) {
+		$sql = "SELECT * FROM `kostin_booking` WHERE `book_id` LIKE '%".$_GET['keyword']."%' OR `book_name` LIKE '%".$_GET['keyword']."%' OR `book_addr` LIKE '%".$_GET['keyword']."%' OR `book_email` LIKE '%".$_GET['keyword']."%' OR `book_status` LIKE '%".$_GET['keyword']."%';";
+		$bookingData = mysqli_query($conn, $sql);
+	} else {
+		$bookingData = getAllData('kostin_booking','*', null, null);
+	}
 ?>
 <script type="text/javascript" src="template/js/myScript.js"></script>
 <div class="row">
@@ -9,6 +14,22 @@
           <div class="col-md-12">
               <div class="overview-wrap">
                   <h3 class="title-1">Data Booking</h3>
+                  <form method="get" class="form" action="">
+                  	<div class="input-group">
+                        <input type="text" name="search" placeholder="<?php 
+                        	if (isset($_GET['keyword'])){
+                        		echo($_GET['keyword']);
+                        	} else {
+                        		echo "Cari data booking...";
+                        	}
+                        ?>" class="form-control" >
+                        <div class="input-group-btn">&nbsp;
+                            <button class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+	              </form>
               </div>
           </div>
       </div>
