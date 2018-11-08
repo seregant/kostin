@@ -10,8 +10,13 @@
 			$sql2 = "select * from kostin_tagihan_booking where book_id='".$id."'";
 			$data  = mysqli_query($conn, $sql);
 			$data2  = mysqli_query($conn, $sql2);
-			$row = mysqli_fetch_Assoc($data);
-			$row2 = mysqli_fetch_Assoc($data2);
+			$row = mysqli_fetch_assoc($data);
+			$row2 = mysqli_fetch_assoc($data2);
+
+			$sql3 = 'select kamar_harga from kostin_kamar where kamar_id='.$row['kamar_id'];
+			$data3 = mysqli_query($conn, $sql3); 
+			$row3 = mysqli_fetch_assoc($data3);
+
 			$sqlAddon = "SELECT `ao_name`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$id."')";
 			$dataAddon = mysqli_query($conn, $sqlAddon);
 			$htmlAddon = "";
@@ -24,8 +29,7 @@
 								';
 				$ao_price += $addon['ao_price'];
 			}
-			$hargaKamar = 350000;
-			$totalInv = $hargaKamar + $ao_price;
+			$totalInv = $row2['tagihan_jumlah'];
 
 			$message = '
 				<!DOCTYPE html>
@@ -215,7 +219,7 @@
 							'.$htmlAddon.'
 							<tr>
 								<td class="col-1">Biaya Kamar Bulan 1</td>
-								<td class="col-2">Rp. '.number_format($hargaKamar).'</td>
+								<td class="col-2">Rp. '.number_format($row3['kamar_harga']).'</td>
 							</tr>
 							<tr>
 								<td class="total" >Total </td>
@@ -267,29 +271,19 @@
 		} else {
 			echo "durung digawe";
 		}
-		//untuk email
-		$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-		        
-        //Server settings
-		//$mail->SMTPDebug = 2;                                 // Enable verbose debug output
-		$mail->isSMTP();                                      // Set mailer to use SMTP
-		$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'tbig.redir@gmail.com';                 // SMTP username
-		$mail->Password = '-------';                           // SMTP password
-		$mail->SMTPSecure = 'tls';                                 // Enable TLS encryption, `ssl` also accepted
-		$mail->Port = 587;                                    // TCP port to connect to          
-		//            
-		//            $mail->CharSet = "UTF-8";                     // TCP port to connect to
-
-		//Recipients
+		
+		$mail = new PHPMailer(true);                              
+		$mail->isSMTP();                                     
+		$mail->Host = 'smtp.gmail.com';  
+		$mail->SMTPAuth = true;                               
+		$mail->Username = 'tbig.redir@gmail.com';                 
+		$mail->Password = 'Qwer123#';                           
+		$mail->SMTPSecure = 'tls';                                 
+		$mail->Port = 587;                                   
 		$mail->setFrom('tbig.redir@gmail.com', 'Kostin Admin');
-		$mail->addAddress($row['book_email'], $book['book_name']);     // Add a recipient
-
-		$subject= "Kostin || Tagihan Booking ".$row['book_id'];
-				
-		//Content
-		$mail->isHTML(true);                                  // Set email format to HTML
+		$mail->addAddress($row['book_email'], $book['book_name']);     
+		$subject= "Kostin || Tagihan Booking ".$row['book_id'];		
+		$mail->isHTML(true);                                  
 		$mail->Subject = $subject;
 		$mail->Body    = $message;
 		$mail->send();

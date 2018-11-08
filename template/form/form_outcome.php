@@ -1,6 +1,6 @@
 
 <?php
-  $action = 'module/data_input.php?category=outcome';
+  $action = 'data_input.php?category=outcome';
 ?>
 
 <div class="row">

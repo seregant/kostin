@@ -46,6 +46,17 @@
 									<td><?php echo $booking['book_email']; ?></td>
 								</tr>
 								<tr>
+									<td>No Kamar</td>
+									<td>:</td>
+									<td><?php
+											if ($booking['kamar_id']==null) {
+												echo "-";
+											} else {
+												echo $booking['kamar_id'];
+											}
+									?></td>
+								</tr>
+								<tr>
 									<td>Daftar Addon</td>
 									<td>:</td>
 									<td>
@@ -76,7 +87,7 @@
 					<center>
 							<?php 
 								if ($booking['book_status']=='pending') {
-									echo '<a href="data_input.php?category=tagihanBook&book_id='.$booking['book_id'].'">
+									echo '<a href="index.php?category=form&module=kamarpilih&id='.$booking['book_id'].'">
 									<button class="btn btn-success">Konfirmasi</button></a>
 									';
 

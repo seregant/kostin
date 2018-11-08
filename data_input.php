@@ -212,7 +212,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data kamar berhasil";
+			header("Location:index.php?category=view&module=kamar");
 		}	
 
 	}
@@ -507,6 +507,10 @@
 				}
 			}
 		} else {
+			$id_kamar = $_POST['kamar_id'];
+			$dataKamar = getRoomData($id_kamar);
+			$kamarRow = mysqli_fetch_assoc($dataKamar);
+
 			$date = new DateTime();
 			$duedate = $date->add(new DateInterval('P7D'));
 			$duedate = $date->format('Y-m-d');
@@ -520,6 +524,7 @@
 
 			$dataAddon = getBookAddonData($bookId);
 			$aoPrice = 0;
+			$roomPrice = $kamarRow['kamar_harga'];
 
 			foreach ($dataAddon as $addon) {
 				$sqlAddon = "select ao_price from kostin_addons where ao_id = '".$addon['ao_id']."'";
@@ -527,14 +532,19 @@
 				$aoPrice += $priceData['ao_price'];
 			}
 
+			$totalPrice = $aoPrice + $roomPrice;
+
 			$sqlInput = "insert into kostin_tagihan_booking (tagihan_id, book_id, tagihan_jumlah, tagihan_duedate, tagihan_status)
 							 values (
-							'$id_tagihan', '$bookId', $aoPrice, '$duedate', 'pending'
+							'$id_tagihan', '$bookId', $totalPrice, '$duedate', 'pending'
 						)";
 
-			$sqlUpdate = "update kostin_booking set book_status = 'confirmed' where book_id='$bookId'";
+			$sqlUpdateBooking = "update kostin_booking set book_status = 'confirmed', kamar_id='$id_kamar' where book_id='$bookId'";
+			$sqlUpdateKamar = "update kostin_kamar set kamar_status = 'booked' where kamar_id = $id_kamar";
+
+			$updateBooking = mysqli_query($conn, $sqlUpdateBooking);
+			$updateKamar = mysqli_query($conn, $sqlUpdateKamar);
 			$insertTagihan = mysqli_query($conn, $sqlInput);
-			$updateBooking = mysqli_query($conn, $sqlUpdate);
 			sendMailTagihan('booking',$bookId);
 		}
 	}

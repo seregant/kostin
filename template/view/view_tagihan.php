@@ -2,6 +2,14 @@
 	$tagihanData = getAllData('kostin_tagihan','*', null, null);
 	$tagihanBookingData = getAllData('kostin_tagihan_booking','*', null, null);
 	$totalPengeluaran = 0;
+
+	function dueDateCounter($duedate){
+		$now = time();
+		$end = strtotime($duedate);
+		$datediff = $end - $now;
+		$datediff = round($datediff / (60 * 60 * 24));
+		return $datediff;
+	}
 ?>
 
 <div class="row">
@@ -72,7 +80,8 @@
 								<th>No.</th>
 								<th>ID Booking</th>
 								<th>Amount</th>
-								<th>Status</th>						</tr>
+								<th>Status</th>
+							</tr>
 						</thead>
 						<tbody>
 							<?php 
@@ -80,23 +89,29 @@
 									$sqlBookID = "SELECT `book_id` FROM `kostin_booking` WHERE `book_id` IN (SELECT `book_id` FROM `kostin_tagihan_booking` WHERE `tagihan_id` ='".$tagihan['tagihan_id']."')";
 
 										$getBookID = mysqli_fetch_assoc(mysqli_query($conn, $sqlBookID));
+										
+										$dueDateCount = dueDateCounter($tagihan['tagihan_duedate']);
 
-										if ($tagihan['tagihan_status']=='pending') {
+										if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
 											$color = 'blue';
-										} else if($tagihan['tagihan_status']=='confirmed') {
+											$status = 'Belum Dibayar';
+										} else if($tagihan['tagihan_status']=='waiting') {
 											$color = 'orange';
-										} else if($tagihan['tagihan_status']=='paid') {
-											$color = 'green';
-										} else {
+											$status = 'Menunggu Konfirmasi';
+										} else if($tagihan['tagihan_status']=='cancel' OR $dueDateCount < 0) {
 											$color = 'red';
+											$status = 'Batal';
+										} else {
+											$color = 'green';
+											$status = 'Lunas';
 										}
 
 										echo "
 											<tr>
-												<td><a href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'><button class='btn btn-sm btn-link'>".$tagihan['tagihan_id']."</button></a></td>
+												<td><a href='index.php?category=detail&module=tgbooking&id=".$tagihan['tagihan_id']."'><button class='btn btn-sm btn-link'>".$tagihan['tagihan_id']."</button></a></td>
 												<td><a href='index.php?category=detail&module=booking&id=".$getBookID['book_id']."'><button class='btn btn-sm btn-link'>".$getBookID['book_id']."</button></a></td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
-												<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>
+												<td style='color:$color;'>".$status."</td>
 											</tr>
 									";
 								}

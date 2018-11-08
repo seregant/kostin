@@ -119,7 +119,7 @@
                ?>
                 <a href="index.php?category=view&module=kamar">
                   <button type="reset" class="btn btn-danger btn-sm">
-                  <i class="fa fa-ban"></i> Canel</button>
+                  <i class="fa fa-ban"></i> Cancel</button>
                 </a>
             </div>
             </form>
