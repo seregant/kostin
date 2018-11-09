@@ -1,6 +1,6 @@
 <?php
 	$tagihanData = getAllData('kostin_tagihan','*', null, null);
-	$tagihanBookingData = getAllData('kostin_tagihan_booking','*', null, null);
+	$tagihanBookingData = getTagihanData('booking', null, null);
 	$totalPengeluaran = 0;
 
 	function dueDateCounter($duedate){

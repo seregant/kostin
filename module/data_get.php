@@ -85,4 +85,21 @@
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}
+
+	function getTagihanData($type, $param, $condition){
+		include 'config/database.php';
+		if ($type == 'sewa') {
+			$table = 'kostin_tagihan';
+		} else {
+			$table = 'kostin_tagihan_booking';
+		}
+
+		if (!is_null($param)) {
+			$sql = "select * from $table where $param = '$condition' order by tagihan_id desc";
+		} else {
+			$sql = "select * from $table order by tagihan_id desc";
+		}
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>
