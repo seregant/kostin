@@ -6,10 +6,21 @@
 			include('frontend/index.php');
 		} else {
 			switch ($_GET['page']) {
+				case 'profile':
+					include('frontend/profile.php');
+					break;
 				case 'booking':
 					include('frontend/booking.php');
 					break;
-				
+				case 'get_data_booking':
+					include('frontend/get_data_booking.php');
+					break;
+				case 'konfirmasi_booking':
+					include('frontend/konfirmasi_booking.php');
+					break;
+				case 'contact_us':
+					include('frontend/contact_us.php');
+					break;
 				default:
 					# code...
 					break;

@@ -1,6 +1,7 @@
 <?php
 	include ('config/database.php');
 	include ('module/data_login.php');
+	include ('module/data_get.php');
 	include ('config/app.php');
 	if(isset($_POST['username'],$_POST['password'])){
 		$passHash = md5($_POST['password']);
@@ -74,11 +75,11 @@
 			                
 			                <div class="dropdown-menu nav-text-dropdown" aria-labelledby="navbarDropDownMenuLink" style="background-color: #66c6ff; clear: white;">
 	                  			<a class="dropdown-item" href="index.php?page=booking" >Pesan Kamar</a>
-	                  			<a class="dropdown-item" href="konfirmasi_booking.php">Konfirmasi Pembayaran</a>
+	                  			<a class="dropdown-item" href="index.php?page=konfirmasi_booking">Konfirmasi Pembayaran</a>
 	               			</div>
 	              		</li>
 	              		<li class="nav-item paddingNav">
-	                		<a class="nav-link" href="contact_us.php" >Contact Us</a>
+	                		<a class="nav-link" href="index.php?page=contact_us" >Contact Us</a>
 	              		</li>                                    
 	            	</ul>     
 	            	<ul class="navbar-nav ml-auto" id="btn-login">
