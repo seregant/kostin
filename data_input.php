@@ -556,26 +556,30 @@
 		include "module/data_get.php";
 
 		$paidDate = date("Y-m-d H:i:s");
-		if ($type = 'sewa') {
+		$tagihanId = $_POST['no_invoice'];
+		if ($type == 'sewa') {
 			$table = 'kostin_tagihan';
 		} else {
 			$table = 'kostin_tagihan_booking';
 		}
 
-		if ($_FILES['name']==null) {
-			$payMthd = "langsung";
+		if ($_FILES['trf_proof']['name']==null) {
+			echo "Anda belum mengupload bukti transfer";
 		} else {
 			$payMthd = "transfer";
 			$uploadResult = uploadImage('trf_proof', 'payment', false);
 		}
 
-		$sqlUpdateTagihan = "update $table_booking set tagihan_paiddat = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."'";
+		$sqlUpdateTagihan = "update $table set tagihan_paiddate = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."', tagihan_status = 'waiting' where tagihan_id = '$tagihanId'";
 		
+		echo $sqlUpdateTagihan;
 		$updateData = mysqli_query($conn, $sqlUpdateTagihan);
 		if (!$updateData) {
 			echo "Gagal Update Data tagihan booking <br /> ";
 			echo mysqli_error($conn);
 			exit;
+		} else {
+			header("Location:index.php");
 		}
 	}
 
