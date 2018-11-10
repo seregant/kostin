@@ -1,48 +1,6 @@
 <?php
-  session_start();
-
-<<<<<<< HEAD
-	if(!isset($_SESSION['username'])){
-		if (!isset($_GET['page'])) {
-			include('frontend/index.php');
-		} else {
-			switch ($_GET['page']) {
-				case 'booking':
-					include('frontend/booking.php');
-					break;
-				
-				default:
-					# code...
-					break;
-			}
-		}
-	} else {
-		if (isset($_GET['search'])) {
-			if (strpos($_SERVER['HTTP_REFERER'], 'category=view&module=booking') !== false) {
-	    		header("Location:index.php?category=view&module=booking&keyword=".$_GET['search']);
-			} else {
-				echo "kampret";
-			}
-		}
-		include('template/index.php');
-	}
-=======
-  if(!isset($_SESSION['username'])){
-    header('/login.php');
-  }
-
-  if(!empty($_GET['report'])) {
-
-    include('template/report.php');
-  } 
-  else {
-
-    include('template/index.php');
-  }
-
   include 'header.php';
 ?>
-
 <!--==========================
     Slider
 ============================== -->
@@ -136,5 +94,4 @@
 
 <?php
   include 'footer.php';
->>>>>>> reno-branch
 ?>

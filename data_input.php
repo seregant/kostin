@@ -64,7 +64,7 @@
 			exit;
 		}
 
-		$uploadResult = uploadImage('ktp_pict','identity');
+		$uploadResult = uploadImage('ktp_pict','identity', true);
 
 		$sql1 = "insert into kostin_booking 
 						(book_id,book_name,book_addr,book_date,book_email,book_idnty,book_idntythumb,book_idntyfile,book_status,book_bdate) values (
@@ -326,7 +326,7 @@
 			exit;
 		}
 
-		$uploadResult = uploadImage('foto','user');
+		$uploadResult = uploadImage('foto','user', true);
 
 		$sql = "insert into kostin_user 
 				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
@@ -408,7 +408,7 @@
 		}	
 	}
 
-	function uploadImage($dataIndex,$imgPrefix){
+	function uploadImage($dataIndex,$imgPrefix, $createThumb){
 		include 'config/app.php';
 		$pict_foto = $_FILES[$dataIndex]['name'];
 		$pict_tmp = $_FILES[$dataIndex]['tmp_name'];
@@ -450,7 +450,9 @@
 				$status = 'gagal';
 				exit;
 			} else {
-				createThumbnail($pictDst, $thumbDst);
+				if ($createThumb) {
+					createThumbnail($pictDst, $thumbDst);
+				}
 				$status = 'berhasil';
 			}
 		}
@@ -549,6 +551,34 @@
 		}
 	}
 
+	function updateTagihan($type){
+		include "config/database.php";
+		include "module/data_get.php";
+
+		$paidDate = date("Y-m-d H:i:s");
+		if ($type = 'sewa') {
+			$table = 'kostin_tagihan';
+		} else {
+			$table = 'kostin_tagihan_booking';
+		}
+
+		if ($_FILES['name']==null) {
+			$payMthd = "langsung";
+		} else {
+			$payMthd = "transfer";
+			$uploadResult = uploadImage('trf_proof', 'payment', false);
+		}
+
+		$sqlUpdateTagihan = "update $table_booking set tagihan_paiddat = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."'";
+		
+		$updateData = mysqli_query($conn, $sqlUpdateTagihan);
+		if (!$updateData) {
+			echo "Gagal Update Data tagihan booking <br /> ";
+			echo mysqli_error($conn);
+			exit;
+		}
+	}
+
 	switch ($_GET['category']) {
 		case 'booking':
 				insertMasterBooking();
@@ -576,6 +606,10 @@
 		case 'tagihanBook':
 				insertMasterTagihanBooking($_GET['book_id']);
 				header("Location:index.php?category=view&module=booking");
+			break;
+
+		case 'tgbookUpdate':
+				updateTagihan('booking');
 			break;
 
 		default:
