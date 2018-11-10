@@ -43,7 +43,7 @@
                     <?php if(isset($errMsg)){ ?>
                         <div class="alert alert-danger"><?php echo $errMsg; ?></div>
                     <?php } ?>
-                    <div class="login-content">
+                    <div class="login-content" style="background-color: #2bb1ff;">
                         <div class="login-logo">
                             <a href="#">
                                 <img src="images/icon/logo.png" alt="CoolAdmin">
@@ -52,14 +52,14 @@
                         <div class="login-form">
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label>Username / Email Address</label>
-                                    <input class="au-input au-input--full" name="username" placeholder="Email">
+                                    <label style="color: white">Username / Email Address</label>
+                                    <input class="au-input au-input--full" name="username" placeholder="Email / Username">
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label style="color: white">Password</label>
                                     <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--blue m-b-20" type="submit">sign in</button>
                             </form>
                         </div>
                     </div>

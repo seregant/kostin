@@ -2,6 +2,7 @@
 	session_start();
 	include ('config/database.php');
 	include ('module/data_login.php');
+	include ('config/app.php');
 	if(isset($_POST['username'],$_POST['password'])){
 		$passHash = md5($_POST['password']);
 		$validation = userDataValidation($_POST['username'],$passHash);

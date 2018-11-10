@@ -1647,6 +1647,7 @@ section {
     top: 0;
     left: 0;
     right: 0;
+    background-color: #2bb1ff;
 }
 
 .header-mobile .header-mobile__bar {
