@@ -28,7 +28,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<title></title>
+	<title>KostIn</title>
 
 	<!-- Bootstrap -->
 	<link href="frontend/css/bootstrap.min.css" rel="stylesheet">

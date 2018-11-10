@@ -2,7 +2,11 @@
   session_start();
 	if(!isset($_SESSION['username'])){
 		if (!isset($_GET['page'])) {
-			include('frontend/index.php');
+			if (isset($_GET['no_invoice'])) {
+				include ('frontend/konfirmasi_booking.php');
+			} else {
+				include('frontend/index.php');
+			}
 		} else {
 			switch ($_GET['page']) {
 				case 'profile':
@@ -24,7 +28,7 @@
 					# code...
 					break;
 			}
-		}
+	}
 	} else {
 		if (isset($_GET['search'])) {
 			if (strpos($_SERVER['HTTP_REFERER'], 'category=view&module=booking') !== false) {
