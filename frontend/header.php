@@ -1,6 +1,7 @@
 <?php
 	include ('config/database.php');
 	include ('module/data_login.php');
+	include ('module/data_get.php');
 	include ('config/app.php');
 	if(isset($_POST['username'],$_POST['password'])){
 		$passHash = md5($_POST['password']);
@@ -40,7 +41,9 @@
 	
 	<!-- HEADER -->
 	<div class="row sticky-top" style="background-color: white;">
-		
+			<?php if(isset($errMsg)){ ?>
+					<div class="alert alert-danger"><?php echo $errMsg; ?>	</div>
+             <?php } ?>
 		<!-- Social Icons-->
 		<div class="container-fluid ">
 			<ul class="social-icons">
@@ -74,11 +77,11 @@
 			                
 			                <div class="dropdown-menu nav-text-dropdown" aria-labelledby="navbarDropDownMenuLink" style="background-color: #66c6ff; clear: white;">
 	                  			<a class="dropdown-item" href="index.php?page=booking" >Pesan Kamar</a>
-	                  			<a class="dropdown-item" href="konfirmasi_booking.php">Konfirmasi Pembayaran</a>
+	                  			<a class="dropdown-item" href="index.php?page=get_data_booking">Konfirmasi Pembayaran</a>
 	               			</div>
 	              		</li>
 	              		<li class="nav-item paddingNav">
-	                		<a class="nav-link" href="contact_us.php" >Contact Us</a>
+	                		<a class="nav-link" href="index.php?page=contact_us" >Contact Us</a>
 	              		</li>                                    
 	            	</ul>     
 	            	<ul class="navbar-nav ml-auto" id="btn-login">
@@ -93,9 +96,7 @@
 
 	<!-- Form Login -->
 		<div id="id01" class="modal">
-			<?php if(isset($errMsg)){ ?>
-             <div class="alert alert-danger"><?php echo $errMsg; ?></div>
-             <?php } ?>
+
 			<form class="modal-content animate" action="" method="post">
 			    <div class="imgcontainer">
 		    		<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
