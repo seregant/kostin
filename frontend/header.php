@@ -41,7 +41,9 @@
 	
 	<!-- HEADER -->
 	<div class="row sticky-top" style="background-color: white;">
-		
+			<?php if(isset($errMsg)){ ?>
+					<div class="alert alert-danger"><?php echo $errMsg; ?>	</div>
+             <?php } ?>
 		<!-- Social Icons-->
 		<div class="container-fluid ">
 			<ul class="social-icons">
@@ -75,7 +77,7 @@
 			                
 			                <div class="dropdown-menu nav-text-dropdown" aria-labelledby="navbarDropDownMenuLink" style="background-color: #66c6ff; clear: white;">
 	                  			<a class="dropdown-item" href="index.php?page=booking" >Pesan Kamar</a>
-	                  			<a class="dropdown-item" href="index.php?page=konfirmasi_booking">Konfirmasi Pembayaran</a>
+	                  			<a class="dropdown-item" href="index.php?page=get_data_booking">Konfirmasi Pembayaran</a>
 	               			</div>
 	              		</li>
 	              		<li class="nav-item paddingNav">
@@ -94,9 +96,7 @@
 
 	<!-- Form Login -->
 		<div id="id01" class="modal">
-			<?php if(isset($errMsg)){ ?>
-             <div class="alert alert-danger"><?php echo $errMsg; ?></div>
-             <?php } ?>
+
 			<form class="modal-content animate" action="" method="post">
 			    <div class="imgcontainer">
 		    		<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
