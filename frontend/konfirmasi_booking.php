@@ -1,6 +1,6 @@
 <?php
     include 'header.php';
-    $tagihanBookingData = getTagihanData('booking', 'tagihan_id', $_POST['no_invoice']);
+    $tagihanBookingData = getTagihanData('booking', 'tagihan_id', $_GET['no_invoice']);
     $tagihanData = mysqli_fetch_assoc($tagihanBookingData);
 
     $bookingData = getBookingData($tagihanData['book_id']);
@@ -44,7 +44,7 @@
 ?>
 <div class="container ">
         <!-- FORM BOOKING -->
-    <form class="form-cust" method="post" action="data_input.php?category=tgbookUpdate" enctype="multipart/form-data">
+    <form class="form-cust" method="get" action="data_input.php?category=tgbookUpdate" enctype="multipart/form-data">
         <div class="col-md-6 mx-auto form-bg form-border" >
                 <center style="padding-top: 1em;"><h4>Konfirmasi Pembayaran Booking</h4></center>
                     <div class="form-group">
