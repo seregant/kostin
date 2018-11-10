@@ -44,7 +44,7 @@
 ?>
 <div class="container ">
         <!-- FORM BOOKING -->
-    <form class="form-cust" method="post" action="data_input.php?category=tagihanBook">
+    <form class="form-cust" method="post" action="data_input.php?category=tgbookUpdate">
         <div class="col-md-6 mx-auto form-bg form-border" >
                 <center style="padding-top: 1em;"><h4>Konfirmasi Pembayaran Booking</h4></center>
                     <div class="form-group">
