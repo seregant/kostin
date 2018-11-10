@@ -3,7 +3,7 @@
 ?>
 <div class="container ">
     <!-- FORM GET DATA BOOKING -->
-    <form class="form-cust" method="post" action="index.php?page=konfirmasi_booking">
+    <form class="form-cust" method="get" action="index.php?page=konfirmasi_booking">
         <div class="col-md-6 mx-auto form-bg form-border" >
             <center style="padding-top: 1em;"><h4>Masukkan Nomor Invoice Anda</h4></center>
                     <div class="form-group">
