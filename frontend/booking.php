@@ -1,10 +1,12 @@
 <?php
-	include 'header.php';
+
+include 'header.php';
+	$dataAddon = getAllData('kostin_addons','*', null, null);
 ?>
 <div class="container ">
 
 	<!-- FORM BOOKING -->
-	<form class="form-cust">
+	<form class="form-cust" enctype="multipart/form-data" action="data_input.php?category=booking">
 	<div class="row form-bg" style="padding: 5px;">
 		<div class="col-md-5 mx-auto form-border" >
   				<center style="padding-top: 1em;"><h4>Data Booking</h4></center>
@@ -22,8 +24,12 @@
   						<input type="text" class="form-control " id="usr" name="mail">
   					</div>
   					<div class="form-group">
-  						<label for="usr">No. Telp</label><br>
-  						<input type="text" class="form-control " id="usr" name="">
+  						<label for="usr">No. Telp/HP</label><br>
+  						<input type="text" class="form-control " id="usr" name="phone">
+  					</div>
+  					<div class="form-group">
+  						<label for="usr">Tanggal Lahir</label><br>
+  						<input type="date" class="form-control " id="usr" name="tanggal-lahir">
   					</div>
   					<div class="form-group">
     					<label for="exampleFormControlSelect1">No. KTP/SIM</label><br>
@@ -44,6 +50,32 @@
   					<input type="checkbox" class="custom-control-input" id="customCheck1" style="background-color: white;">
   					<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
 				</div>
+				<table>
+  						<thead>
+  							<tr>
+  								<th></th>
+  								<th>Nama</th>
+  								<th>Harga</th>
+  							</tr>
+  						</thead>
+  						<tbody>
+  					<?php
+  						foreach ($dataAddon as $addon) {
+  							echo '
+			  					<tr>
+			  						<td><input type="checkbox" name="add-on[]" value="'.$addon['ao_id'].'"></td>
+			  						<td>
+			  							'.$addon['ao_name'].'
+			  						</td>
+			  						<td>
+			  							'.$addon['ao_price'].'
+			  						</td>
+			  					</tr>
+  							';
+  						}
+  					?>
+  					</tbody>
+  				</table>
 			</div>			
 		</div>		
 	</div>
