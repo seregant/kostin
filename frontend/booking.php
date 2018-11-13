@@ -6,7 +6,7 @@ include 'header.php';
 <div class="container ">
 
 	<!-- FORM BOOKING -->
-	<form class="needs-validation form-cust" enctype="multipart/form-data" action="data_input.php?category=booking" novalidate>
+	<form class="needs-validation form-cust" enctype="multipart/form-data" action="data_input.php?category=booking" method="post" novalidate>
 	<div class="row form-bg" style="padding: 5px;">
 		<div class="col-md-5 mx-auto form-border" >
   				<center style="padding-top: 1em;"><h4>Data Booking</h4></center>
@@ -27,8 +27,7 @@ include 'header.php';
   						<label for="email-validation">Email:</label><br>
   						<input type="text" class="form-control " id="email-validation" name="mail" required>
               <div class="invalid-feedback">Masukkan alamat email yang benar.</div>
-              <div class="valid-feedback">Looks good!</div>
-  					</div>
+              <div class="valid-feedback">Looks good!</div>  					</div>
   					<div class="form-group">
   						<label for="telp-validation">No. Telp/HP</label><br>
   						<input type="text" class="form-control " id="telp-validation" name="phone" required>
@@ -98,7 +97,7 @@ include 'header.php';
 
 </div>
 
-
+<!--VALIDATING FORM Booking-->
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
