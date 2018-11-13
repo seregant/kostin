@@ -233,6 +233,9 @@
 								.how-to table tr td ol li{
 									font-size: 0.7em;
 								}
+								.how-to table tr td p{
+									font-size: 0.7em;
+								}
 								.socmed ul li a img {
 									max-width: 1.5em;
 								}
