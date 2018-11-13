@@ -34,12 +34,20 @@
                             </a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="index.php?category=view&module=kamar">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Kamar
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.php?category=view&module=kamar">Data Kamar</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?category=view&module=sewa">Data Sewa Kamar</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="index.php?category=view&module=addon">
