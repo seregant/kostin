@@ -1,6 +1,6 @@
 <?php
 	include 'module/send_mail.php';
-
+	session_start();
 	function insertMasterBooking(){
 		include 'config/database.php';
 		include 'module/data_get.php';
@@ -589,27 +589,51 @@
 			break;
 
 		case 'addon':
-				insertMasterAddon();
+				if (isset($_SESSION['username'])) {
+					insertMasterAddon();
+				} else {
+					header("Location:index.php");
+				}
 			break;
 
 		case 'room':
-				insertMasterKamar();
+				if (isset($_SESSION['username'])) {
+					insertMasterKamar();
+				} else {
+					header("Location:index.php");
+				}
 			break;
 
 		case 'outcome':
-				insertMasterOutcome();
+				if (isset($_SESSION['username'])) {
+					insertMasterOutcome();
+				} else {
+					header("Location:index.php");
+				}
 			break;
 
 		case 'user':
-				insertMasterUser();
+				if (isset($_SESSION['username'])) {
+					insertMasterUser();
+				} else {
+					header("Location:index.php");
+				}
 			break;
 
 		case 'sewa':
-				insertMasterSewa();
+				if (isset($_SESSION['username'])) {
+					insertMasterSewa();
+				} else {
+					header("Location:index.php");
+				}
 			break;
 		case 'tagihanBook':
-				insertMasterTagihanBooking($_GET['book_id']);
-				header("Location:index.php?category=view&module=booking");
+				if (isset($_SESSION['username'])) {
+					insertMasterTagihanBooking($_GET['book_id']);
+					header("Location:index.php?category=view&module=booking");
+				} else {
+					header("Location:index.php");
+				}
 			break;
 
 		case 'tgbookUpdate':
@@ -618,6 +642,7 @@
 
 		default:
 			echo "Not found";
+			header("Location:index.php");
 			break;
 	}
 ?>
