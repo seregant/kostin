@@ -34,7 +34,7 @@
 			  			<input type="file" id="exampleInputFile">
 			  			<p class="help-block">Example block-level help text here.</p>					
 					</div>
-					<button type="button" class="btn btn-primary" >Booking</button>
+					<button type="submit" class="btn btn-primary" >Booking</button>
 
 		</div>
 		<div class="col-md-7" >
