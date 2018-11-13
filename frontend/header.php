@@ -44,10 +44,10 @@
 		<div class="container-fluid ">
 			<?php if(isset($errMsg)){ ?>
 			<div class="col  mx-auto">
-				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
   					<strong>Gagal Login!</strong> <?php echo $errMsg; ?>.
-  					<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-  						    <span aria-hidden="true" style="font-size: 1em;">&times;</span>
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
+  						    <span aria-hidden="true" style="font-size: 0.9em;">&times;</span>
   					</button>
 				</div>	
 			</div>
