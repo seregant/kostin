@@ -6,7 +6,7 @@ include 'header.php';
 <div class="container ">
 
 	<!-- FORM BOOKING -->
-	<form class="form-cust" enctype="multipart/form-data" action="data_input.php?category=booking">
+	<form class="form-cust" enctype="multipart/form-data" action="data_input.php?category=booking" method="post">
 	<div class="row form-bg" style="padding: 5px;">
 		<div class="col-md-5 mx-auto form-border" >
   				<center style="padding-top: 1em;"><h4>Data Booking</h4></center>
@@ -33,14 +33,14 @@ include 'header.php';
   					</div>
   					<div class="form-group">
     					<label for="exampleFormControlSelect1">No. KTP/SIM</label><br>
-     					<input type="text" class="form-control " id="usr" name="">
+     					<input type="text" class="form-control " id="usr" name="noktp">
 					</div> 
 					<div class="form-group">
 			  			<label for="exampleInputFile">Foto KTP/SIM</label><br>
-			  			<input type="file" id="exampleInputFile">
+			  			<input type="file" id="exampleInputFile" name="ktp_pict">
 			  			<p class="help-block">Example block-level help text here.</p>					
 					</div>
-					<button type="button" class="btn btn-primary" >Booking</button>
+					<button type="submit" class="btn btn-primary" >Booking</button>
 
 		</div>
 		<div class="col-md-7" >

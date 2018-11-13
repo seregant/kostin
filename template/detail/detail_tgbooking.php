@@ -158,7 +158,7 @@
 													if (is_null($bookingBill['tagihan_paymthd'])){
 														echo "-";
 													} else {
-														echo $bookingBill['tagihan_paymthd'];
+														echo ucfirst( $bookingBill['tagihan_paymthd']);
 													}
 												 ?></td>
 										</tr>

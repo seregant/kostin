@@ -9,6 +9,7 @@
 		$bdate = $_POST['tanggal-lahir'];
 		$email = $_POST['mail'];
 		$idntty = $_POST['noktp'];
+		$phoneNum = $_POST['phone'];
 		$status = "pending";
 		$curr_date = date("Y-m-d");
 		
@@ -23,11 +24,6 @@
 
 		$id_booking = "BO".sprintf('%08d', $bookingRow);
 		$isValid = "yes";
-
-		$pict_foto = $_FILES['ktp_pict']['name'];
-		$pict_tmp = $_FILES['ktp_pict']['tmp_name'];
-		$pict_size = $_FILES['ktp_pict']['size'];
-		$pict_type = $_FILES['ktp_pict']['type'];
 
 		if (strlen(trim($nama))==0){
 			echo "Kolom Nama Harus Diisi! <br/>";
@@ -67,8 +63,8 @@
 		$uploadResult = uploadImage('ktp_pict','identity', true);
 
 		$sql1 = "insert into kostin_booking 
-						(book_id,book_name,book_addr,book_date,book_email,book_idnty,book_idntythumb,book_idntyfile,book_status,book_bdate) values (
-						'$id_booking','$nama','$alamat','$curr_date','$email','$idntty','".$uploadResult['thmbDir']."','".$uploadResult['imgDir']."','$status','$bdate')";
+						(book_id, book_name, book_addr, book_date, book_email, book_phone, book_idnty, book_idntythumb, book_idntyfile, book_status, book_bdate) values (
+						'$id_booking','$nama','$alamat','$curr_date','$email', '$phoneNum','$idntty','".$uploadResult['thmbDir']."','".$uploadResult['imgDir']."','$status','$bdate')";
 		
 		$insertBooking = mysqli_query($conn, $sql1);
 
@@ -79,25 +75,25 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Simpan data berhasil";
-		}	
-		
-		foreach ($_POST['add-on'] as $selected_ao) {
-			$sql2 = "insert into kostin_booking_ao
-					(book_id,ao_id)
-					values('$id_booking','$selected_ao')";
-			$insertAddonBooking = mysqli_query($conn, $sql2);
-				
-			if (!$insertAddonBooking) {
-				echo "Gagal Simpan data addon dipilih<br /> ";
-				echo mysqli_error($conn);
-				echo "<br/> <input type='button' value='kembali'
-					onClick='self.history.back()'> ";
-				exit;
-			} else {
-				echo "Berhasil tambah data tabel booking_ao";
+			foreach ($_POST['add-on'] as $selected_ao) {
+				$sql2 = "insert into kostin_booking_ao
+						(book_id,ao_id)
+						values('$id_booking','$selected_ao')";
+				$insertAddonBooking = mysqli_query($conn, $sql2);
+					
+				if (!$insertAddonBooking) {
+					echo "Gagal Simpan data addon dipilih<br /> ";
+					echo mysqli_error($conn);
+					echo "<br/> <input type='button' value='kembali'
+						onClick='self.history.back()'> ";
+					exit;
+				} else {
+					echo "Berhasil tambah data tabel booking_ao";
+				}
 			}
-		}
+
+			header("Location:index.php");
+		}	
 	}
 
 	function insertMasterAddon(){

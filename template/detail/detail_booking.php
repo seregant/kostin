@@ -46,6 +46,11 @@
 									<td><?php echo $booking['book_email']; ?></td>
 								</tr>
 								<tr>
+									<td>No. Telp</td>
+									<td>:</td>
+									<td><?php echo $booking['book_phone']; ?></td>
+								</tr>
+								<tr>
 									<td>No Kamar</td>
 									<td>:</td>
 									<td><?php
