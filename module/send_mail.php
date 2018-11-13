@@ -33,8 +33,19 @@
 
 			$message = '
 				<!DOCTYPE html>
-					<html>
+					<html lang=en>
 					<head>
+						<!-- Required meta tags -->
+    					<meta charset="utf-8">
+    					<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    					<!-- Bootstrap CSS -->
+    					<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+					   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+					    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+					    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 						<style type="text/css">
 							@import url("http://fonts.googleapis.com/css?family=Open+Sans");
 							
@@ -51,7 +62,7 @@
 								background-color: #fff;
 								border: 1px solid;
 								border-color: #b7b7b7;
-								width: 55%;
+								width: 60%;
 								padding: 3em 3em 3em 3em;
 								margin: auto;
 							}
@@ -155,7 +166,7 @@
 							}
 							.invoice-footer p {
 								padding: 0;
-								text-align: left;
+								text-align: center;
 							}
 							.socmed {
 								margin-bottom: 1em;
@@ -195,7 +206,7 @@
 						<title></title>
 					</head>
 					<body>
-					<div class="wrapper">
+					<div class="container wrapper">
 						<img src="https://image.ibb.co/koKGQq/logo-email.png">
 						<p>
 							Dear '.$row['book_name'].', <br>
@@ -204,7 +215,8 @@
 							Detail:
 						</p>
 					<div class="body-invoice">
-						<table>
+						<div class="table-responsive">
+						<table class="table">
 							<tr>
 								<th colspan="2">
 									Invoice #'.$id.'<br>
@@ -226,9 +238,11 @@
 								<td class="total" >Rp. '.number_format($totalInv).'</td>
 							</tr>
 						</table>
+						</div>
 					</div>
 					<div class="how-to">
-						<table>
+						<div class="table-responsive">
+						<table class="table">
 							<tr>
 								<td>
 									<h3>Silakan ikuti langkah-langkah berikut untuk menyelesaikan pembayaran:</h3>
@@ -243,12 +257,14 @@
 								</td>
 							</tr>
 						</table>
+						</div>
 					</div>
 					<div class="konfirmasi">
 						<button class="button">Konfirmasi Pembayaran</button>	
 					</div>
 					<hr>
-					<div class="invoice-footer">
+					<div class="row mx-auto">
+						<div class="invoice-footer">
 						<p>Email dibuat secara otomatis. Mohon tidak mengirimkan balasan ke email ini.</p>
 						<div class="socmed">
 							<p>Ikuti Kami</p>
@@ -258,6 +274,7 @@
 					    		<li><a href="#"><img src="icon/tw.png" alt=""></a></li>
 					    	</ul>
 						</div>
+					</div>
 					</div>
 					<hr>
 					<div class="copyright">
