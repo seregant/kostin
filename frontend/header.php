@@ -36,16 +36,22 @@
 	<link href="frontend/css/custom.css" rel="stylesheet">
 </head>
 <body>
-
 <div class="container-fluid">
-	
 	<!-- HEADER -->
 	<div class="row sticky-top" style="background-color: white;">
-			<?php if(isset($errMsg)){ ?>
-					<div class="alert alert-danger"><?php echo $errMsg; ?>	</div>
-             <?php } ?>
 		<!-- Social Icons-->
+		<!-- Error message failed login-->
 		<div class="container-fluid ">
+			<?php if(isset($errMsg)){ ?>
+			<div class="col  mx-auto">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  					<strong>Gagal Login!</strong> <?php echo $errMsg; ?>.
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+  						    <span aria-hidden="true" style="font-size: 1em;">&times;</span>
+  					</button>
+				</div>	
+			</div>
+    		<?php } ?>
 			<ul class="social-icons">
          		<li><a href="#"><img src="frontend/icon/fb.png" alt=""></a></li>
           		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
