@@ -202,6 +202,41 @@
 							.copyright a {
 								color: #1971ff;
 							}
+							@media only screen and (max-width: 800px) {
+								body {
+									font-size: 0.75em;
+								}
+								.wrapper {
+									width: 90%;
+								}
+								.wrapper img {
+									max-width: 200px;
+								}
+								.body-invoice th {
+									font-size: 0.7em;
+									font-weight: bold;
+								}
+								.col-1 {
+									font-size: 0.7em;
+								}
+								.col-2 {
+									font-size: 0.7em;
+								}
+								.total {
+									font-size: 0.7em;
+									font-weight: bold;
+								}
+								.how-to table tr td h3{
+									font-size: 0.8em;
+									font-weight: bold;
+								}
+								.how-to table tr td ol li{
+									font-size: 0.7em;
+								}
+								.socmed ul li a img {
+									max-width: 1.5em;
+								}
+							}
 						</style>
 						<title></title>
 					</head>
