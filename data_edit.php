@@ -4,16 +4,28 @@
 		exit;
 	}	
 
+	function refreshSession($id){
+		session_start();
+		$userData = getUser('user_id',$id);
+		$userDatas = mysqli_fetch_assoc($userData);
+
+		$_SESSION['user_id'] = $userDatas['user_id'];
+		$_SESSION['username'] = $userDatas['user_name'];
+		$_SESSION['images'] = $userDatas['user_imagefile'];
+		$_SESSION['name'] = $userDatas['user_fullname'];
+		$_SESSION['userrole'] = $userDatas['role_id'];
+		$_SESSION['email'] = $userDatas['user_email'];
+	}
+
 	function editUserFull() {
-		include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-		include $base_url.'/config/database.php';
-		include $base_url.'/module/data_get.php';
+		include 'config/database.php';
+		include 'module/data_get.php';
 
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		
-		$userData = getUserData('user_id',$_GET['id']);
+		$userData = getUser('user_id',$_GET['id']);
 		$userDatas = mysqli_fetch_assoc($userData);
 
 		$sql = "update kostin_user set
@@ -27,8 +39,10 @@
 		}
 
 		if ($_FILES['foto']['size'] > 0){
-			unlink($userDatas['user_imagefile']);
-    		unlink($userDatas['user_imagethumb']);
+			if ($userDatas['user_imagefile']!='images/preview.png') {
+				unlink($userDatas['user_imagefile']);
+	    		unlink($userDatas['user_imagethumb']);
+			}
     		$uploadResult = uploadImage('foto','user');
     		$sql .= ", user_imagefile = '".$uploadResult['imgDir']."',
 					user_imagethumb = '".$uploadResult['thmbDir']."'";
@@ -43,8 +57,6 @@
 			echo "<br/> <input type='button' value='kembali'
 					onClick='self.history.back()'> ";
 			exit;
-		} else {
-			header('Location:index.php?category=form&module=user&isclear=yes');
 		}
 	}
 
@@ -246,6 +258,8 @@
 
 		case 'user_admin':
 				editUserFull();
+				refreshSession($_GET['id']);
+				header('Location:index.php?category=form&module=user&isclear=yes');
 			break;
 
 		default:

@@ -287,7 +287,13 @@
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		$pass = md5($_POST['pass']);
-		$priv = $_POST['priv'];
+		
+
+		if (isset($_POST['priv'])) {
+			$priv = $_POST['priv'];
+		} else {
+			$priv = '00002';
+		}
 
 		$number = uniqid();
 	    $varray = str_split($number);
@@ -304,7 +310,7 @@
 		// }
 
 		if (strlen(trim($nama))==0){
-			echo "Kolom Nama outcome Harus Diisi! <br/>";
+			echo "Kolom Nama Harus Diisi! <br/>";
 			$isValid = "no";
 		}
 		if (strlen(trim($username))==0){
@@ -322,11 +328,22 @@
 			exit;
 		}
 
-		$uploadResult = uploadImage('foto','user', true);
-
-		$sql = "insert into kostin_user 
+		if (!is_null($_FILES['foto']['name'])) {
+			$uploadResult = uploadImage('foto','user', true);
+			$imgPath = $uploadResult['imgDir'];
+			$thmbPath = $uploadResult['thmbDir'];
+			$sql = "insert into kostin_user 
 				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
-				('$id_user','$username','$nama', '$email', '".$uploadResult['imgDir']."', '".$uploadResult['thmbDir']."', '$pass', '$priv')";
+				('$id_user','$username','$nama', '$email', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
+		} else {
+			$imgPath = 'images/preview.png';
+			$thmbPath = 'images/preview.png';
+			$sql = "insert into kostin_user 
+				(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id) values 
+				('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
+		}
+
+		
 
 		$insertUser = mysqli_query($conn, $sql);
 

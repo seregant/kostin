@@ -42,13 +42,13 @@ include 'header.php';
   					</div>
   					<div class="form-group">
     					<label for="ktp-validation">No. KTP/SIM</label><br>
-     					<input type="text" class="form-control " id="ktp-validation" name="no_ktp" required>
+     					<input type="text" class="form-control " id="ktp-validation" name="noktp" required>
               <div class="invalid-feedback">Masukkan No. KTP.</div>
               <div class="valid-feedback">Looks good!</div>
 					</div> 
 					<div class="form-group">
 			  			<label for="foto-validation">Foto KTP/SIM</label><br>
-			  			<input type="file" id="foto-validation" accept="image/*" name="foto_ktp" required>
+			  			<input type="file" id="foto-validation" accept="image/*" name="ktp_pict" required>
 			  			<p class="help-block">Unggah foto atau hasil scan KTP/SIM.</p>					
               <div class="invalid-feedback">Lampirkan foto KTP/SIM.</div>
 					</div>

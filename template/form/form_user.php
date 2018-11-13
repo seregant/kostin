@@ -2,7 +2,7 @@
   $userdata = getAllData('kostin_user','*', null, null);
 
   if(isset($_GET['edit'])){
-    $existingUser = getUserData('user_id',$_GET['user_id']);
+    $existingUser = getUser('user_id',$_GET['user_id']);
     $rows = mysqli_fetch_assoc($existingUser);
     $buttonVal = "Simpan";
 

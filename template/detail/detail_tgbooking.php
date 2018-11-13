@@ -188,8 +188,7 @@
 							<?php 
 								if ($bookingBill['tagihan_status']!= 'paid') {
 									if ($bookingBill['tagihan_status']=='waiting') {
-									echo '<button class="btn btn-success">Konfirmasi</button></a>
-									';
+									echo '<a href="index.php?category=form&module=tambahPenghuni&id='.$bookingBill['tagihan_id'].'"><button class="btn btn-success">Konfirmasi</button></a>';
 									} else {
 										echo '<button class="btn btn-success" disabled="disabled">Konfirmasi</button>';
 									}

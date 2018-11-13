@@ -17,12 +17,12 @@
 	}
 
 	
-	// function getUserData($column, $params){
-	// 	include 'config/database.php';
-	// 	$sql = "select * from kostin_user where $column = '$params'";
-	// 	$result = mysqli_query($conn, $sql);
-	// 	return $result;
-	// }
+	function getUser($column, $params){
+		include 'config/database.php';
+		$sql = "select * from kostin_user where $column = '$params'";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 
 	function getRoomData($params){
 		include 'config/database.php';
