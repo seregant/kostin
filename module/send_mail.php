@@ -307,9 +307,9 @@
 						<div class="socmed">
 							<p>Ikuti Kami</p>
 							<ul>
-					    		<li><a href="#"><img src="icon/fb.png" alt=""></a></li>
-					    		<li><a href="#"><img src="icon/ig.png" alt=""></a></li>
-					    		<li><a href="#"><img src="icon/tw.png" alt=""></a></li>
+					    		<li><a href="#"><img src="frontend/icon/fb.png" alt=""></a></li>
+					    		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
+					    		<li><a href="#"><img src="frontend/icon/tw.png" alt=""></a></li>
 					    	</ul>
 						</div>
 					</div>
