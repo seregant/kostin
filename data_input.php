@@ -335,15 +335,45 @@
 			$sql = "insert into kostin_user 
 				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
 				('$id_user','$username','$nama', '$email', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
+			$location = "Location:index.php?category=view&module=user";
+			setcookie("isclear", "yes", time() + 10);
+
 		} else {
 			$imgPath = 'images/preview.png';
 			$thmbPath = 'images/preview.png';
 			$sql = "insert into kostin_user 
 				(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id) values 
 				('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
-		}
+			$location = 'Location:index.php?category=view&module=tagihan';
 
-		
+			$bookingBillData = getBookingBillData($_POST['id']);
+			$bookingBill = mysqli_fetch_assoc($bookingBillData);
+
+			$dataBooking = getBookingData($bookingBill['book_id']);
+			$booking = mysqli_fetch_assoc($dataBooking);
+
+			$sqlUpdateKamar = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = ".$booking['kamar_id'];
+			$sqlUpdateTagihan = "update kostin_tagihan_booking set tagihan_status = 'paid' where tagihan_id='".$_POST['id']."'";
+
+			$updateKamar = mysqli_query($conn, $sqlUpdateKamar);
+			
+			setcookie("confirmed", "yes", time() + 10);
+			setcookie("message", "Tagihan nomor ".$_POST['id']." sudah dikonfirmasi!", time() + 10);
+
+			if (!$updateKamar) {
+				echo mysqli_error($conn);
+				echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
+				exit;
+			}
+
+			$updateTagihan = mysqli_query($conn, $sqlUpdateTagihan);
+
+			if (!$updateTagihan) {
+				echo mysqli_error($conn);
+				echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
+				exit;
+			}
+		}
 
 		$insertUser = mysqli_query($conn, $sql);
 
@@ -354,7 +384,7 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			header('Location:index.php?category=form&module=user&isclear=yes');
+			header($location);
 		}	
 
 

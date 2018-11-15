@@ -25,10 +25,13 @@
 	if ($bookingBill['tagihan_status']=='pending' AND $dueDateCount > 0) {
 		$color = 'blue';
 		$status = 'Belum Dibayar';
-	} else if($bookingBill['tagihan_status']=='waiting') {
+	} else if($bookingBill['tagihan_status']=='waiting' AND $dueDateCount > 0) {
 		$color = 'orange';
 		$status = 'Menunggu Konfirmasi';
-	} else if($bookingBill['tagihan_status']=='cancel' OR $dueDateCount < 0) {
+	} else if($bookingBill['tagihan_status']=='paid') {
+		$color = 'green';
+		$status = 'Lunas';
+	} else {
 		$color = 'red';
 		$status = 'Batal';
 		if ($bookingBill['tagihan_status']=='cancel') {
@@ -36,9 +39,6 @@
 		} else {
 			$keterangan = '(Sudah melewati jatuh tempo)';
 		}
-	} else {
-		$color = 'green';
-		$status = 'Lunas';
 	}
 ?>
 
@@ -62,7 +62,7 @@
 								<div class="col-md-8">
 									<div class="typo-articles">
 				                      No. Tagihan : <?php echo $bookingBill['tagihan_id']; ?><br>
-				                      No. Booking : <?php echo "<a href='index.php?category=detail&module=booking&id=".$booking['book_id']."'>".$booking['book_id']."</a>"; ?><br>
+				                      No. Booking : <?php echo "<a href='index.php?category=detail&module=booking&id=".$booking['book_id']."' target='_blank'>".$booking['book_id']."</a>"; ?><br>
 				                    </div>
 								</div>
 								<div class="col-md-4 text-right">
@@ -187,7 +187,7 @@
 					<center>
 							<?php 
 								if ($bookingBill['tagihan_status']!= 'paid') {
-									if ($bookingBill['tagihan_status']=='waiting') {
+									if ($bookingBill['tagihan_status']=='waiting' AND $dueDateCount > 0) {
 									echo '<a href="index.php?category=form&module=tambahPenghuni&id='.$bookingBill['tagihan_id'].'"><button class="btn btn-success">Konfirmasi</button></a>';
 									} else {
 										echo '<button class="btn btn-success" disabled="disabled">Konfirmasi</button>';

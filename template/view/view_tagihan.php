@@ -13,7 +13,20 @@
 ?>
 
 <div class="row">
-	<div class="col-lg-7">
+	<div class="col-lg-12">
+		<?php
+            if (isset($_COOKIE['confirmed'])) {
+              if ($_COOKIE['confirmed']=="yes") {
+                echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                      <span class="badge badge-pill badge-success">Success</span>
+                      '.$_COOKIE['message'].'
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>';
+              }
+            }
+        ?>
 		<div class="row m-b-5">
 			<div class="col col-lg-12">
 				<div class="overview-wrap">
@@ -81,6 +94,7 @@
 								<th>ID Booking</th>
 								<th>Amount</th>
 								<th>Status</th>
+								<th>Jatuh Tempo</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,15 +109,15 @@
 										if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
 											$color = 'blue';
 											$status = 'Belum Dibayar';
-										} else if($tagihan['tagihan_status']=='waiting') {
+										} else if($tagihan['tagihan_status']=='waiting' AND $dueDateCount > 0) {
 											$color = 'orange';
 											$status = 'Menunggu Konfirmasi';
-										} else if($tagihan['tagihan_status']=='cancel' OR $dueDateCount < 0) {
-											$color = 'red';
-											$status = 'Batal';
-										} else {
+										} else if($tagihan['tagihan_status']=='paid' ) {
 											$color = 'green';
 											$status = 'Lunas';
+										} else {
+											$color = 'red';
+											$status = 'Batal';
 										}
 
 										echo "
@@ -112,6 +126,7 @@
 												<td><a href='index.php?category=detail&module=booking&id=".$getBookID['book_id']."'><button class='btn btn-sm btn-link'>".$getBookID['book_id']."</button></a></td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
 												<td style='color:$color;'>".$status."</td>
+												<td>".$tagihan['tagihan_duedate']."</td>
 											</tr>
 									";
 								}

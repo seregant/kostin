@@ -57,6 +57,8 @@
 			echo "<br/> <input type='button' value='kembali'
 					onClick='self.history.back()'> ";
 			exit;
+		} else {
+			setcookie("isclear", "yes", time() + 10);
 		}
 	}
 
@@ -258,8 +260,7 @@
 
 		case 'user_admin':
 				editUserFull();
-				refreshSession($_GET['id']);
-				header('Location:index.php?category=form&module=user&isclear=yes');
+				header('Location:index.php?category=view&module=user');
 			break;
 
 		default:

@@ -55,7 +55,8 @@
                 </div>
                 </div>
                 <div class="card-footer">
-                		<input type="hidden" name="addr" value="<?php echo $booking['book_addr']; ?>">
+                		<input type="hidden" name="id" value="<?php echo $bookingBill['tagihan_id']; ?>">
+                    <input type="hidden" name="addr" value="<?php echo $booking['book_addr']; ?>">
                 		<input type="hidden" name="phone" value="<?php echo $booking['book_phone']; ?>">
                 		<input type="hidden" name="idnty" value="<?php echo $booking['book_idnty']; ?>">
                 		<input type="hidden" name="idntyfile" value="<?php echo $booking['book_idntyfile']; ?>">

@@ -29,7 +29,7 @@
                                 <i class="fas fa-check-circle"></i>Booking</a>
                         </li>
                         <li >
-                            <a class="js-arrow" href="index.php?category=form&module=user">
+                            <a class="js-arrow" href="index.php?category=view&module=user">
                                 <i class="fas fa-users"></i>User
                             </a>
                         </li>
@@ -91,7 +91,7 @@
                                 <i class="fas fa-check-circle"></i>Booking</a>
                         </li>
                         <li>
-                            <a class="js-arrow" href="index.php?category=form&module=user">
+                            <a class="js-arrow" href="index.php?category=view&module=user">
                                 <i class="fas fa-users"></i>User
                             </a>
                         </li>
