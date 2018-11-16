@@ -327,6 +327,16 @@
 			echo "durung digawe";
 		}
 		
+		$subject= "Kostin || Tagihan Booking ".$row['book_id'];	
+
+		sendMail($book['book_name'], $row['book_email'], $subject, $message);
+	}
+
+	function sendPaymentSuccess(){
+
+	}
+
+	function sendMail($recvrName, $rcvrMail, $subject, $message){
 		$mail = new PHPMailer(true);                              
 		$mail->isSMTP();                                     
 		$mail->Host = 'smtp.gmail.com';  
@@ -336,8 +346,7 @@
 		$mail->SMTPSecure = 'tls';                                 
 		$mail->Port = 587;                                   
 		$mail->setFrom('tbig.redir@gmail.com', 'Kostin Admin');
-		$mail->addAddress($row['book_email'], $book['book_name']);     
-		$subject= "Kostin || Tagihan Booking ".$row['book_id'];		
+		$mail->addAddress($rcvrMail, $recvrName);     		
 		$mail->isHTML(true);                                  
 		$mail->Subject = $subject;
 		$mail->Body    = $message;
