@@ -287,7 +287,6 @@
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		$pass = md5($_POST['pass']);
-		
 
 		if (isset($_POST['priv'])) {
 			$priv = $_POST['priv'];
@@ -304,7 +303,7 @@
 
 		$isValid = "yes";
 
-		// if (strcmp($pass, $pass2)==0){
+		// if (strcmp($_POST['pass'], $_POST['retype-pass'])==0){
 		// 	echo "Validasi password salah! <br/>";
 		// 	$isValid = "no";
 		// }
@@ -328,7 +327,7 @@
 			exit;
 		}
 
-		if (!is_null($_FILES['foto']['name'])) {
+		if (isset($_FILES['foto']['name'])) {
 			$uploadResult = uploadImage('foto','user', true);
 			$imgPath = $uploadResult['imgDir'];
 			$thmbPath = $uploadResult['thmbDir'];
@@ -384,20 +383,26 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
+			insertMasterSewa($booking['book_id'], $id_user);
 			header($location);
-		}	
-
-
+		}
 	}
 
-	function insertMasterSewa(){
+	function insertMasterSewa($idBooking, $idUser){
 		include 'config/database.php';
-		include 'module/data_get.php';
+		//include 'module/data_get.php';
 
-		$getUser = getUserData('user_name',$_POST['user']);
+		$getUser = getUser('user_id',$idUser);
 		$dataUser = mysqli_fetch_assoc($getUser);
 		$dataSewa = getAllData('kostin_sewa','sewa_id', null, null);
 		$sewaCount = 0;
+
+		$bookingData = getBookingData($idBooking);
+		$booking = mysqli_fetch_assoc($bookingData);
+
+		$addonData = getBookAddonData($idBooking);
+
+		$checkIn = date("Y-m-d");
 
 		if(!is_null($dataSewa)) {
 			$sewaCount = mysqli_num_rows($dataSewa)+1;
@@ -408,8 +413,8 @@
 
 		$sql = "insert into kostin_sewa 
 				(sewa_id, kamar_id, user_id, sewa_in, sewa_durasi) values
-				('$sewaId','".$_POST['kamar']."','".$dataUser['user_id']."','".$_POST['checkin']."', $durasi)";
-		$sql2 = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = '".$_POST['kamar']."'";	
+				('$sewaId','".$booking['kamar_id']."','".$dataUser['user_id']."','".$checkIn."', $durasi)";
+		$sql2 = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = '".$booking['kamar_id']."'";	
 
 		$insertSewa = mysqli_query($conn, $sql);
 		$updateKamar = mysqli_query($conn, $sql2);
@@ -432,12 +437,16 @@
 			exit;
 		} else {
 			echo "Update data kamar berhasil!";
-			foreach ($_POST['add-on'] as $selected_ao) {
-				$sql2 = "insert into kostin_sewa_ao
-						(sewa_id,ao_id)
-						values('$sewaId','$selected_ao')";
-				$insertAddonBooking = mysqli_query($conn, $sql2);
-					
+			foreach ($addonData as $selected_ao) {
+				$getAddon = getAddonData($selected_ao['ao_id']);
+				$dataAddon = mysqli_fetch_assoc($getAddon);
+				$stock = $dataAddon['ao_stock']-1;
+				$sqlAdd = "insert into kostin_sewa_ao (sewa_id,ao_id) values
+							('$sewaId','".$selected_ao['ao_id']."')";
+
+				$sqlUpdate = "update kostin_addons set ao_stock = $stock where ao_id = '".$selected_ao['ao_id']."'";
+				
+				$insertAddonBooking = mysqli_query($conn, $sqlAdd);
 				if (!$insertAddonBooking) {
 					echo "Gagal Simpan data addon dipilih<br /> ";
 					echo mysqli_error($conn);
@@ -445,7 +454,14 @@
 						onClick='self.history.back()'> ";
 					exit;
 				} else {
-					echo "Berhasil tambah data tabel booking_ao";
+					$updateAddon = mysqli_query($conn, $sqlUpdate);
+					if (!$updateAddon) {
+						echo "Gagal Update data addon dipilih<br /> ";
+						echo mysqli_error($conn);
+						echo "<br/> <input type='button' value='kembali'
+							onClick='self.history.back()'> ";
+						exit;
+					}
 				}
 			}
 		}	
@@ -663,13 +679,6 @@
 				}
 			break;
 
-		case 'sewa':
-				if (isset($_SESSION['username'])) {
-					insertMasterSewa();
-				} else {
-					header("Location:index.php");
-				}
-			break;
 		case 'tagihanBook':
 				if (isset($_SESSION['username'])) {
 					insertMasterTagihanBooking($_GET['book_id']);

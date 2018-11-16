@@ -109,7 +109,7 @@
 										if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
 											$color = 'blue';
 											$status = 'Belum Dibayar';
-										} else if($tagihan['tagihan_status']=='waiting' AND $dueDateCount > 0) {
+										} else if($tagihan['tagihan_status']=='waiting') {
 											$color = 'orange';
 											$status = 'Menunggu Konfirmasi';
 										} else if($tagihan['tagihan_status']=='paid' ) {
