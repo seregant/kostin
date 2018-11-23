@@ -94,12 +94,12 @@
 								text-align: left;
 								padding: 0.5em;
 							}
-							.col-1 {
+							.col-kiri {
 								border-bottom: 1px solid #ddd;
 								text-align: left;
 								padding-left: 1em;
 							}
-							.col-2 {
+							.col-kanan {
 								border-bottom: 1px solid #ddd;
 								text-align: right;
 								padding-right: 1em;
@@ -216,10 +216,10 @@
 									font-size: 0.7em;
 									font-weight: bold;
 								}
-								.col-1 {
+								.col-kiri {
 									font-size: 0.7em;
 								}
-								.col-2 {
+								.col-kanan {
 									font-size: 0.7em;
 								}
 								.total {
@@ -263,13 +263,13 @@
 								</th>
 							</tr>
 							<tr>
-								<th class="col-1">Service</th>
-								<th class="col-2">Harga</th>
+								<th class="col-kiri">Service</th>
+								<th class="col-kanan">Harga</th>
 							</tr>
 							'.$htmlAddon.'
 							<tr>
-								<td class="col-1">Biaya Kamar Bulan 1</td>
-								<td class="col-2">Rp. '.number_format($row3['kamar_harga']).'</td>
+								<td class="col-kiri">Biaya Kamar Bulan 1</td>
+								<td class="col-kanan">Rp. '.number_format($row3['kamar_harga']).'</td>
 							</tr>
 							<tr>
 								<td class="total" >Total </td>
@@ -547,6 +547,9 @@
 					.col-kiri {
 						font-size: 0.7em;
 					}
+					.col-tengah {
+						font-size: 0.7em;
+					}
 					.col-kanan {
 						font-size: 0.7em;
 					}
@@ -558,6 +561,13 @@
 						font-size: 0.8em;
 						font-weight: bold;
 					}
+					.how-to table tr td h5{
+						font-size: 0.8em;
+						font-weight: bold;
+					}
+					.how-to table tr td h6{
+						font-size: 0.7em;
+					}					
 					.how-to table tr td ol li{
 						font-size: 0.7em;
 					}
