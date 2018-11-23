@@ -443,7 +443,7 @@
 					padding-right: 1em;
 				}
 				.text-wrap {
-					word-wrap: break-word;
+					overflow-wrap: break-word;
 				}
 				.how-to {
 					width: 80%;
