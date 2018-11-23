@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 	if(!isset($_SESSION['username'])){
 		if (!isset($_GET['page'])) {
 			if (isset($_GET['no_invoice'])) {
@@ -35,6 +35,6 @@
 	    		header("Location:index.php?category=view&module=booking&keyword=".$_GET['search']);
 			}
 		}
-		include('template/index.php');
+		include('frontend/userDashboard/index.php');
 	}
 ?>

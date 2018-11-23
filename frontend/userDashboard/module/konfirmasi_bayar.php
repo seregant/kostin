@@ -1,7 +1,7 @@
 <?php
   
-  include $_SERVER["DOCUMENT_ROOT"]."/kostin/config/app.php";
-  include $base_url."/module/data_get.php";
+  include "config/app.php";
+  include "module/data_get.php";
 
   if(isset($_GET['room_id'])){
     $dataKamar = getRoomData($_GET['room_id']);

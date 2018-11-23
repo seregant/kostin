@@ -5,7 +5,7 @@
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		if (!is_null($result)) {
-			if (strcasecmp($password, $row['user_password'])==0 AND $row['role_id'] == '0002') {
+			if (strcasecmp($password, $row['user_password'])==0 AND $row['role_id'] == '0001') {
 				return "true";
 			} else {
 				return "false";
