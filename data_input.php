@@ -75,20 +75,20 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			foreach ($_POST['add-on'] as $selected_ao) {
-				$sql2 = "insert into kostin_booking_ao
-						(book_id,ao_id)
-						values('$id_booking','$selected_ao')";
-				$insertAddonBooking = mysqli_query($conn, $sql2);
-					
-				if (!$insertAddonBooking) {
-					echo "Gagal Simpan data addon dipilih<br /> ";
-					echo mysqli_error($conn);
-					echo "<br/> <input type='button' value='kembali'
-						onClick='self.history.back()'> ";
-					exit;
-				} else {
-					echo "Berhasil tambah data tabel booking_ao";
+			if (!is_null($_POST['add-on'])) {
+				foreach ($_POST['add-on'] as $selected_ao) {
+					$sql2 = "insert into kostin_booking_ao
+							(book_id,ao_id)
+							values('$id_booking','$selected_ao')";
+					$insertAddonBooking = mysqli_query($conn, $sql2);
+						
+					if (!$insertAddonBooking) {
+						echo "Gagal Simpan data addon dipilih<br /> ";
+						echo mysqli_error($conn);
+						echo "<br/> <input type='button' value='kembali'
+							onClick='self.history.back()'> ";
+						exit;
+					}
 				}
 			}
 
@@ -355,22 +355,17 @@
 			$sqlUpdateTagihan = "update kostin_tagihan_booking set tagihan_status = 'paid' where tagihan_id='".$_POST['id']."'";
 
 			$updateKamar = mysqli_query($conn, $sqlUpdateKamar);
+			$updateTagihan = mysqli_query($conn, $sqlUpdateTagihan);
 			
 			setcookie("confirmed", "yes", time() + 10);
 			setcookie("message", "Tagihan nomor ".$_POST['id']." sudah dikonfirmasi!", time() + 10);
 
-			if (!$updateKamar) {
+			if (!$updateKamar OR !$updateTagihan) {
 				echo mysqli_error($conn);
 				echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
 				exit;
-			}
-
-			$updateTagihan = mysqli_query($conn, $sqlUpdateTagihan);
-
-			if (!$updateTagihan) {
-				echo mysqli_error($conn);
-				echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
-				exit;
+			} else {
+				sendPaymentBookingSuccess($username, $_POST['pass'], $bookingBill['book_id']);
 			}
 		}
 

@@ -332,36 +332,36 @@
 		sendMail($book['book_name'], $row['book_email'], $subject, $message);
 	}
 
-	function sendPaymentSuccess(){
+	function sendPaymentBookingSuccess($username, $password, $id){
 		include 'config/database.php';
-		if ($type = 'booking') {
-			$sql = "select * from kostin_booking where book_id='".$id."'";
-			$sql2 = "select * from kostin_tagihan_booking where book_id='".$id."'";
-			$data  = mysqli_query($conn, $sql);
-			$data2  = mysqli_query($conn, $sql2);
-			$row = mysqli_fetch_assoc($data);
-			$row2 = mysqli_fetch_assoc($data2);
+		
+		$sql = "select * from kostin_booking where book_id='".$id."'";
+		$sql2 = "select * from kostin_tagihan_booking where book_id='".$id."'";
+		$data  = mysqli_query($conn, $sql);
+		$data2  = mysqli_query($conn, $sql2);
+		$row = mysqli_fetch_assoc($data);
+		$row2 = mysqli_fetch_assoc($data2);
 
-			$sql3 = 'select * from kostin_kamar where kamar_id='.$row['kamar_id'];
-			$data3 = mysqli_query($conn, $sql3); 
-			$row3 = mysqli_fetch_assoc($data3);
+		$sql3 = 'select * from kostin_kamar where kamar_id='.$row['kamar_id'];
+		$data3 = mysqli_query($conn, $sql3); 
+		$row3 = mysqli_fetch_assoc($data3);
 
-			$sqlAddon = "SELECT `ao_name`,`ao_spec`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$id."')";
-			$dataAddon = mysqli_query($conn, $sqlAddon);
-			$htmlAddon = "";
-			$ao_price = 0;
-			foreach ($dataAddon as $addon) {
-				$htmlAddon .= '	<tr>
-									<td class="col-kiri">'.$addon['ao_name'].'</td>
-									<td class="col-tengah">'.$addon['ao_spec'].'</td>
-									<td class="col-kanan">Rp. '.number_format($addon['ao_price']).'</td>
-								</tr>
-								';
-				$ao_price += $addon['ao_price'];
-			}
-			$totalInv = $row2['tagihan_jumlah'];
+		$sqlAddon = "SELECT `ao_name`,`ao_spec`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$id."')";
+		$dataAddon = mysqli_query($conn, $sqlAddon);
+		$htmlAddon = "";
+		$ao_price = 0;
+		foreach ($dataAddon as $addon) {
+			$htmlAddon .= '	<tr>
+								<td class="col-kiri">'.$addon['ao_name'].'</td>
+								<td class="col-tengah">'.$addon['ao_spec'].'</td>
+								<td class="col-kanan">Rp. '.number_format($addon['ao_price']).'</td>
+							</tr>
+							';
+			$ao_price += $addon['ao_price'];
+		}
+		$totalInv = $row2['tagihan_jumlah'];
 
-			$message = '
+		$message = '
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -587,7 +587,7 @@
 						<table class="table">
 							<tr>
 								<th colspan="3">
-									Invoice #'.$id.'<br>
+									Invoice #'.$row2['tagihan_id'].'<br>
 									Tanggal 	: '.$row['book_date'].' <br>
 									Dibayar : '.$row2['tagihan_duedate'].'<br>
 								</th>
@@ -623,8 +623,8 @@
 									<h5 style="font-weight: bold;">Berikut adalah informasi login anda:</h5>
 									<h6>Silahkan melakukan login ke user dashboard anda menggunakan username dan password berikut:</h6>
 									<ul style="list-style: none;">
-										<li>Username:</li>
-										<li>Password:</li>
+										<li>Username: '.$username.'</li>
+										<li>Password: '.$password.'</li>
 									</ul>
 									<h6 style="font-size: 0.8em; font-weight: bold;">*) Jangan memberitahukan username dan password anda ke orang lain.</h6>
 									<h6 style="font-size: 0.8em; font-weight: bold;">*) Penambahan Add-on kamar dapat dipesan melalui dashboard penghuni kost.</h6>
@@ -659,11 +659,7 @@
 					</body>
 					</html>
 			';
-		} else {
-			echo "durung digawe";
-		}
-		
-		$subject= "Kostin || Tagihan Booking ".$row['book_id'];	
+		$subject= "Kostin || Pembayaran Diterima! ".$row['book_id'];	
 
 		sendMail($book['book_name'], $row['book_email'], $subject, $message);
 

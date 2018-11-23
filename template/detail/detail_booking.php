@@ -96,7 +96,7 @@
 									<button class="btn btn-success">Konfirmasi</button></a>
 									';
 
-									echo '<a href="data_input.php?category=tagihan&book_id='.$booking['book_id'].'&deny=yes">
+									echo '<a href="data_input.php?category=tagihanBook&book_id='.$booking['book_id'].'&deny=yes">
 									<button class="btn btn-warning">Tolak</button></a>';
 								} else {
 									echo '<button class="btn btn-success" disabled="disabled">Konfirmasi</button>';

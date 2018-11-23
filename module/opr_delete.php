@@ -14,7 +14,7 @@
   }
 
   function deleteKamar($kamarId){
-    include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+    include '../config/database.php';
     $sql=" DELETE FROM kostin_kamar WHERE kamar_id = '".$kamarId."'";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -26,7 +26,7 @@
   }
 
   function deleteAddon($addonId){
-    include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+    include '../config/database.php';
     $sql=" DELETE FROM kostin_addons WHERE ao_id = '".$addonId."'";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -38,7 +38,7 @@
   }
 
   function deleteOutcome($outcmId){
-    include $_SERVER["DOCUMENT_ROOT"].'/kostin/config/database.php';
+    include '../config/database.php';
     $sql=" DELETE FROM kostin_outcome WHERE outcm_id = '".$outcmId."'";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
