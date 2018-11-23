@@ -283,11 +283,12 @@
 		include 'config/database.php';
 		include 'module/data_get.php';
 
+		$userData = getAllData('kostin_user', '*', null, null);
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$email = $_POST['mail'];
 		$pass = md5($_POST['pass']);
-
+		
 		if (isset($_POST['priv'])) {
 			$priv = $_POST['priv'];
 		} else {
@@ -338,34 +339,49 @@
 			setcookie("isclear", "yes", time() + 10);
 
 		} else {
-			$imgPath = 'images/preview.png';
-			$thmbPath = 'images/preview.png';
-			$sql = "insert into kostin_user 
-				(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id) values 
-				('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
-			$location = 'Location:index.php?category=view&module=tagihan';
 
-			$bookingBillData = getBookingBillData($_POST['id']);
-			$bookingBill = mysqli_fetch_assoc($bookingBillData);
+			// validasi username apakah sudah dipakai atau belum
+			$statusUsername = true;
+			foreach ($userData as $user) {
+				if ($username == $user['user_name']) {
+					$statusUsername = false;
+					break;
+				}
+			}
 
-			$dataBooking = getBookingData($bookingBill['book_id']);
-			$booking = mysqli_fetch_assoc($dataBooking);
+			if ($statusUsername) {
+				$imgPath = 'images/preview.png';
+				$thmbPath = 'images/preview.png';
+				$sql = "insert into kostin_user 
+					(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id) values 
+					('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
+				$location = 'Location:index.php?category=view&module=tagihan';
 
-			$sqlUpdateKamar = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = ".$booking['kamar_id'];
-			$sqlUpdateTagihan = "update kostin_tagihan_booking set tagihan_status = 'paid' where tagihan_id='".$_POST['id']."'";
+				$bookingBillData = getBookingBillData($_POST['id']);
+				$bookingBill = mysqli_fetch_assoc($bookingBillData);
 
-			$updateKamar = mysqli_query($conn, $sqlUpdateKamar);
-			$updateTagihan = mysqli_query($conn, $sqlUpdateTagihan);
-			
-			setcookie("confirmed", "yes", time() + 10);
-			setcookie("message", "Tagihan nomor ".$_POST['id']." sudah dikonfirmasi!", time() + 10);
+				$dataBooking = getBookingData($bookingBill['book_id']);
+				$booking = mysqli_fetch_assoc($dataBooking);
 
-			if (!$updateKamar OR !$updateTagihan) {
-				echo mysqli_error($conn);
-				echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
-				exit;
+				$sqlUpdateKamar = "update kostin_kamar set kamar_status = 'dihuni' where kamar_id = ".$booking['kamar_id'];
+				$sqlUpdateTagihan = "update kostin_tagihan_booking set tagihan_status = 'paid' where tagihan_id='".$_POST['id']."'";
+
+				$updateKamar = mysqli_query($conn, $sqlUpdateKamar);
+				$updateTagihan = mysqli_query($conn, $sqlUpdateTagihan);
+				
+				setcookie("confirmed", "yes", time() + 10);
+				setcookie("message", "Tagihan nomor ".$_POST['id']." sudah dikonfirmasi!", time() + 10);
+
+				if (!$updateKamar OR !$updateTagihan) {
+					echo mysqli_error($conn);
+					echo "<br/> <input type='button' value='kembali' onClick='self.history.back()'> ";
+					exit;
+				} else {
+					sendPaymentBookingSuccess($username, $_POST['pass'], $bookingBill['book_id']);
+				}
 			} else {
-				sendPaymentBookingSuccess($username, $_POST['pass'], $bookingBill['book_id']);
+				setcookie("userinvalid", "Username <b>".$username."</b> sudah dipakai!", time() + 10);
+				header('Location:index.php?category=form&module=tambahPenghuni&id='.$_POST['id']);
 			}
 		}
 

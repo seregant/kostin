@@ -15,6 +15,19 @@
           
         </div>
         <div class="col-lg-6">
+          <?php
+            if (isset($_COOKIE['userinvalid'])) {
+              echo '
+                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                    <span class="badge badge-pill badge-danger">Warning</span>
+                            '.$_COOKIE['userinvalid'].'
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+              ';
+            }
+          ?>
           <div class="card">
             <div class="card-header">
               <strong>
