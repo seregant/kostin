@@ -329,7 +329,7 @@
 		
 		$subject= "Kostin || Tagihan Booking ".$row['book_id'];	
 
-		sendMail($book['book_name'], $row['book_email'], $subject, $message);
+		sendMail($row['book_name'], $row['book_email'], $subject, $message);
 	}
 
 	function sendPaymentBookingSuccess($username, $password, $id){
@@ -669,7 +669,7 @@
 			';
 		$subject= "Kostin || Pembayaran Diterima! ".$row['book_id'];	
 
-		sendMail($book['book_name'], $row['book_email'], $subject, $message);
+		sendMail($row['book_name'], $row['book_email'], $subject, $message);
 
 	}
 
