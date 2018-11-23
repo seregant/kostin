@@ -389,10 +389,11 @@
 				}
 
 				.wrapper {
-					width: 60%;
+					width: 85%;
 					background-color: #fff;
 					border: 1px solid;
 					border-color: #b7b7b7;
+					margin: auto;
 				}
 				.wrapper img {
 					padding-left: 3em;
@@ -420,7 +421,6 @@
 					color: white;
 					font-weight: bold;
 					padding: 0.5em;
-					text-align: left;
 				}
 				.col-kiri {
 					border-bottom: 1px solid #ddd;
@@ -430,7 +430,7 @@
 				.col-tengah {
 					border-bottom: 1px solid #ddd;
 					text-align: center;
-					padding-left: 3em;
+					padding-left: 1em;
 				}
 				.col-kanan {
 					border-bottom: 1px solid #ddd;
@@ -588,6 +588,7 @@
 		<body>
 		<div class="container wrapper">
 			<img src="https://image.ibb.co/koKGQq/logo-email.png">
+			<hr style="border: 1px solid;">
 			<center><img src="https://thumb.ibb.co/mDr2SA/payment.png" style="max-width: 80%; margin: 0; padding: 0;"></center>
 			<h4 style="font-size: 2em; font-weight: bolder; text-align: center;">Pembayaran booking anda sudah kami terima</h4>
 								<p>
