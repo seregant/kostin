@@ -420,6 +420,7 @@
 					color: white;
 					font-weight: bold;
 					padding: 0.5em;
+					text-align: left;
 				}
 				.col-kiri {
 					border-bottom: 1px solid #ddd;
@@ -440,6 +441,9 @@
 					text-align: right;
 					font-weight: bold;
 					padding-right: 1em;
+				}
+				.text-wrap {
+					word-wrap: break-word;
 				}
 				.how-to {
 					width: 80%;
@@ -584,7 +588,7 @@
 		<body>
 		<div class="container wrapper">
 			<img src="https://image.ibb.co/koKGQq/logo-email.png">
-			<center><img src="https://image.ibb.co/koKGQq/logo-email.png" style="max-width: 80%; margin: 0; padding: 0;"></center>
+			<center><img src="https://thumb.ibb.co/mDr2SA/payment.png" style="max-width: 80%; margin: 0; padding: 0;"></center>
 			<h4 style="font-size: 2em; font-weight: bolder; text-align: center;">Pembayaran booking anda sudah kami terima</h4>
 								<p>
 									Dear '.$row['book_name'].', <br>
@@ -607,7 +611,11 @@
 									</tr>
 									<tr>
 										<td class="col-kiri">'.$row3['kamar_id'].'</td>
-										<td class="col-tengah">Panjang: '.$row3['kamar_panjang'].', Lebar: '.$row3['kamar_lebar'].', '.$row3['kamar_keterangan'].'</td>
+										<td class="col-tengah">
+											<div class="text-wrap">
+												Panjang: '.$row3['kamar_panjang'].', Lebar: '.$row3['kamar_lebar'].', '.$row3['kamar_keterangan'].'
+											</div>
+										</td>
 										<td class="col-kanan">Rp. '.number_format($row3['kamar_harga']).'</td>
 									</tr>
 									<tr>
