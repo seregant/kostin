@@ -2,7 +2,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="http://project.konco.online">
                             <img src="../logo/company.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -25,7 +25,7 @@
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li>
-                            <a href="konfirmasi_bayar.php">
+                            <a href="konfirmasi.php">
                                 <i class="fas fa-money"></i>Konfirmasi Bayar</a>
                         </li>
                     </ul>
@@ -45,15 +45,15 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-user"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?module=modul_tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li>
-                            <a href="index.php?module=modul_outcome">
+                            <a href="index.php?module=modul_konfirmasi">
                                 <i class="fas fa-money"></i>Konfirmasi Bayar</a>
                         </li>
                     </ul>

@@ -15,13 +15,13 @@
 
 <div class="row " >
   <div class="col-lg-6 mx-auto">
-                                      <div class="card">
-                                    <div class="card-header">Credit Card</div>
-                                    <div class="card-body">
-                                        <div class="card-title">
-                                            <h3 class="text-center title-2">Konfirmasi Bayar</h3>
-                                        </div>
-                                        <hr>
+    <div class="card">
+      <div class="card-header">Credit Card</div>
+        <div class="card-body">
+          <div class="card-title">
+            <h3 class="text-center title-2">Konfirmasi Bayar</h3>
+          </div>
+          <hr>
           <form class="form-cust">
             <div class="form-group">
               <label for="usr">No. Kamar:</label><br>
@@ -55,9 +55,8 @@
           </div>
           <button type="button" class="btn btn-primary" >Kirim</button>
           </form>
-                                    </div>
-                                </div>
+        </div>
+      </div>
   </div>
-
 </div>
 
