@@ -41,10 +41,6 @@
 		}
 	}
 
-	function generateInvoiceBulanan(){
-		
-	}
-
 	//notifyCanceledBooking();
 	//kurangiMasaHuni();
 ?>
