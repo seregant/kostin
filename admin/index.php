@@ -8,6 +8,10 @@
 	    		header("Location:index.php?category=view&module=booking&keyword=".$_GET['search']);
 			}
 		}
-		include('template/index.php');
+		if ($_SESSION['userrole']=='00001') {
+			include('template/index.php');
+		} else {
+			header('Location:..');
+		}
 	}
 ?>

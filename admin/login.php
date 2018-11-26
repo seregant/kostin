@@ -18,7 +18,7 @@
 			$_SESSION['email'] = $userDatas['user_email'];
 			header('location:index.php');
 		} else {
-			$errMsg = "Kombinasi Email/Username dan password anda tidak cocok atau belum terdaftar!";
+			$errMsg = "Kombinasi Email/Username dan password anda tidak cocok atau anda bukan admin!";
 		}
 	}
 	include ('template/login.php')
