@@ -12,14 +12,6 @@
 
 	$aoPrice = 0;
 
-	function dueDateCounter($duedate){
-		$now = time();
-		$end = strtotime($duedate);
-		$datediff = $end - $now;
-		$datediff = round($datediff / (60 * 60 * 24));
-		return $datediff;
-	}
-
 	$dueDateCount = dueDateCounter($bookingBill['tagihan_duedate']);
 
 	if ($bookingBill['tagihan_status']=='pending' AND $dueDateCount > 0) {

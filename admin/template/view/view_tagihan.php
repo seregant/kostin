@@ -2,14 +2,6 @@
 	$tagihanData = getAllData('kostin_tagihan','*', null, null);
 	$tagihanBookingData = getTagihanData('booking', null, null);
 	$totalPengeluaran = 0;
-
-	function dueDateCounter($duedate){
-		$now = time();
-		$end = strtotime($duedate);
-		$datediff = $end - $now;
-		$datediff = round($datediff / (60 * 60 * 24));
-		return $datediff;
-	}
 ?>
 
 <div class="row">

@@ -96,11 +96,23 @@
 		}
 
 		if (!is_null($param)) {
-			$sql = "select * from $table where $param = '$condition' order by tagihan_id desc";
+			if (is_numeric($condition==1)) {
+				$sql = "select * from $table where $param = $condition order by tagihan_id desc";
+			} else {
+				$sql = "select * from $table where $param = '$condition' order by tagihan_id desc";
+			}
 		} else {
 			$sql = "select * from $table order by tagihan_id desc";
 		}
 		$result = mysqli_query($conn, $sql);
 		return $result;
+	}
+
+	function dueDateCounter($duedate){
+		$now = time();
+		$end = strtotime($duedate);
+		$datediff = $end - $now;
+		$datediff = round($datediff / (60 * 60 * 24));
+		return $datediff;
 	}
 ?>
