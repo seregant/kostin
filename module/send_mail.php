@@ -154,7 +154,8 @@
 
 			$dataTagihan = mysqli_fetch_assoc(mysqli_query($conn, $sqlTagihan));
 
-			$sqlAddon = "SELECT `ao_name`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_sewa_ao` WHERE`sewa
+			$sqlAddon = "SELECT `ao_name`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$dataTagihan['sewa_id']."')";
+			$dataAddon = mysqli_query($conn, $sqlAddon);
 			$htmlAddon = "";
 			$ao_price = 0;
 			foreach ($dataAddon as $addon) {

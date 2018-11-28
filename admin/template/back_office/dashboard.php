@@ -1,11 +1,4 @@
 <?php
-	function dueDateCounter($duedate){
-		$now = time();
-		$end = strtotime($duedate);
-		$datediff = $end - $now;
-		$datediff = round($datediff / (60 * 60 * 24));
-		return $datediff;
-	}
 
 	$jmlPenghuni = mysqli_num_rows(getAllData('kostin_sewa','sewa_id', null, null));
 	$tagihanKamar = getTagihanData('sewa', 'tagihan_status', 'paid');

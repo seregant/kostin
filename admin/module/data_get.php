@@ -115,4 +115,11 @@
 		$datediff = round($datediff / (60 * 60 * 24));
 		return $datediff;
 	}
+
+	function getSewaAddon($sewaId) {
+		include 'config/database.php';
+		$sql = "SELECT * FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_sewa_ao` WHERE `sewa_id` = '$sewaId')";
+		$result = mysqli_query($conn, $sql);
+		return $result;
+	}
 ?>

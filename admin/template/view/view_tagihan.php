@@ -56,7 +56,7 @@
 
 										echo "
 											<tr>
-												<td>".$tagihan['tagihan_id']."</td>
+												<td><a href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'><button class='btn btn-sm btn-link'>".$tagihan['tagihan_id']."</button></a></td>
 												<td>".$getKamarID['kamar_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
 												<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>
