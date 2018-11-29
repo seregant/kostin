@@ -80,7 +80,7 @@
                         <td colspan="7" style="background-color: #333333; color: white;">
                             <center>
                               <?php
-                                echo '<label style="color: white;">Pages : </label><br>';
+                                echo '<label style="color: white;">Pages : &nbsp;</label>';
                                 if (!empty($pagination)) {
                                   foreach ($pagination as $links) {
                                     echo $links."&nbsp;";

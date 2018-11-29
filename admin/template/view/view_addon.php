@@ -1,5 +1,26 @@
 <?php
-  $allAddon = getAllData('kostin_addons','*', null, null);	
+  $allDataAddon = getAllData('kostin_addons','*', null, null);
+
+  $rows = mysqli_num_rows($allDataAddon);
+  $pagination = array();
+  $limitData = 10;
+  $offset = 0;
+  $pageNum = 1;
+   
+  if ($rows > $limitData) {
+    while ($rows>=0) {
+      $pagination[] =  '<a href="index.php?category=view&module=addon&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+      $pageNum++;
+      $rows = $rows - $limitData;
+      $offset += $limitData;
+    }
+  }
+                                
+  if (isset($_GET['offset'])) {
+      $allAddon = getAllData('kostin_addons','*', $limitData, $_GET['offset']);
+  } else {
+      $allAddon = getAllData('kostin_addons','*', $limitData, 0);
+  }	
 ?>
 
 <div class="row">
@@ -56,6 +77,20 @@
                           ';
                         }
                       ?>
+                      <tr>
+                            <td colspan="7" style="background-color: #333333; color: white;">
+                                <center>
+                                  <?php
+                                    if (!empty($pagination)) {
+                                      echo '<label style="color: white;">Pages : &nbsp;</label>';
+                                        foreach ($pagination as $links) {
+                                        echo $links."&nbsp;";
+                                      }
+                                    }
+                                  ?>
+                                </center>
+                            </td>
+                        </tr>
                     </tbody>
                   </table>
                 </div>

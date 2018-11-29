@@ -20,9 +20,21 @@
                             <a href="index.php">
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
-                        <li>
-                            <a href="index.php?category=view&module=tagihan">
-                                <i class="fas fa-file-invoice"></i>Tagihan</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-file-invoice"></i>Tagihan
+                                <span class="arrow" style="float: right">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.php?category=view&module=tagihanSewa">Tagihan Sewa</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?category=view&module=tagihanBooking">Tagihan Booking</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="index.php?category=view&module=booking">
@@ -36,7 +48,7 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Kamar
-                                <span class="arrow">
+                                <span class="arrow" style="float: right">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
@@ -82,9 +94,21 @@
                             <a href="index.php">
                                 <i class="fas fa-home"></i>Home</a>
                         </li>
-                        <li>
-                            <a href="index.php?category=view&module=tagihan">
-                                <i class="fas fa-file-invoice"></i>Tagihan</a>
+                       <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-file-invoice"></i>Tagihan
+                                <span class="arrow" style="float: right">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.php?category=view&module=tagihanSewa">Tagihan Sewa</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?category=view&module=tagihanBooking">Tagihan Booking</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="index.php?category=view&module=booking">
@@ -98,7 +122,7 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-bed"></i>Kamar
-                                <span class="arrow">
+                                <span class="arrow" style="float: right">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>

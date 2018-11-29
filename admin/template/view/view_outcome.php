@@ -1,5 +1,26 @@
 <?php
-  $outcomeData = getAllData('kostin_outcome','*', null, null);
+	$allOutcomeData = getAllData('kostin_outcome','*', null, null);
+
+  	$rows = mysqli_num_rows($allOutcomeData);
+	$pagination = array();
+	$limitData = 10;
+	$offset = 0;
+	$pageNum = 1;
+	 
+	if ($rows > $limitData) {
+	  while ($rows>=0) {
+	    $pagination[] =  '<a href="index.php?category=view&module=tagihanSewa&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+	    $pageNum++;
+	    $rows = $rows - $limitData;
+	    $offset += $limitData;
+	  }
+	}
+	                              
+	if (isset($_GET['offset'])) {
+	    $outcomeData = getAllData('kostin_outcome','*', $limitData, $_GET['offset']);
+	} else {
+	    $outcomeData = getAllData('kostin_outcome','*', $limitData, 0);
+	}
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -51,6 +72,20 @@
 						';		
 					}
 				?>
+							<tr>
+		                        <td colspan="7" style="background-color: #333333; color: white;">
+		                            <center>
+		                              <?php
+		                                if (!empty($pagination)) {
+		                                	echo '<label style="color: white;">Pages : &nbsp;</label>';
+		                                  	foreach ($pagination as $links) {
+		                                    echo $links."&nbsp;";
+		                                  }
+		                                }
+		                              ?>
+		                            </center>
+		                        </td>
+		                    </tr>
 			</table>		
 		</div>
 	</div>
