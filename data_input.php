@@ -403,7 +403,7 @@
 		include 'config/database.php';
 		//include 'module/data_get.php';
 
-		$getUser = getUser('user_id',$idUser);
+		$getUser = getUser($idUser);
 		$dataUser = mysqli_fetch_assoc($getUser);
 		$dataSewa = getAllData('kostin_sewa','sewa_id', null, null);
 		$sewaCount = 0;

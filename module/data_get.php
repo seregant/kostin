@@ -17,9 +17,9 @@
 	}
 
 	
-	function getUser($column, $params){
+	function getUser($params){
 		include 'config/database.php';
-		$sql = "select * from kostin_user where $column = '$params'";
+		$sql = "select * from kostin_user where user_id = '$params' or user_name = '$params' or user_email = '$params'";
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}

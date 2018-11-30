@@ -24,6 +24,9 @@ session_start();
 				case 'contact_us':
 					include('frontend/contact_us.php');
 					break;
+				case 'forgot':
+					include('frontend/forgot_pass.php');
+					break;
 				default:
 					# code...
 					break;

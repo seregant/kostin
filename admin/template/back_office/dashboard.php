@@ -1,8 +1,8 @@
 <?php
 
 	$jmlPenghuni = mysqli_num_rows(getAllData('kostin_sewa','sewa_id', null, null));
-	$tagihanKamar = getTagihanData('sewa', 'tagihan_status', 'paid');
-	$tagihanBooking = getTagihanData('booking', 'tagihan_status', 'paid');
+	$tagihanKamar = getTagihanData('sewa', 'tagihan_status', 'paid',null,null);
+	$tagihanBooking = getTagihanData('booking', 'tagihan_status', 'paid',null,null);
 	$tagihanAmount = 0;
 
 	foreach ($tagihanKamar as $tagihan) {

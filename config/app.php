@@ -1,3 +1,3 @@
 <?php
-	$base_url= $_SERVER['DOCUMENT_ROOT'].'/kostin';
+	$base_url= '/kostin_copy';
 ?>

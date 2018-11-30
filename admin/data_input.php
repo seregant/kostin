@@ -302,6 +302,8 @@
 	    $id_user = implode(",", $id_user);
 	    $id_user = str_replace(',', '', $id_user);
 
+	    $safekey = md5($id_user);
+
 		$isValid = "yes";
 
 		// if (strcmp($_POST['pass'], $_POST['retype-pass'])==0){
@@ -333,8 +335,8 @@
 			$imgPath = $uploadResult['imgDir'];
 			$thmbPath = $uploadResult['thmbDir'];
 			$sql = "insert into kostin_user 
-				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id) values 
-				('$id_user','$username','$nama', '$email', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
+				(user_id, user_name, user_fullname, user_email, user_imagefile, user_imagethumb, user_password, role_id, user_safekey) values 
+				('$id_user','$username','$nama', '$email', '".$imgPath."', '".$thmbPath."', '$pass', '$priv', '$safekey')";
 			$location = "Location:index.php?category=view&module=user";
 			setcookie("isclear", "yes", time() + 10);
 
@@ -353,9 +355,9 @@
 				$imgPath = 'images/preview.png';
 				$thmbPath = 'images/preview.png';
 				$sql = "insert into kostin_user 
-					(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id) values 
-					('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv')";
-				$location = 'Location:index.php?category=view&module=tagihan';
+					(user_id, user_name, user_fullname, user_addr, user_email, user_phone, user_idnty, user_idntyfile, user_imagefile, user_imagethumb, user_password, role_id, user_safekey) values 
+					('$id_user','$username','$nama', '".$_POST['addr']."', '$email', '".$_POST['phone']."', '".$_POST['idnty']."', '".$_POST['idntyfile']."', '".$imgPath."', '".$thmbPath."', '$pass', '$priv', '$safekey')";
+				$location = 'Location:index.php?category=view&module=tagihanBooking';
 
 				$bookingBillData = getBookingBillData($_POST['id']);
 				$bookingBill = mysqli_fetch_assoc($bookingBillData);

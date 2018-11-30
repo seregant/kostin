@@ -1,7 +1,7 @@
 <?php
 	$outcomeData = getAllData('kostin_outcome','*', null, null);
-	$tagihanData = getTagihanData('sewa','tagihan_status','paid');
-	$tagihanBookingData = getTagihanData('booking','tagihan_status','paid');
+	$tagihanData = getTagihanData('sewa','tagihan_status','paid',null,null);
+	$tagihanBookingData = getTagihanData('booking','tagihan_status','paid',null,null);
 	$totalPengeluaran = 0;
 	foreach ($outcomeData as $outcome) {
 		$totalPengeluaran += $outcome['outcm_value'];

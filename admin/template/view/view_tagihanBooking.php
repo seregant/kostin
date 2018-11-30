@@ -1,5 +1,5 @@
 <?php
-	$allBookingData = getAllData('kostin_tagihan_booking','*',null,null);
+	$allBookingData = getTagihanData('booking',null,null,null,null,null);
 	
 	$rows = mysqli_num_rows($allBookingData);
 	$pagination = array();
@@ -17,9 +17,9 @@
 	}
 	                              
 	if (isset($_GET['offset'])) {
-	    $tagihanBookingData = getAllData('kostin_tagihan_booking','*', $limitData, $_GET['offset']);
+	    $tagihanBookingData = getTagihanData('booking',null,null,null, $limitData, $_GET['offset']);
 	} else {
-	    $tagihanBookingData = getAllData('kostin_tagihan_booking','*', $limitData, 0);
+	    $tagihanBookingData = getTagihanData('booking',null,null,null, $limitData, 0);
 	}
 ?>
 

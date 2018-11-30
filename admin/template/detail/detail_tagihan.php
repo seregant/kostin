@@ -195,7 +195,7 @@
 									}
 								}
 							?> 
-						<a href="index.php?category=view&module=tagihan">
+						<a href="index.php?category=view&module=tagihanSewa">
 							<button class="btn btn-danger">Kembali</button>
 						</a>
 					</center>
