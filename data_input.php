@@ -68,6 +68,7 @@
 		
 		$insertBooking = mysqli_query($conn, $sql1);
 
+
 		if (!$insertBooking) {
 			echo "Gagal Simpan data bookin, sliahkan diulangi! <br /> ";
 			echo mysqli_error($conn);
@@ -92,6 +93,8 @@
 				}
 			}
 
+			setcookie("confirmed", "yes", time() + 10);
+			setcookie("message", "Tagihan nomor ".$_POST['id']." sudah dikonfirmasi!", time() + 10);
 			header("Location:index.php");
 		}	
 	}

@@ -40,7 +40,7 @@
 	<div class="row sticky-top" style="background-color: white;">
 		<!-- Social Icons-->
 		<!-- Error message failed login-->
-		<div class="container-fluid ">
+		
 			<?php if(isset($errMsg)){ ?>
 			<div class="col  mx-auto">
 				<div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
@@ -51,12 +51,7 @@
 				</div>	
 			</div>
     		<?php } ?>
-			<ul class="social-icons">
-         		<li><a href="#"><img src="frontend/icon/fb.png" alt=""></a></li>
-          		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
-          		<li><a href="#"><img src="frontend/icon/tw.png" alt=""></a></li>
-        	</ul>
-		</div>
+
 		<!--End of Social Icons-->
 
 		<!-- Navigation Bar-->

@@ -2,7 +2,22 @@
 	include 'header.php';
 ?>
 
-
+<!-- Booking Message -->
+<?php 
+  if(isset($_COOKIE['confirmed'])){
+    if ($_COOKIE['confirmed'] == "yes") {
+      echo '
+        <div class="col  mx-auto">
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
+          		Pemesanan berhasil. Silahkan cek kotak masuk email Anda.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
+            <span aria-hidden="true" style="font-size: 0.9em;">&times;</span>
+          </button>
+          </div>  
+         </div>';
+    } 
+  }
+?>
 	<!-- SLIDER -->
 	<div class="row">
 		<div class="container-fluid">

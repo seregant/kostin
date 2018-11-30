@@ -5,6 +5,7 @@ include 'header.php';
 ?>
 <div class="container ">
 
+
 	<!-- FORM BOOKING -->
 	<form class="needs-validation form-cust" enctype="multipart/form-data" action="data_input.php?category=booking" method="post" novalidate>
 	<div class="row form-bg" style="padding: 5px;">
@@ -59,10 +60,6 @@ include 'header.php';
 			<div class="container form-border" style="text-align: center;">
 				<h4>Daftar Add-ons</h4>
         <br>
-				<!--<div class="custom-control custom-checkbox">
-  					<input type="checkbox" class="custom-control-input" id="customCheck1" style="background-color: white;">
-  					<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-				</div>-->
 				<table class="table table-sm table-hover" style="width: 100%;">
   						<thead>
   							<tr>
