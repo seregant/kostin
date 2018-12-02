@@ -61,3 +61,13 @@ function inputSewaValidation() {
     	return true;
     }
 }
+
+jQuery(document).ready(function($) {
+    $(".row-click").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+
+function goBack() {
+    window.history.back();
+}

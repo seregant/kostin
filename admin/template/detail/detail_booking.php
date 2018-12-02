@@ -17,8 +17,8 @@
 			<div class="row m-t-10">
 				<dir class="col col-md-1"></dir>
 				<div class="col col-md-10 ">
-					<div class="table-responsive table-data3 p-b-10">
-						<table class="table ">
+					<div class="table-responsive p-b-10">
+						<table class="table table-detail">
 							<tbody>
 								<tr>
 									<td>Booking ID</td>
@@ -102,9 +102,8 @@
 									echo '<button class="btn btn-success" disabled="disabled">Konfirmasi</button>';
 								}
 							?>
-						<a href="index.php?category=view&module=booking">
-							<button class="btn btn-danger">Kembali</button>
-						</a>
+							<button class="btn btn-danger" onclick="goBack()">Kembali</button>
+						
 					</center>
 				</div>
 			</div>

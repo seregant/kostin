@@ -74,7 +74,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h5 class="pb-2 display-5">Kamar :</h5>
-							<div class="table-responsive table-data3 m-b-15 m-t-10">
+							<div class="table-responsive table-detail m-b-15 m-t-10">
 								<table class="table ">
 									<thead>
 										<tr>
@@ -91,7 +91,7 @@
 								</table>
 							</div>
 							<h5 class="pb-2 display-5">Addon :</h5>
-							<div class="table-responsive table-data3 m-b-15 m-t-10">
+							<div class="table-responsive table-detail m-b-15 m-t-10">
 								<table class="table ">
 									<thead>
 										<tr>
@@ -120,7 +120,7 @@
 								</table>
 							</div>
 							<h5 class="pb-2 display-5">Info Tagihan :</h5>
-							<div class="table-responsive table-data3 m-b-15 m-t-10">
+							<div class="table-responsive table-detail m-b-15 m-t-10">
 								<table class="table ">
 									<tbody>
 										<tr>

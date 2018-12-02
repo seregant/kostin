@@ -4,7 +4,7 @@
 
 	function notifyCanceledBooking() {
 		include 'config/database.php';
-		$tagihanData = getTagihanData('booking','tagihan_notified',0);
+		$tagihanData = getTagihanData('booking','tagihan_notified',null,null,null);
 		foreach ($tagihanData as $tagihan) {
 			$dueDateCount = dueDateCounter($tagihan['tagihan_duedate']);
 			$bookingData = getBookingData($tagihan['book_id']);
@@ -13,7 +13,7 @@
 			$message = "Transaksi pemesanan kamar kost anda telah dibatalkan karena sudah melewati jatuh tempo tagihan pembayaran biaya kost bulan pertama";
 			$subject = "Kostin || Booking ".$booking['book_id']." Telah Dibatalkan";
 
-			if ($dueDateCount < 0) {
+			if ($dueDateCount < 0 AND $tagihan['tagihan_status']=="pending") {
 				sendMail($booking['book_name'], $booking['book_email'], $subject, $message);
 				$sql = "UPDATE `kostin_tagihan_booking` SET `tagihan_notified` = 1 WHERE `tagihan_id` = '".$tagihan['tagihan_id']."'";
 				$updateTagihan = mysqli_query($conn, $sql);
@@ -80,7 +80,7 @@
 		}
 	}
 
-	//notifyCanceledBooking();
-	//kurangiMasaHuni();
+	notifyCanceledBooking();
+	kurangiMasaHuni();
 	generateTagihanBulanan();
 ?>

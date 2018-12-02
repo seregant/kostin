@@ -1,5 +1,5 @@
 <?php
-	$allBookingData = getTagihanData('booking',null,null,null,null,null);
+	$allBookingData = getTagihanData('booking',null,null,null,null);
 	
 	$rows = mysqli_num_rows($allBookingData);
 	$pagination = array();
@@ -17,9 +17,9 @@
 	}
 	                              
 	if (isset($_GET['offset'])) {
-	    $tagihanBookingData = getTagihanData('booking',null,null,null, $limitData, $_GET['offset']);
+	    $tagihanBookingData = getTagihanData('booking',null,null, $limitData, $_GET['offset']);
 	} else {
-	    $tagihanBookingData = getTagihanData('booking',null,null,null, $limitData, 0);
+	    $tagihanBookingData = getTagihanData('booking',null,null, $limitData, 0);
 	}
 ?>
 
@@ -49,11 +49,10 @@
 					</div>
 				</div>
 				<div class="table-responsive table--no-card m-b-30 m-t-20">
-					<table class="table table-borderless table-data3">
+					<table class="table table-borderless table-tagihan">
 						<thead>
 							<tr>
 								<th>No.</th>
-								<th>ID Booking</th>
 								<th>Amount</th>
 								<th>Status</th>
 								<th>Jatuh Tempo</th>
@@ -83,9 +82,8 @@
 										}
 
 										echo "
-											<tr>
-												<td><a href='index.php?category=detail&module=tgbooking&id=".$tagihan['tagihan_id']."'><button class='btn btn-sm btn-link'>".$tagihan['tagihan_id']."</button></a></td>
-												<td><a href='index.php?category=detail&module=booking&id=".$getBookID['book_id']."'><button class='btn btn-sm btn-link'>".$getBookID['book_id']."</button></a></td>
+											<tr class='row-click' data-href='index.php?category=detail&module=tgbooking&id=".$tagihan['tagihan_id']."'>
+												<td>".$tagihan['tagihan_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
 												<td style='color:$color;'>".$status."</td>
 												<td>".$tagihan['tagihan_duedate']."</td>

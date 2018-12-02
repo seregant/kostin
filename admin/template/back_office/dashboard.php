@@ -83,14 +83,12 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3">
-        <a href="index.php?category=view&module=tagihan">
-        	<div class="statistic__item">
-	            <h2 class="number"><?php echo $unpaidBill; ?></h2>
-	            <span class="desc">Tagihan Belum Dibayar</span>
-	            <div class="icon">
-	                <i class="zmdi zmdi-file-text"></i>
-	            </div>
-	        </div>
-        </a>
+        <div class="statistic__item">
+           <h2 class="number"><?php echo $unpaidBill; ?></h2>
+           <span class="desc">Tagihan Belum Dibayar</span>
+           <div class="icon">
+               <i class="zmdi zmdi-file-text"></i>
+            </div>
+         </div>
     </div>
 </div>

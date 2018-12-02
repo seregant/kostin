@@ -32,7 +32,7 @@
 		<div class="row m-b-5">
 			<div class="col col-lg-12">
 				<div class="table-responsive table--no-card m-b-30 m-t-20">
-					<table class="table table-borderless table-data3">
+					<table class="table table-borderless table-tagihan">
 						<thead>
 							<tr>
 								<th>No.</th>
@@ -58,8 +58,8 @@
 										}
 
 										echo "
-											<tr>
-												<td><a href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'><button class='btn btn-sm btn-link'>".$tagihan['tagihan_id']."</button></a></td>
+											<tr class='row-click' data-href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'>
+												<td>".$tagihan['tagihan_id']."</td>
 												<td>".$getKamarID['kamar_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
 												<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>

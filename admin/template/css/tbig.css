@@ -1,10 +1,14 @@
 
-.table-clickable tr:hover {
-    background-color: #ccc;
+.table-row{
+	cursor:pointer;
+	background-color: #fff;
 }
 
-.table-clickable td:hover {
-    cursor: pointer;
-    background-color: #ccc;
-    color: white;
+.item {
+    width: 120px;
+    height: 120px;
+    height: auto;
+    float: left;
+    margin: 3px;
+    padding: 3px;
 }

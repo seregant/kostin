@@ -34,7 +34,7 @@
           </div>
       </div>
 		<div class="table-responsive table--no-card m-b-30 m-t-20">
-			<table class="table table-borderless table-data3" >
+			<table class="table table-borderless table-tagihan" >
 				<thead>
 					<tr>
 						<th>No. Booking</th>
@@ -55,8 +55,8 @@
 							}
 
 							echo "
-								<tr>
-									<td><a href='index.php?category=detail&module=booking&id=".$booking['book_id']."'><button class='btn btn-sm btn-link'>".$booking['book_id']."</button></a></td>
+								<tr class='row-click' data-href='index.php?category=detail&module=booking&id=".$booking['book_id']."'>
+									<td>".$booking['book_id']."</td>
 									<td>".$booking['book_name']."</td>
 									<td>".$booking['book_date']."</td>
 									<td style='color:".$color.";'>".ucfirst($booking['book_status'])."</td>
