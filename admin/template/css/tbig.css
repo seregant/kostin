@@ -3,12 +3,3 @@
 	cursor:pointer;
 	background-color: #fff;
 }
-
-.item {
-    width: 120px;
-    height: 120px;
-    height: auto;
-    float: left;
-    margin: 3px;
-    padding: 3px;
-}
