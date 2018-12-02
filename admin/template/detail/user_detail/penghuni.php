@@ -37,7 +37,7 @@
 	            					<tr>
 										<th>No.</th>
 										<th>Kamar</th>
-										<th>Amount</th>
+										<th>Jumlah</th>
 										<th>Status</th>
 									</tr>
 	            				</thead>
@@ -61,7 +61,7 @@
 													<tr class='row-click' data-href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'>
 														<td>".$tagihan['tagihan_id']."</td>
 														<td>".$getKamarID['kamar_id']."</td>
-														<td>".number_format($tagihan['tagihan_jumlah'])."</td>
+														<td>Rp. ".number_format($tagihan['tagihan_jumlah'])."</td>
 														<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>
 													</tr>
 											";
