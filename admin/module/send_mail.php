@@ -153,11 +153,12 @@
 						WHERE `kostin_tagihan`.`tagihan_id` = '$id'";
 
 			$dataTagihan = mysqli_fetch_assoc(mysqli_query($conn, $sqlTagihan));
-
-			$sqlAddon = "SELECT `ao_name`,`ao_price` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_sewa_ao` WHERE `sewa_id' = $id ";
+			$dataAddon = getSewaAddon($dataTagihan['sewa_id']);
 			$htmlAddon = "";
 			$ao_price = 0;
 			foreach ($dataAddon as $addon) {
+				$sqlAoPrice = "SELECT `ao_price` FROM `kostin_addons` WHERE `ao_id` = '".$addon['ao_id']."' ";
+				$aoPrice = mysqli_query($conn,$sqlAoPrice);
 				$htmlAddon .= '	<tr>
 									<td class="col-1">'.$addon['ao_name'].'</td>
 									<td class="col-2">Rp. '.number_format($addon['ao_price']).'</td>

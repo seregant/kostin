@@ -51,6 +51,14 @@
 	            			}
 	            		?>
 	            </div>
+	            <hr>
+	            <div class="row m-t-10 p-b-20">
+				<div class="col col-md-12">
+					<center>
+						<button class="btn btn-danger" onclick="goBack()">Kembali</button>
+					</center>
+				</div>
+			</div>
 	        </div>
 	    </div>
 	</div>
