@@ -24,42 +24,44 @@
 	<div class="col col-lg-12">
 		<div class="card">
 	        <div class="card-body">
-	            <div class="mx-auto d-block">
-	                <img class="rounded-circle mx-auto d-block" src="<?php echo $dataUser['user_imagefile']; ?>" alt="Card image cap" style="width: 180px; height: 180px;">
-	                <h5 class="text-sm-center mt-2 mb-1"><?php echo $dataUser['user_fullname']; ?></h5>
-	                <div class="location text-sm-center">
-	                    <i class="fa fa-map-marker"></i> <?php 
-	                    	if (!is_null($dataUser['user_addr'])) {
-	                    		echo $dataUser['user_addr'];
-	                    	} else {
-	                    		echo "Alamat";
-	                    	}
-	                    ?>
-	                    <br>
-	                    <i class="fa fa-envelope"></i> 
-	                    <?php echo $dataUser['user_email']; ?>
-	                    <br>
-	                    <i class="fa fa-phone"></i> 
-	                    <?php echo $dataUser['user_phone']; ?>
-	                </div>
-	            </div>
-	            <hr>
 	            <div class="row">
-	            		<?php
+	            	<div class="col col-lg-5">
+		            	<div class="mx-auto d-block">
+			                <img class="rounded-circle mx-auto d-block" src="<?php echo $dataUser['user_imagefile']; ?>" alt="Card image cap" style="width: 180px; height: 180px;">
+			                <h5 class="text-sm-center mt-2 mb-1"><?php echo $dataUser['user_fullname']; ?></h5>
+			                <div class="location text-sm-center">
+			                    <i class="fa fa-map-marker"></i> <?php 
+			                    	if (!is_null($dataUser['user_addr'])) {
+			                    		echo $dataUser['user_addr'];
+			                    	} else {
+			                    		echo "Alamat";
+			                    	}
+			                    ?>
+			                    <br>
+			                    <i class="fa fa-envelope"></i> 
+			                    <?php echo $dataUser['user_email']; ?>
+			                    <br>
+			                    <i class="fa fa-phone"></i> 
+			                    <?php echo $dataUser['user_phone']; ?>
+			                </div>
+			            </div>
+		            </div>
+		            	<?php
 	            			if ($dataUser['role_name']=='penghuni') {
 	            				include 'template/detail/user_detail/penghuni.php';
+	            			} else {
+	            				include 'template/detail/user_detail/admin.php';
 	            			}
 	            		?>
-	            </div>
-	            <hr>
-	            <div class="row m-t-10 p-b-20">
+	        <hr>
+	       	<div class="row m-t-10 p-b-20">
+	       		<hr>
 				<div class="col col-md-12">
 					<center>
 						<button class="btn btn-danger" onclick="goBack()">Kembali</button>
 					</center>
 				</div>
 			</div>
-	        </div>
 	    </div>
 	</div>
 </div>

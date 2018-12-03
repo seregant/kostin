@@ -1,15 +1,20 @@
 <?php
 	$tagihanData = getTagihanData('sewa','sewa_id', $dataSewa['sewa_id'], 5, 0);
 ?>
-					<div class="col col-lg-6">
+					<div class="col col-lg-7">
 	            		<div class="table-responsive">
 	            			<table class="table table-borderless table-detail">
 	            				<thead>
 	            					<tr>
-	            						<th colspan="3"><center><?php echo ucfirst($dataUser['role_name']); ?></center></th>
+	            						<th colspan="3"><center>Data Account</center></th>
 	            					</tr>
 	            				</thead>
 	            				<tbody>
+	            					<tr>
+	            						<td>Tipe Account</td>
+	            						<td>:</td>
+	            						<td>Penghuni</td>
+	            					</tr>
 									<tr>
 										<td>Tanggal Check In</td>
 										<td>:</td>
@@ -29,9 +34,14 @@
 	            			</table>
 	            		</div>
 	            	</div>
-	            	<div class="col col-lg-6">
-	            		<div class="table-responsive">
-	            			<center>Tagihan Terakhir</center>
+	        </div>
+	        <div class="row">
+	            	<div class="col-lg-12">
+	            		<hr>
+	            		<center><h3>Tagihan Terakhir</h3></center>
+	            	</div>
+	            	<div class="col col-lg-12">
+	            		<div class="table-responsive m-t-15">
 	            			<table class="table table-borderless table-tagihan">
 	            				<thead>
 	            					<tr>
@@ -71,6 +81,8 @@
 	            			</table>
 	            		</div>
 	            	</div>
+	            </div>		
+	    </div>
 
 
 

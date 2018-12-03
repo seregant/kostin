@@ -12,7 +12,7 @@
 		    </div>
 		</div>
 		<div class="table-responsive table--no-card m-b-30 m-t-30">
-			<table class="table table-borderless table-data3">
+			<table class="table table-borderless table-tagihan">
 				<thead>
 					<tr>
 						<th>Sewa ID</th>
@@ -38,7 +38,7 @@
 								$getKamarID = mysqli_fetch_assoc(mysqli_query($conn, $sqlKamarID));
 								$getUser = mysqli_fetch_assoc(mysqli_query($conn, $sqlUser));
 								echo "
-									<tr>
+									<tr class='row-click' data-href='index.php?category=detail&module=user&id=".$sewa['user_id']."'>
 										<td>".$sewa['sewa_id']."</td>
 										<td>".$getKamarID['kamar_id']."</td>
 										<td>".$getUser['user_fullname']."</td>

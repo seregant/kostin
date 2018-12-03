@@ -16,7 +16,7 @@
                   <h3 class="title-1">Data Booking</h3>
                   <form method="get" class="form" action="">
                   	<div class="input-group">
-                        <input type="text" name="search" placeholder="<?php 
+                        <input type="text" name="searchBooking" placeholder="<?php 
                         	if (isset($_GET['keyword'])){
                         		echo($_GET['keyword']);
                         	} else {

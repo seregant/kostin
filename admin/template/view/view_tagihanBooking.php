@@ -7,19 +7,42 @@
 	$offset = 0;
 	$pageNum = 1;
 	 
-	if ($rows > $limitData) {
-	  while ($rows>=0) {
-	    $pagination[] =  '<a href="index.php?category=view&module=tagihanBooking&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
-	    $pageNum++;
-	    $rows = $rows - $limitData;
-	    $offset += $limitData;
-	  }
-	}
-	                              
-	if (isset($_GET['offset'])) {
-	    $tagihanBookingData = getTagihanData('booking',null,null, $limitData, $_GET['offset']);
+
+	if (isset($_GET['keyword'])) {
+		$sql = "SELECT * FROM `kostin_tagihan_booking` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%'";
+		$allSearchRes= mysqli_query($conn, $sql);
+		$rows = mysqli_num_rows($allSearchRes);
+
+		if ($rows > $limitData) {
+		  while ($rows>=0) {
+		    $pagination[] =  '<a href="index.php?category=view&module=tagihanBooking&keyword='.$_GET['keyword'].'&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+		    $pageNum++;
+		    $rows = $rows - $limitData;
+		    $offset += $limitData;
+		  }
+		}
+
+		if (isset($_GET['offset'])) {
+			$sql = "SELECT * FROM `kostin_tagihan_booking` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%' LIMIT ".$_GET['offset'].",$limitData";
+		   	$tagihanBookingData = mysqli_query($conn, $sql);
+		} else {
+		    $tagihanBookingData = mysqli_query($conn, $sql);
+		}
+
 	} else {
-	    $tagihanBookingData = getTagihanData('booking',null,null, $limitData, 0);
+		if ($rows > $limitData) {
+		  while ($rows>=0) {
+		    $pagination[] =  '<a href="index.php?category=view&module=tagihanBooking&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+		    $pageNum++;
+		    $rows = $rows - $limitData;
+		    $offset += $limitData;
+		  }
+		}
+		if (isset($_GET['offset'])) {
+	    	$tagihanBookingData = getTagihanData('booking',null,null, $limitData, $_GET['offset']);
+		} else {
+		    $tagihanBookingData = getTagihanData('booking',null,null, $limitData, 0);
+		}
 	}
 ?>
 
@@ -45,6 +68,22 @@
 					<div class="col col-lg-12">
 						<div class="overview-wrap">
 			             	<h3 class="title-1">Tagihan Booking</h3>
+			             	<form method="get" class="form" action="">
+			                  	<div class="input-group">
+			                        <input type="text" name="searchTgBooking" placeholder="<?php 
+			                        	if (isset($_GET['keyword'])){
+			                        		echo($_GET['keyword']);
+			                        	} else {
+			                        		echo "Cari No. tagihan...";
+			                        	}
+			                        ?>" class="form-control" >
+			                        <div class="input-group-btn">&nbsp;
+			                            <button class="btn btn-primary">
+			                                <i class="fa fa-search"></i>
+			                            </button>
+			                        </div>
+			                    </div>
+				              </form>
 			           	</div>
 					</div>
 				</div>

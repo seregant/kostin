@@ -195,9 +195,9 @@
 									}
 								}
 							?> 
-						<a href="index.php?category=view&module=tagihanSewa">
-							<button class="btn btn-danger">Kembali</button>
-						</a>
+						
+							<button class="btn btn-danger" onclick="goBack()">Kembali</button>
+						
 					</center>
 				</div>
 			</div>
