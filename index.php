@@ -38,6 +38,18 @@ session_start();
 	    		header("Location:index.php?category=view&module=booking&keyword=".$_GET['search']);
 			}
 		}
-		include('frontend/userDashboard/index.php');
+		if (isset($_GET['module'])){
+			switch ($_GET['module']) {
+				case 'module_tagihan':
+					include('frontend/userDashboard/module_tagihan.php');
+					break;
+				case 'module_konfirmasi':
+					include('frontend/userDashboard/module_konfirmasi.php');
+					break;				
+				default:
+					include('frontend/userDashboard/index.php');
+					break;
+			}
+		}	
 	}
 ?>

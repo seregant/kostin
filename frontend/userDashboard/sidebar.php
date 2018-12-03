@@ -3,7 +3,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="http://project.konco.online">
-                            <img src="../logo/company.png" alt="CoolAdmin" />
+                            <img src="frontend/logo/company.png" alt="KostIn" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -38,7 +38,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo" style="background-color: #2bb1ff;">
                 <a href="#">
-                    <img src="../logo/company.png" alt="Cool Admin" />
+                    <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">

@@ -111,7 +111,7 @@
 						</div>
 					</div>
 					<div class="konfirmasi">
-						<button class="button">Konfirmasi Pembayaran</button>	
+						<a href="http://project.konco.online/index.php?no_invoice='.$row2['tagihan_id'].'"><button class="button" >Konfirmasi Pembayaran</button></a>	
 					</div>
 					<hr>
 					<div class="row mx-auto">
@@ -245,7 +245,7 @@
 						</div>
 					</div>
 					<div class="konfirmasi">
-						<button class="button">Konfirmasi Pembayaran</button>	
+						<a href="http://project.konco.online/index.php?no_invoice='.$row2['tagihan_id'].'"><button class="button" >Konfirmasi Pembayaran</button></a>	
 					</div>
 					<hr>
 					<div class="row mx-auto">

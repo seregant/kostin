@@ -185,7 +185,7 @@ $invoice_css = '@import url("http://fonts.googleapis.com/css?family=Open+Sans");
 			font-size: 0.7em;
 		}
 		.socmed ul li a img {
-			max-width: 1.5em;
+			max-width: 1em;
 		}
 	}
 ';
@@ -390,7 +390,7 @@ $payment_booking_css = '@import url("http://fonts.googleapis.com/css?family=Open
 			font-size: 0.7em;
 		}
 		.socmed ul li a img {
-			max-width: 1.5em;
+			max-width: 1em;
 		}
 	}';
 
