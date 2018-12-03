@@ -133,7 +133,7 @@
 					</html>
 			';
 
-			$subject= "Kostin || Tagihan Booking ".$dataTagihan['tagihan_id'];	
+			$subject= "Kostin || Tagihan Booking ".$row2['tagihan_id'];	
 			sendMail($row['book_name'], $row['book_email'], $subject, $message);
 		} else {
 
