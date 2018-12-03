@@ -120,9 +120,9 @@
 						<div class="socmed">
 							<p>Ikuti Kami</p>
 							<ul>
-					    		<li><a href="#"><img src="https://thumb.ibb.co/eqj1nA/fb.png" alt=""></a></li>
-					    		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
-					    		<li><a href="#"><img src="frontend/icon/tw.png" alt=""></a></li>
+						    	<li><a href="#"><img src="http://project.konco.online/frontend/icon/fb.png" alt=""></a></li>
+						    	<li><a href="#"><img src="http://project.konco.online/frontend/icon/ig.png" alt=""></a></li>
+							    <li><a href="#"><img src="http://project.konco.online/frontend/icon/tw.png" alt=""></a></li>
 					    	</ul>
 						</div>
 					</div>
@@ -254,9 +254,9 @@
 						<div class="socmed">
 							<p>Ikuti Kami</p>
 							<ul>
-					    		<li><a href="#"><img src="https://thumb.ibb.co/eqj1nA/fb.png" alt=""></a></li>
-					    		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
-					    		<li><a href="#"><img src="frontend/icon/tw.png" alt=""></a></li>
+						    	<li><a href="#"><img src="http://project.konco.online/frontend/icon/fb.png" alt=""></a></li>
+						    	<li><a href="#"><img src="http://project.konco.online/frontend/icon/ig.png" alt=""></a></li>
+							    <li><a href="#"><img src="http://project.konco.online/frontend/icon/tw.png" alt=""></a></li>
 					    	</ul>
 						</div>
 					</div>
@@ -403,9 +403,9 @@
 							<div class="socmed">
 								<p>Ikuti Kami</p>
 								<ul>
-						    		<li><a href="#"><img src="frontend/icon/fb.png" alt=""></a></li>
-						    		<li><a href="#"><img src="frontend/icon/ig.png" alt=""></a></li>
-							    	<li><a href="#"><img src="frontend/icon/tw.png" alt=""></a></li>
+						    		<li><a href="#"><img src="http://project.konco.online/frontend/icon/fb.png" alt=""></a></li>
+						    		<li><a href="#"><img src="http://project.konco.online/frontend/icon/ig.png" alt=""></a></li>
+							    	<li><a href="#"><img src="http://project.konco.online/frontend/icon/tw.png" alt=""></a></li>
 						    	</ul>
 							</div>
 						</div>
