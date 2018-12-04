@@ -7,7 +7,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>MyKost Admin</title>
+    <title>MyKost Dashboard</title>
 
     <!-- Fontfaces CSS-->
     <link href="frontend/userDashboard/css/font-face.css" rel="stylesheet" media="all">
@@ -30,5 +30,6 @@
 
     <!-- Main CSS-->
     <link href="frontend/userDashboard/css/theme.css" rel="stylesheet" media="all">
+    <link href="template/css/tbig.css" rel="stylesheet" media="all">
 
 </head>

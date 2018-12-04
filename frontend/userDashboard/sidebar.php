@@ -49,12 +49,12 @@
                                 <i class="fas fa-user"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="index.php?module=modul_tagihan">
+                            <a href="index.php?category=view&get=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li>
                             <a href="index.php?module=modul_konfirmasi">
-                                <i class="fas fa-money"></i>Konfirmasi Bayar</a>
+                                <i class="fas fa-cog"></i>Edit Profile</a>
                         </li>
                     </ul>
                 </nav>

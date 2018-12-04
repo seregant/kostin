@@ -87,7 +87,7 @@
 		return $result;
 	}
 
-	function getTagihanData($type, $param, $condition){
+	function getTagihanData($type, $param, $condition, $limit, $offset){
 		include 'config/database.php';
 		if ($type == 'sewa') {
 			$table = 'kostin_tagihan';
@@ -96,10 +96,19 @@
 		}
 
 		if (!is_null($param)) {
-			$sql = "select * from $table where $param = '$condition' order by tagihan_id desc";
+			if (is_numeric($condition==1)) {
+				$sql = "select * from $table where $param = $condition order by tagihan_id desc";
+			} else {
+				$sql = "select * from $table where $param = '$condition' order by tagihan_id desc";
+			}
 		} else {
 			$sql = "select * from $table order by tagihan_id desc";
 		}
+
+		if (!is_null($limit) and !is_null($offset)) {
+			$sql .=" limit $offset, $limit";
+		}
+		
 		$result = mysqli_query($conn, $sql);
 		return $result;
 	}

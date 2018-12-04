@@ -13,10 +13,10 @@
                 <div class="container-fluid">
 
     	 	<?php 
-		        if(!empty($_GET['module'])) {
-
-		          $module=$_GET['module'];
-		          include('module/'.$module.'.php');
+		        if(!empty($_GET['get'])) {
+                    $module=$_GET['get'];
+                    $category = $_GET['category'];
+                    include($category.'/'.$category."_".$module.'.php');
 		        } else {
 
 		          include('dashboard.php');

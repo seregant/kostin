@@ -2,20 +2,20 @@
 [Master Stylesheet]
 
 Project:  CoolAdmin
-Version:	1.0
-Last change:	08/10/2018 [Add Define a table of contents Link]
-Assigned to:	Hau Nguyen
-Primary use:	Open Source
+Version:    1.0
+Last change:    08/10/2018 [Add Define a table of contents Link]
+Assigned to:    Hau Nguyen
+Primary use:    Open Source
 -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
 [LAYOUT]
 
 * body
     + Header / header
-	+ Page Content / .page-content .name-page
+    + Page Content / .page-content .name-page
         + Section Layouts / section .name-section
         ...
-	+ Footer / footer
+    + Footer / footer
 
 -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
@@ -28,7 +28,7 @@ Primary use:	Open Source
 /*------------------------------------------------------------------
 [Typography]
 
-Notes:	decreasing heading by 0.4em with every subsequent heading level
+Notes:  decreasing heading by 0.4em with every subsequent heading level
 -------------------------------------------------------------------*/
 /*-----------------------------------------------------*/
 /*                   SETTINGS                          */
@@ -1647,6 +1647,7 @@ section {
     top: 0;
     left: 0;
     right: 0;
+    background-color: #2bb1ff;
 }
 
 .header-mobile .header-mobile__bar {
@@ -4697,6 +4698,12 @@ section {
 .table-data3 tbody tr {
     border-left: 1px solid #e5e5e5;
     border-right: 1px solid #e5e5e5;
+    background: #fff;
+    color: #808080;
+}
+
+.table-data3 tbody tr:hover{
+    color:#000000;
 }
 
 .table-data3 tbody tr:last-child td:first-child {
@@ -4713,9 +4720,7 @@ section {
 
 .table-data3 tbody td {
     border-bottom: 1px solid #f5f5f5;
-    background: #fff;
     font-size: 14px;
-    color: #808080;
     padding: 12px 40px;
     padding-right: 10px;
 }
@@ -4728,6 +4733,149 @@ section {
     color: #fa4251;
 }
 
+.table-detail thead {
+    background: #333;
+}
+
+.table-detail thead tr th {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 18px 40px;
+    padding-right: 10px;
+}
+
+.table-detail thead tr th:first-child {
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+}
+
+.table-detail thead tr th:last-child {
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+}
+
+.table-detail thead tr th:last-child {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.table-detail tbody tr td:last-child {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.table-detail tbody tr {
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    background: #fff;
+    color: #808080;
+}
+
+.table-detail tbody tr:last-child td:first-child {
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.table-detail tbody tr:last-child td:last-child {
+    -webkit-border-bottom-right-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.table-detail tbody td {
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+    padding: 12px 40px;
+    padding-right: 10px;
+}
+
+.table-detail tbody td.process {
+    color: #00ad5f;
+}
+
+.table-detail tbody td.denied {
+    color: #fa4251;
+}
+
+.table-tagihan thead {
+    background: #333;
+}
+
+.table-tagihan thead tr th {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 18px 40px;
+    padding-right: 10px;
+}
+
+.table-tagihan thead tr th:first-child {
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+}
+
+.table-tagihan thead tr th:last-child {
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+}
+
+.table-tagihan thead tr th:last-child {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.table-tagihan tbody tr td:last-child {
+    text-align: right;
+    padding-right: 50px;
+}
+
+.table-tagihan tbody tr {
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    background: #fff;
+    color: #808080;
+}
+
+.table-tagihan tbody tr:hover{
+    color:#000000;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.table-tagihan tbody tr:last-child td:first-child {
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.table-tagihan tbody tr:last-child td:last-child {
+    -webkit-border-bottom-right-radius: 8px;
+    -moz-border-radius-bottomright: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.table-tagihan tbody td {
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 14px;
+    padding: 12px 40px;
+    padding-right: 10px;
+}
+
+.table-tagihan tbody td.process {
+    color: #00ad5f;
+}
+
+.table-tagihan tbody td.denied {
+    color: #fa4251;
+}
 /* ----- Footer ----- */
 .copyright {
     text-align: center;

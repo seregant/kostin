@@ -33,23 +33,13 @@ session_start();
 			}
 	}
 	} else {
-		if (isset($_GET['search'])) {
-			if (strpos($_SERVER['HTTP_REFERER'], 'category=view&module=booking') !== false) {
-	    		header("Location:index.php?category=view&module=booking&keyword=".$_GET['search']);
+
+		if (isset($_GET['searchTagihan'])) {
+			if (strpos($_SERVER['HTTP_REFERER'], 'category=view&get=tagihan') !== false) {
+	    		header("Location:index.php?category=view&get=tagihan&keyword=".$_GET['searchTagihan']);
 			}
 		}
-		if (isset($_GET['module'])){
-			switch ($_GET['module']) {
-				case 'module_tagihan':
-					include('frontend/userDashboard/module_tagihan.php');
-					break;
-				case 'module_konfirmasi':
-					include('frontend/userDashboard/module_konfirmasi.php');
-					break;				
-				default:
-					include('frontend/userDashboard/index.php');
-					break;
-			}
-		}	
+
+		include('frontend/userDashboard/index.php');	
 	}
 ?>
