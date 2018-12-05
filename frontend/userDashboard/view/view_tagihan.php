@@ -1,5 +1,14 @@
 <?php
-	$allTagihanData = getAllData('kostin_tagihan','*', null, null);
+	 $sqlSewa = "SELECT
+    `kostin_sewa`.*,
+    `kostin_tagihan`.*
+    FROM `kostin_sewa`
+    INNER JOIN `kostin_tagihan` ON `kostin_sewa`.`sewa_id` = `kostin_tagihan`.`sewa_id`
+    WHERE `kostin_sewa`.`user_id` = '".$_SESSION['user_id']."'";
+
+    $dataSewa = mysqli_fetch_assoc(mysqli_query($conn,$sqlSewa));
+	
+	$allTagihanData = getTagihanData('sewa','sewa_id', $dataSewa['sewa_id'], null,null);
 
 	$rows = mysqli_num_rows($allTagihanData);
 	$pagination = array();
@@ -8,7 +17,7 @@
 	$pageNum = 1;
 	 
 	if (isset($_GET['keyword'])) {
-		$sql = "SELECT * FROM `kostin_tagihan` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%'";
+		$sql = "SELECT * FROM `kostin_tagihan` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%' AND `sewa_id` ='".$dataSewa['sewa_id']."'";
 		$allSearchRes= mysqli_query($conn, $sql);
 		$rows = mysqli_num_rows($allSearchRes);
 
@@ -22,7 +31,7 @@
 		}
 
 		if (isset($_GET['offset'])) {
-			$sql = "SELECT * FROM `kostin_tagihan_booking` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%' LIMIT ".$_GET['offset'].",$limitData";
+			$sql = "SELECT * FROM `kostin_tagihan_booking` WHERE `tagihan_id` LIKE '%".$_GET['keyword']."%' AND `sewa_id` ='".$dataSewa['sewa_id']."' LIMIT ".$_GET['offset'].",$limitData";
 		   	$tagihanData = mysqli_query($conn, $sql);
 		} else {
 		    $tagihanData = mysqli_query($conn, $sql);
@@ -30,7 +39,7 @@
 	} else {
 		if ($rows > $limitData) {
 		  while ($rows>=0) {
-		    $pagination[] =  '<a href="index.php?category=view&module=tagihanSewa&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
+		    $pagination[] =  '<a href="index.php?category=view&get=tagihan&offset='.$offset.'"><button type="button" class="btn btn-primary btn-sm">'.$pageNum.'</button></a>';
 		    $pageNum++;
 		    $rows = $rows - $limitData;
 		    $offset += $limitData;
@@ -38,9 +47,9 @@
 		}
 		                              
 		if (isset($_GET['offset'])) {
-		    $tagihanData = getAllData('kostin_tagihan','*', $limitData, $_GET['offset']);
+		    $tagihanData = getTagihanData('sewa','sewa_id', $dataSewa['sewa_id'], $limitData, $_GET['offset']);
 		} else {
-		    $tagihanData = getAllData('kostin_tagihan','*', $limitData, 0);
+		    $tagihanData = getTagihanData('sewa','sewa_id', $dataSewa['sewa_id'], $limitData, 0);
 		}
 	}
 ?>
@@ -96,7 +105,7 @@
 										}
 
 										echo "
-											<tr class='row-click' data-href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'>
+											<tr class='row-click' data-href='index.php?category=detail&get=tagihan&id=".$tagihan['tagihan_id']."'>
 												<td>".$tagihan['tagihan_id']."</td>
 												<td>".$getKamarID['kamar_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>

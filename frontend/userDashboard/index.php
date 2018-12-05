@@ -54,5 +54,6 @@
 
     <!-- Main JS-->
     <script src="frontend/userDashboard/js/main.js"></script>
+    <script src="frontend/userDashboard/js/myScript.js"></script>
 </body>
 </html>

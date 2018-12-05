@@ -114,7 +114,7 @@
                                                 }
 
                                                 echo "
-                                                    <tr class='row-click' data-href='index.php?category=detail&module=tagihan&id=".$tagihan['tagihan_id']."'>
+                                                    <tr class='row-click' data-href='index.php?category=detail&get=tagihan&id=".$tagihan['tagihan_id']."'>
                                                         <td>".$tagihan['tagihan_id']."</td>
                                                         <td>".$getKamarID['kamar_id']."</td>
                                                         <td>Rp. ".number_format($tagihan['tagihan_jumlah'])."</td>

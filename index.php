@@ -34,6 +34,10 @@ session_start();
 	}
 	} else {
 
+		if ($_SESSION['userrole']=='001') {
+			header("Location:admin/");
+		}
+
 		if (isset($_GET['searchTagihan'])) {
 			if (strpos($_SERVER['HTTP_REFERER'], 'category=view&get=tagihan') !== false) {
 	    		header("Location:index.php?category=view&get=tagihan&keyword=".$_GET['searchTagihan']);

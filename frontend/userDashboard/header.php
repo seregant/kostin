@@ -30,6 +30,6 @@
 
     <!-- Main CSS-->
     <link href="frontend/userDashboard/css/theme.css" rel="stylesheet" media="all">
-    <link href="template/css/tbig.css" rel="stylesheet" media="all">
+    <link href="frontend/userDashboard/css/tbig.css" rel="stylesheet" media="all">
 
 </head>
