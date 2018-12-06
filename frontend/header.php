@@ -67,13 +67,13 @@
 	          	<div class="collapse navbar-collapse " id="navbarNav" >
 	            	<ul class="navbar-nav mr-auto nav-text" >
 	              		<li class="nav-item paddingNav">
-	                		<a class="nav-link" href="index.php" >Home</a>
+	                		<a class="nav-link" href="index.php" >Beranda</a>
 	              		</li>
 	              		<li class="nav-item paddingNav">
-	                		<a class="nav-link" href="#"  >Profile</a>
+	                		<a class="nav-link" href="#"  >Profil</a>
 	              		</li>
 	              		<li class="nav-item dropdown paddingNav">
-	                		<a class="nav-link dropdown-toggle" href="" id="navbarDropDownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  ">Booking</a>
+	                		<a class="nav-link dropdown-toggle" href="" id="navbarDropDownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  ">Pemesanan</a>
 			                
 			                <div class="dropdown-menu nav-text-dropdown" aria-labelledby="navbarDropDownMenuLink" style="background-color: #66c6ff; clear: white;">
 	                  			<a class="dropdown-item" href="index.php?page=booking" >Pesan Kamar</a>
@@ -81,7 +81,7 @@
 	               			</div>
 	              		</li>
 	              		<li class="nav-item paddingNav">
-	                		<a class="nav-link" href="index.php?page=contact_us" >Contact Us</a>
+	                		<a class="nav-link" href="index.php?page=contact_us" >Hubungi Kami</a>
 	              		</li>                                    
 	            	</ul>     
 	            	<ul class="navbar-nav ml-auto" id="btn-login">
