@@ -229,7 +229,7 @@
 									<h3>Silakan ikuti langkah-langkah berikut untuk menyelesaikan pembayaran:</h3>
 									<ol>
 										<li>Transfer sesuai dengan jumlah pembayaran yang tertera pada tabel di atas.</li>
-										<li>Masuk ke menu konfirmasi di website kami di <a href="project.konco.online/konfirmasi">project.konco.online/konfirmasi</a> atau klik tombol konfirmasi di bawah ini.</li>
+										<li>Silahkan login ke dashboard user penghuni. Kemudian masuk ke menu konfirmasi pembayaran</li>
 										<li>Upload bukti transfer ke form.</li>
 										<li>Klik submit dan tunggu verifikasi pembayaran dilakukan.</li>
 									</ol>
@@ -240,9 +240,7 @@
 						</table>
 						</div>
 					</div>
-					<div class="konfirmasi">
-						<button class="button">Konfirmasi Pembayaran</button>	
-					</div>
+
 					<hr>
 					<div class="row mx-auto">
 						<div class="invoice-footer">
@@ -260,7 +258,7 @@
 					<hr>
 					<div class="copyright">
 						Jika butuh bantuan, gunakan halaman <a href="">Kontak Kami</a><br>
-						© Copyright 2018 <span>KostIn</span>. 
+						&#169; Copyright 2018 <span>KostIn</span>. 
 					</div>
 					</div>
 					</body>
@@ -387,7 +385,7 @@
 							</div>
 						</div>
 						<div class="konfirmasi">
-							<button type="button" class="button" onclick=" window.open("http://project.konco.online")">Login</button>
+							<a href="http://project.konco.online"><button type="button" class="button">Login</button></a>
 						</div>
 						<hr>
 						<div class="row mx-auto">
@@ -406,7 +404,7 @@
 						<hr>
 						<div class="copyright">
 							Jika butuh bantuan, gunakan halaman <a href="">Kontak Kami</a><br>
-							© Copyright 2018 <span>KostIn</span>. 
+							&#169; Copyright 2018 <span>KostIn</span>. 
 						</div>
 						</div>
 					</div>
