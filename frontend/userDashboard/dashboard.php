@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col col-lg-5">
                         <div class="mx-auto d-block">
-                            <img class="rounded-circle mx-auto d-block" src="<?php echo $dataUser['user_imagefile']; ?>" alt="Card image cap" style="width: 180px; height: 180px;">
+                            <img class="rounded-circle mx-auto d-block" src="<?php echo 'admin/'.$dataUser['user_imagefile']; ?>" alt="Card image cap" style="width: 180px; height: 180px;">
                             <h5 class="text-sm-center mt-2 mb-1"><?php echo $dataUser['user_fullname']; ?></h5>
                             <div class="location text-sm-center">
                                 <i class="fa fa-map-marker"></i> <?php 

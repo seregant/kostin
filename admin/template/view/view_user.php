@@ -45,11 +45,11 @@
                     $sqlRole = "select * from kostin_user_role where role_id = ".$users['role_id'];
                     $roleName = mysqli_fetch_assoc(mysqli_query($conn, $sqlRole));
                     echo '
-                      <tr class="row-click" data-href="index.php?category=detail&module=user&id='.$users['user_id'].'" >
-                        <td class="table-row">'.$users['user_fullname'].'</td>
-                        <td class="table-row">'.$users['user_name'].'</td>
-                        <td class="table-row">'.$users['user_email'].'</td>
-                        <td class="table-row">'.ucfirst($roleName['role_name']).'</td>
+                      <tr>
+                        <td class="table-row row-click" data-href="index.php?category=detail&module=user&id='.$users['user_id'].'" >'.$users['user_fullname'].'</td>
+                        <td class="table-row row-click" data-href="index.php?category=detail&module=user&id='.$users['user_id'].'">'.$users['user_name'].'</td>
+                        <td class="table-row row-click" data-href="index.php?category=detail&module=user&id='.$users['user_id'].'">'.$users['user_email'].'</td>
+                        <td class="table-row row-click" data-href="index.php?category=detail&module=user&id='.$users['user_id'].'">'.ucfirst($roleName['role_name']).'</td>
                         <td>
                             <div class="table-data-feature">
                                 <a href="index.php?category=form&module=user&edit=1&user_id='.$users['user_id'].'"><button class="item" data-toggle="tooltip" data-placement="top" title="Edit">

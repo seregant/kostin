@@ -14,7 +14,7 @@
                     <div class="account-wrap">
                         <div class="account-item clearfix js-item-menu">
                             <div class="image">
-                                <img src="<?php echo $_SESSION['images']; ?>" alt="<?php echo $_SESSION['name'];?>" />
+                                <img src="<?php echo 'admin/'.$_SESSION['images']; ?>" alt="<?php echo $_SESSION['name'];?>" />
                             </div>
                             <div class="content">
                                 <a class="js-acc-btn" href="#"><?php echo $_SESSION['name']; ?></a>

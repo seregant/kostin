@@ -17,16 +17,16 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-user"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="index.php?category=view&get=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
                         <li>
                             <a href="konfirmasi.php">
-                                <i class="fas fa-money"></i>Konfirmasi Bayar</a>
+                                <i class="fas fa-money"></i>Edit Profile</a>
                         </li>
                     </ul>
                 </div>

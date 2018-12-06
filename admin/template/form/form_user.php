@@ -132,7 +132,12 @@
                               <select name="priv" id="select" class="form-control">
                         ';
                           foreach ($userRoles as $roles) {
-                                echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+                                if ($roles['role_id']==$rows['role_id']) {
+                                  echo '<option value="'.$roles['role_id'].'" selected="selected">'.$roles['role_name'].'</option>';
+                                } else {
+                                  echo '<option value="'.$roles['role_id'].'">'.$roles['role_name'].'</option>';
+                                }
+                                
                           }
                         echo '</select>
                             </div>';

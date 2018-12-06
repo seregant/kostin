@@ -706,6 +706,10 @@
 				updateTagihan('booking');
 			break;
 
+		case 'tagihanUpdate':
+				updateTagihan('sewa');
+			break;
+
 		default:
 			echo "Not found";
 			header("Location:index.php");

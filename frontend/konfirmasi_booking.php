@@ -1,6 +1,6 @@
 <?php
     include 'header.php';
-    $tagihanBookingData = getTagihanData('booking', 'tagihan_id', $_GET['no_invoice']);
+    $tagihanBookingData = getTagihanData('booking', 'tagihan_id', $_GET['no_invoice'], null, null);
     $tagihanData = mysqli_fetch_assoc($tagihanBookingData);
 
     $bookingData = getBookingData($tagihanData['book_id']);
@@ -12,14 +12,6 @@
     $addonsData = getBookAddonData($booking['book_id']);
 
     $aoPrice = 0;
-
-    function dueDateCounter($duedate){
-        $now = time();
-        $end = strtotime($duedate);
-        $datediff = $end - $now;
-        $datediff = round($datediff / (60 * 60 * 24));
-        return $datediff;
-    }
 
     $dueDateCount = dueDateCounter($tagihanData['tagihan_duedate']);
 
