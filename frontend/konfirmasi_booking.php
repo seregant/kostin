@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">No. Invoice</label><br>
-                        <input type="text" class="form-control " id="usr" name="no_invoice" value="<?php echo $tagihanData['tagihan_id'] ?>">
+                        <input type="text" class="form-control " id="usr" name="no_invoice" value="<?php echo $tagihanData['tagihan_id'] ?>" readonly>
                     </div>                   
                     <div class="form-group">
                         <label for="exampleInputFile">Upload Bukti Bayar</label><br>
