@@ -46,6 +46,17 @@
 ?>
 <div class="row m-b-5">
 			<div class="col col-lg-12">
+				<?php
+		            if (isset($_COOKIE['confirmed'])) {
+		                echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+		                      <span class="badge badge-pill badge-success">Success</span>
+		                      '.$_COOKIE['confirmed'].'
+		                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		                        <span aria-hidden="true">×</span>
+		                      </button>
+		                    </div>';
+		            }
+		        ?>
 				<div class="overview-wrap">
 	             	<h3 class="title-1">Tagihan Kamar</h3>
 	             	<form method="get" class="form" action="">

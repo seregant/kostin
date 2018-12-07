@@ -652,6 +652,22 @@
 		}
 	}
 
+	function confirmTagihan($id){
+		include "config/database.php";
+		$sql = "UPDATE kostin_tagihan SET tagihan_status = 'paid' WHERE tagihan_id = '$id'";
+		$updateTagihan = mysqli_query($conn, $sql);
+
+		if (!$updateTagihan) {
+			echo "Gagal update data tagihan!";
+			echo mysqli_error($conn);
+			exit;
+		} else {
+			
+			setcookie("confirmed", "Tagihan $id sudah dikonfirmasi!", time() + 10);
+			header('Location:index.php?category=view&module=tagihanSewa');
+		}
+	}
+
 	switch ($_GET['category']) {
 		case 'booking':
 				insertMasterBooking();
@@ -700,6 +716,10 @@
 
 		case 'tgbookUpdate':
 				updateTagihan('booking');
+			break;
+
+		case 'updateTagihan':
+				confirmTagihan($_GET['id']);
 			break;
 
 		default:
