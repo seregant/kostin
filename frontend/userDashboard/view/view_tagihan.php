@@ -55,6 +55,17 @@
 ?>
 <div class="row m-b-5">
 			<div class="col col-lg-12">
+				<?php
+		            if (isset($_COOKIE['isclear'])) {
+		               echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+		                      <span class="badge badge-pill badge-success">Success</span>
+		                      '.$_COOKIE['isclear'].'
+		                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		                        <span aria-hidden="true">×</span>
+		                      </button>
+		                    </div>';
+		            }
+		        ?>
 				<div class="overview-wrap">
 	             	<h3 class="title-1">Tagihan Kamar</h3>
 	             	<form method="get" class="form" action="">
@@ -96,12 +107,20 @@
 
 										$getKamarID = mysqli_fetch_assoc(mysqli_query($conn, $sqlKamarID));
 
-										if ($tagihan['tagihan_status']=='pending') {
-											$color = 'red';
-										} else if($tagihan['tagihan_status']=='confirmed') {
+										$dueDateCount = dueDateCounter($tagihan['tagihan_duedate']);
+
+										if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
+											$color = 'blue';
+											$status = 'Belum Dibayar';
+										} else if($tagihan['tagihan_status']=='waiting') {
 											$color = 'orange';
-										} else {
+											$status = 'Menunggu Konfirmasi';
+										} else if($tagihan['tagihan_status']=='paid' ) {
 											$color = 'green';
+											$status = 'Lunas';
+										} else {
+											$color = 'red';
+											$status = 'Batal';
 										}
 
 										echo "
@@ -109,7 +128,7 @@
 												<td>".$tagihan['tagihan_id']."</td>
 												<td>".$getKamarID['kamar_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
-												<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>
+												<td style='color:$color;'>".ucfirst($status)."</td>
 											</tr>
 									";
 								}

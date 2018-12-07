@@ -438,8 +438,6 @@
 			echo "<br/> <input type='button' value='kembali'
 					onClick='self.history.back()'> ";
 			exit;
-		} else {
-			echo "Simpan data user berhasil";
 		}
 
 		if (!$updateKamar) {
@@ -449,7 +447,6 @@
 					onClick='self.history.back()'> ";
 			exit;
 		} else {
-			echo "Update data kamar berhasil!";
 			foreach ($addonData as $selected_ao) {
 				$getAddon = getAddonData($selected_ao['ao_id']);
 				$dataAddon = mysqli_fetch_assoc($getAddon);

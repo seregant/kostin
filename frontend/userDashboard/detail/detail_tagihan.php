@@ -187,14 +187,15 @@
 							<?php 
 								if ($dataTagihan['tagihan_status']!= 'paid') {
 									if ($dataTagihan['tagihan_status']=='pending') {
-									echo '<a href="index.php?category=form&get=bayarTagihan&id='.$dataTagihan['tagihan_id'].'"><button class="btn btn-success">Bayar</button></a>';
+									echo '<a href="index.php?category=form&get=bayarTagihan&id='.$dataTagihan['tagihan_id'].'"><button class="btn btn-success">Konfirmasi Pembayaran</button></a>';
 									} else {
-										echo '<button class="btn btn-success" disabled="disabled">Bayar</button>';
+										echo '<button class="btn btn-success" disabled="disabled">Konfirmasi Pembayaran</button>';
 									}
 								}
 							?> 
-						
-							<button class="btn btn-danger" onclick="goBack()">Kembali</button>
+							<br>
+							<hr>
+							<button class="btn-sm btn-danger" onclick="goBack()">Kembali</button>
 						
 					</center>
 				</div>

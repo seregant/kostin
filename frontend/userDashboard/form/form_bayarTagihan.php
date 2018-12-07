@@ -3,14 +3,27 @@
   $allTagihanData = mysqli_fetch_assoc(getTagihanData('sewa','tagihan_id', $_GET['id'], null,null));
   $convertMonth = DateTime::createFromFormat('!m', date("m",strtotime($allTagihanData['tagihan_duedate'])));
 
-  $action = '';
+  $action = 'data_input.php?category=tagihanUpdate&role=penghuni';
 
 ?>
 <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
+          <?php
+            if (isset($_COOKIE['warning'])) {
+              echo '
+                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                    <span class="badge badge-pill badge-danger">Warning</span>
+                            '.$_COOKIE['warning'].'
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+              ';
+            }
+          ?>
           <div class="card">
             <div class="card-header">
               <strong>
@@ -46,7 +59,7 @@
                     <label for="file-input" class="form-control-label">Bukti Transfer</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="file" name="foto" class="form-control-file">
+                    <input type="file" name="trf_proof" class="form-control-file">
                   </div>
                 </div>
                 <div class="card-footer">
@@ -58,6 +71,7 @@
                       </button>
   
                 </div>
+                <input type="hidden" name="no_invoice" value="<?php echo $allTagihanData['tagihan_id'] ?>">
               </form>
             </div>
           </div>

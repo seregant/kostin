@@ -87,12 +87,20 @@
 
 										$getKamarID = mysqli_fetch_assoc(mysqli_query($conn, $sqlKamarID));
 
-										if ($tagihan['tagihan_status']=='pending') {
-											$color = 'red';
-										} else if($tagihan['tagihan_status']=='confirmed') {
+										$dueDateCount = dueDateCounter($tagihan['tagihan_duedate']);
+
+										if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
+											$color = 'blue';
+											$status = 'Belum Dibayar';
+										} else if($tagihan['tagihan_status']=='waiting') {
 											$color = 'orange';
-										} else {
+											$status = 'Menunggu Konfirmasi';
+										} else if($tagihan['tagihan_status']=='paid' ) {
 											$color = 'green';
+											$status = 'Lunas';
+										} else {
+											$color = 'red';
+											$status = 'Batal';
 										}
 
 										echo "
@@ -100,7 +108,7 @@
 												<td>".$tagihan['tagihan_id']."</td>
 												<td>".$getKamarID['kamar_id']."</td>
 												<td>".number_format($tagihan['tagihan_jumlah'])."</td>
-												<td style='color:$color;'>".ucfirst($tagihan['tagihan_status'])."</td>
+												<td style='color:$color;'>".ucfirst($status)."</td>
 											</tr>
 									";
 								}

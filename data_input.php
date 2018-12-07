@@ -630,29 +630,43 @@
 
 		$paidDate = date("Y-m-d H:i:s");
 		$tagihanId = $_POST['no_invoice'];
+		$payMthd = "transfer";
 		if ($type == 'sewa') {
 			$table = 'kostin_tagihan';
+			if (isset($_GET['role'])) {
+				if ($_GET['role']=='penghuni') {
+					$message = 'Bukti pembayaran sudah terkirim!';
+				} else {
+					$message = 'Tagihan sudah dikonfirmasi!';
+				}
+			}
+			$location = 'Location:index.php?category=view&get=tagihan';
 		} else {
 			$table = 'kostin_tagihan_booking';
+			$location = 'Location:index.php';
 		}
 
-		if ($_FILES['trf_proof']['name']==null) {
-			echo "Anda belum mengupload bukti transfer";
+		if ($_FILES['trf_proof']['size']==0) {
+			if(isset($_GET['role'])) {
+				setcookie("warning", 'Anda belum menginputkan foto bukti transfer!', time() + 10);
+				header("Location:index.php?category=form&get=bayarTagihan&id=".$tagihanId);
+			} else {
+				echo "foto blm diupload";
+				exit;
+			}
 		} else {
-			$payMthd = "transfer";
 			$uploadResult = uploadImage('trf_proof', 'payment', false);
-		}
-
-		$sqlUpdateTagihan = "update $table set tagihan_paiddate = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."', tagihan_status = 'waiting' where tagihan_id = '$tagihanId'";
-		
-		echo $sqlUpdateTagihan;
-		$updateData = mysqli_query($conn, $sqlUpdateTagihan);
-		if (!$updateData) {
-			echo "Gagal Update Data tagihan booking <br /> ";
-			echo mysqli_error($conn);
-			exit;
-		} else {
-			header("Location:index.php");
+			$sqlUpdateTagihan = "update $table set tagihan_paiddate = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."', tagihan_status = 'waiting' where tagihan_id = '$tagihanId'";
+	
+			$updateData = mysqli_query($conn, $sqlUpdateTagihan);
+			if (!$updateData) {
+				echo "Gagal Update Data tagihan booking <br /> ";
+				echo mysqli_error($conn);
+				exit;
+			} else {
+				setcookie("isclear", $message, time() + 10);
+				header($location);
+			}
 		}
 	}
 
