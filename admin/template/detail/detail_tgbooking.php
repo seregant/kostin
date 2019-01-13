@@ -5,7 +5,16 @@
 	$bookingData = getBookingData($bookingBill['book_id']);
 	$booking = mysqli_fetch_assoc($bookingData);
 
-	$addonsData = getBookAddonData($booking['book_id']);
+	$sqlAddon = "
+				SELECT
+					`kostin_addons`.`ao_name`,
+					`kostin_addons`.`ao_price`,
+					`kostin_booking_ao`.`jumlah`
+				FROM `kostin_booking_ao`
+				INNER JOIN `kostin_addons` ON `kostin_addons`.`ao_id` = `kostin_booking_ao`.`ao_id`
+				WHERE `kostin_booking_ao`.`book_id` = '".$bookingBill['book_id']."'
+			";
+	$addonsData = mysqli_query($conn, $sqlAddon);
 	
 	$roomData = getRoomData($booking['kamar_id']);
 	$room = mysqli_fetch_assoc($roomData);
@@ -90,26 +99,28 @@
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<th>Harga</th>
+											<th>Jumlah</th>
+											<th>Harga @</th>
+											<th>Total</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 											foreach ($addonsData as $addon) {
-												$sqlAddon = "select * from kostin_addons where ao_id ='".$addon['ao_id']."'";
-												$addonData = mysqli_fetch_assoc(mysqli_query($conn,$sqlAddon));
 												echo '
 													<tr>
-														<td>'.$addonData['ao_name'].'</td>
-														<td>Rp. '.number_format($addonData['ao_price']).'</td>
+														<td>'.$addon['ao_name'].'</td>
+														<td>'.$addon['jumlah'].'</td>
+														<td>Rp. '.number_format($addon['ao_price']).'</td>
+														<td>Rp. '.number_format($addon['ao_price']*$addon['jumlah']).'</td>
 													</tr>
 												';
-												$aoPrice += $addonData['ao_price'];
+												$aoPrice += $addon['ao_price']*$addon['jumlah'];
 											}
 											$totalPrice = $aoPrice + $room['kamar_harga'];
 										?>
 										<tr>
-											<td><h5 class="pb-2 display-5">Total Tagihan</h5></td>
+											<td colspan="3"><h5 class="pb-2 display-5">Total Tagihan</h5></td>
 											<td><h5 class="pb-2 display-5"><?php echo 'Rp. '.number_format($totalPrice); ?></h5></td>
 										</tr>
 									</tbody>

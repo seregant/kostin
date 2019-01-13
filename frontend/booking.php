@@ -3,8 +3,22 @@
 include 'header.php';
 	$dataAddon = getAllData('kostin_addons','*', null, null);
 ?>
+<?php 
+  if(isset($_COOKIE['confirmed'])){
+    if ($_COOKIE['confirmed'] == "no") {
+      echo '
+        <div class="col  mx-auto">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
+              '.$_COOKIE['message'].'
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
+            <span aria-hidden="true" style="font-size: 0.9em;">&times;</span>
+          </button>
+          </div>  
+         </div>';
+    } 
+  }
+?>
 <div class="container ">
-
 
 	<!-- FORM BOOKING -->
 	<form class="needs-validation form-cust" enctype="multipart/form-data" action="data_input.php?category=booking" method="post" novalidate>
@@ -66,28 +80,48 @@ include 'header.php';
   								<th></th>
   								<th>Nama</th>
   								<th>Harga</th>
+                  <th>Stock</th>
   							</tr>
   						</thead>
   						<tbody>
   					<?php
+              $id_addon = 1;
   						foreach ($dataAddon as $addon) {
   							echo '
 			  					<tr>
 			  						<td>
-                    <input type="checkbox" name="add-on[]" value="'.$addon['ao_id'].'"></td>
+                    <input id="checkbox'.$id_addon.'" type="checkbox" name="add-on[]" value="'.$addon['ao_id'].'"></td>
 			  						<td>
 			  							'.$addon['ao_name'].'
 			  						</td>
 			  						<td>
 			  							'.$addon['ao_price'].'
 			  						</td>
+                    <td>
+                      '.$addon['ao_stock'].' unit
+                    </td>
 			  					</tr>
   							';
+                $id_addon++;
   						}
   					?>
   					</tbody>
   				</table>
-			</div>			
+			</div>
+      <div class="container form-border">
+        <center>
+          <b>Jumlah Addon</b>
+        </center>
+          <?php
+            $id_addon = 1;
+            foreach ($dataAddon as $addon) {
+              echo '
+                <div id="input_jumlah'.$id_addon.'" style="display: none"><label>'.$addon['ao_name'].'</label> <input id="form_input_jumlah'.$id_addon.'" type="text" class="form-control" name="jml_addon[]"></div>
+              ';
+              $id_addon++;
+            }
+          ?>
+      </div>			
 		</div>		
 	</div>
 	</form>
@@ -95,6 +129,7 @@ include 'header.php';
 </div>
 
 <!--VALIDATING FORM Booking-->
+<script type="text/javascript" src="frontend/js/jquery-3.3.1.min.js"></script>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
@@ -114,6 +149,24 @@ include 'header.php';
     });
   }, false);
 })();
+
+<?php
+  $id_addon = 1;
+  foreach ($dataAddon as $addon) {
+    echo "
+  $('#checkbox$id_addon').change(function(){
+        document.getElementById('form_input_jumlah$id_addon').value=''
+        if (!this.checked) {
+            $('#input_jumlah$id_addon').fadeOut('fast');
+        }
+        else {
+            $('#input_jumlah$id_addon').fadeIn('fast');
+        }                   
+    });
+    ";
+    $id_addon++;
+  }
+?>
 </script>
 
 <?php

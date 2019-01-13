@@ -451,8 +451,8 @@
 				$getAddon = getAddonData($selected_ao['ao_id']);
 				$dataAddon = mysqli_fetch_assoc($getAddon);
 				$stock = $dataAddon['ao_stock']-1;
-				$sqlAdd = "insert into kostin_sewa_ao (sewa_id,ao_id) values
-							('$sewaId','".$selected_ao['ao_id']."')";
+				$sqlAdd = "insert into kostin_sewa_ao (sewa_id,ao_id,jumlah) values
+							('$sewaId','".$selected_ao['ao_id']."',".$selected_ao['jumlah'].")";
 
 				$sqlUpdate = "update kostin_addons set ao_stock = $stock where ao_id = '".$selected_ao['ao_id']."'";
 				
@@ -592,15 +592,20 @@
 				$tagihanRow = mysqli_num_rows($tagihanData)+1;
 			}
 			$id_tagihan = "TGB".sprintf('%07d', $tagihanRow);
-
-			$dataAddon = getBookAddonData($bookId);
+			$sqlDataAddon = "
+				SELECT
+					`kostin_addons`.`ao_price`,
+					`kostin_booking_ao`.`jumlah`
+				FROM `kostin_booking_ao`
+				INNER JOIN `kostin_addons` ON `kostin_addons`.`ao_id` = `kostin_booking_ao`.`ao_id`
+				WHERE `kostin_booking_ao`.`book_id` = '$bookId'
+			";
+			$dataAddon = mysqli_query($conn, $sqlDataAddon);
 			$aoPrice = 0;
 			$roomPrice = $kamarRow['kamar_harga'];
 
 			foreach ($dataAddon as $addon) {
-				$sqlAddon = "select ao_price from kostin_addons where ao_id = '".$addon['ao_id']."'";
-				$priceData = mysqli_fetch_assoc(mysqli_query($conn, $sqlAddon));
-				$aoPrice += $priceData['ao_price'];
+				$aoPrice += $addon['ao_price']*$addon['jumlah'];
 			}
 
 			$totalPrice = $aoPrice + $roomPrice;

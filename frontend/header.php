@@ -33,6 +33,30 @@
 	<link href="frontend/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="frontend/css/custom.css" rel="stylesheet">
+
+	<link href="admin/template/css/font-face.css" rel="stylesheet" media="all">
+    <link href="admin/template/css/tbig.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS-->
+    <link href="admin/template/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="admin/template/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="admin/template/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="admin/template/css/theme.css" rel="stylesheet" media="all">
+    <link href="admin/template/css/tbig.css" rel="stylesheet" media="all">
+
 </head>
 <body>
 <div class="container-fluid">

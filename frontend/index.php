@@ -17,6 +17,8 @@
          </div>';
     } 
   }
+
+  //print_r($_COOKIE['isclear']);
 ?>
 	<!-- SLIDER -->
 	<div class="row">

@@ -9,10 +9,8 @@
 	$dataUser = mysqli_fetch_assoc(mysqli_query($conn,$sqlUser));
 
 	$sqlSewa = "SELECT
-	`kostin_sewa`.*,
-	`kostin_tagihan`.*
+	`kostin_sewa`.*
 	FROM `kostin_sewa`
-	INNER JOIN `kostin_tagihan` ON `kostin_sewa`.`sewa_id` = `kostin_tagihan`.`sewa_id`
 	WHERE `kostin_sewa`.`user_id` = '".$dataUser['user_id']."'";
 
 	if ($dataUser['role_name']!='admin') {

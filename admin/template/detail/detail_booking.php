@@ -67,10 +67,15 @@
 									<td>
 										<ul style="list-style: none;">
 											<?php
-												$sql = "SELECT `ao_name` FROM `kostin_addons` WHERE `ao_id` IN (SELECT `ao_id` FROM `kostin_booking_ao` WHERE`book_id`='".$booking['book_id']."')";
+												$sql = "SELECT 
+															`kostin_booking_ao`.`jumlah`,
+															`kostin_addons`.`ao_name`
+														FROM `kostin_booking_ao` 
+														INNER JOIN `kostin_addons` ON `kostin_booking_ao`.`ao_id` = `kostin_addons`.`ao_id`
+														WHERE `kostin_booking_ao`.`book_id`='".$booking['book_id']."'";
 												$dataAddon = mysqli_query($conn, $sql);
 												foreach ($dataAddon as $addon) {
-												 	echo '<li>'.$addon['ao_name'].'</li>';
+												 	echo '<li>'.$addon['jumlah'].' unit '.$addon['ao_name'].'</li>';
 												 } 
 											?>
 										</ul>
