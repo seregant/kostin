@@ -61,6 +61,7 @@
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--blue m-b-20" type="submit">sign in</button>
                             </form>
+                            Untuk login administrator menggunakan username 'admin' dan password '12345'
                         </div>
                     </div>
                 </div>

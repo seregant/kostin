@@ -100,8 +100,8 @@
 	                		<a class="nav-link dropdown-toggle" href="" id="navbarDropDownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  ">Pemesanan</a>
 			                
 			                <div class="dropdown-menu nav-text-dropdown" aria-labelledby="navbarDropDownMenuLink" style="background-color: #66c6ff; clear: white;">
-	                  			<a class="dropdown-item" href="index.php?page=booking" >Pesan Kamar</a>
-	                  			<a class="dropdown-item" href="index.php?page=get_data_booking">Konfirmasi Pembayaran</a>
+	                  			<a class="dropdown-item" href="index.php?page=booking" >Booking Kamar</a>
+	                  			<a class="dropdown-item" href="index.php?page=get_data_booking">Konfirmasi Pembayaran Booking</a>
 	               			</div>
 	              		</li>
 	              		<li class="nav-item paddingNav">

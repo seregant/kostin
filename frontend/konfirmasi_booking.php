@@ -30,7 +30,7 @@
         $status = 'Belum Dibayar';
     } else if($bookingBill['tagihan_status']=='waiting') {
         $color = 'orange';
-        $status = 'Menunggu Konfirmasi';
+        $status = 'Menunggu Verifikasi';
     } else if($bookingBill['tagihan_status']=='paid') {
         $color = 'green';
         $status = 'Lunas';

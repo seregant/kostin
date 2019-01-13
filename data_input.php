@@ -92,7 +92,6 @@
 					$sql2 = "insert into kostin_booking_ao
 							(book_id,ao_id,jumlah)
 							values('$id_booking','$selected_ao',".$data_jumlah[$id_addon].")";
-					echo $sql2."<br>";
 					$insertAddonBooking = mysqli_query($conn, $sql2);
 						
 					if (!$insertAddonBooking) {
@@ -654,14 +653,20 @@
 				}
 			}
 			$location = 'Location:index.php?category=view&get=tagihan';
+			$location_fail = "Location:index.php?category=form&get=bayarTagihan&id=".$tagihanId;
+			$fail_msg = "Anda belum menginputkan foto bukti transfer!";
+			$msg = "Tagihan sudah dikonfirmasi dan sedang diverifikasi !";
 		} else {
 			$table = 'kostin_tagihan_booking';
 			$location = 'Location:index.php';
+			$location_fail = "Location:index.php?no_invoice=".$tagihanId;
+			$fail_msg = 'Anda belum menginputkan foto bukti transfer!';
+			$msg = "Tagihan booking sudah dikonfirmasi, tunggu pemberitahuan lebih lanjut via email!";
 		}
 
 		if ($_FILES['trf_proof']['size']==0) {
-			setcookie("warning", 'Anda belum menginputkan foto bukti transfer!', time() + 10);
-				header("Location:index.php?no_invoice=".$tagihanId);
+			setcookie("warning", $fail_msg, time() + 10);
+				header($location_fail);
 		} else {
 			$uploadResult = uploadImage('trf_proof', 'payment', false);
 			$sqlUpdateTagihan = "update $table set tagihan_paiddate = '$paidDate', tagihan_paymthd = '$payMthd', tagihan_bukti_bayar = '".$uploadResult['imgDir']."', tagihan_status = 'waiting' where tagihan_id = '$tagihanId'";
@@ -672,7 +677,8 @@
 				echo mysqli_error($conn);
 				exit;
 			} else {
-				setcookie("isclear", $message, time() + 10);
+				setcookie("isclear", "yes", time() + 10);
+				setcookie("message", $msg, time() + 10);
 				header($location);
 			}
 		}

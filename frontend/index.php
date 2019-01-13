@@ -7,7 +7,7 @@
   if(isset($_COOKIE['confirmed'])){
     if ($_COOKIE['confirmed'] == "yes") {
       echo '
-        <div class="col  mx-auto">
+        <div class="col  mx-auto m-t-210">
           <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
           		Pemesanan berhasil. Pemberitahuan lebih lanjut akan kami kirimkan via email .
           <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
@@ -18,8 +18,31 @@
     } 
   }
 
-  //print_r($_COOKIE['isclear']);
+  if (isset($_COOKIE['isclear'])) {
+  	echo '
+        <div class="col  mx-auto m-t-20">
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
+          		'.$_COOKIE['message'].'
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
+            <span aria-hidden="true" style="font-size: 0.9em;">&times;</span>
+          </button>
+          </div>  
+         </div>';
+  }
 ?>
+	<div class="col  mx-auto m-t-10">
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding: 1.1em; text-align: center;">
+          		- Untuk menggunakan fitur dashboard user silahkan melakukan pemesanan kamar terlebih dahulu. <br>
+          		- Akses login akan dikirimkan via email yang digunakan untuk melakukan proses pemesanan setelah tagihan booking dikonfirmasi pembayarannya<br>
+          		- Pemrosesan konfirmasi tagihan harus dilakukan di back office
+          		- Untuk melihat dan memroses transaksi silahkan masuk ke back office di link project.konco.online/admin<br>
+          		- Untuk men-generate tagihan sewa secara sistem akan digenerate setiap 30 hari, untuk men-generate secara langsung bisa menghubungi kami di 082229142821 (whatsapp/sms)
+          		- sample user penghuni menggunakan username 'indra' dan password '12345'
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="max-width: 5%; position: absolute; margin-top: 0;" >
+            <span aria-hidden="true" style="font-size: 0.9em;">&times;</span>
+          </button>
+          </div>  
+         </div>
 	<!-- SLIDER -->
 	<div class="row">
 		<div class="container-fluid">

@@ -59,12 +59,18 @@
 
 												$getKamarID = mysqli_fetch_assoc(mysqli_query($conn, $sqlKamarID));
 
-												if ($tagihan['tagihan_status']=='pending') {
-													$color = 'red';
-												} else if($tagihan['tagihan_status']=='confirmed') {
+												if ($tagihan['tagihan_status']=='pending' AND $dueDateCount > 0) {
+													$color = 'blue';
+													$status = 'Belum Dibayar';
+												} else if($tagihan['tagihan_status']=='waiting') {
 													$color = 'orange';
-												} else {
+													$status = 'Menunggu Verifikasi';
+												} else if($tagihan['tagihan_status']=='paid' ) {
 													$color = 'green';
+													$status = 'Lunas';
+												} else {
+													$color = 'red';
+													$status = 'Batal';
 												}
 
 												echo "

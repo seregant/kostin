@@ -24,10 +24,6 @@
                             <a href="index.php?category=view&get=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
                         </li>
-                        <li>
-                            <a href="konfirmasi.php">
-                                <i class="fas fa-money"></i>Edit Profile</a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -51,10 +47,6 @@
                         <li>
                             <a href="index.php?category=view&get=tagihan">
                                 <i class="fas fa-file-invoice"></i>Tagihan</a>
-                        </li>
-                        <li>
-                            <a href="index.php?module=modul_konfirmasi">
-                                <i class="fas fa-cog"></i>Edit Profile</a>
                         </li>
                     </ul>
                 </nav>

@@ -59,7 +59,7 @@
 		            if (isset($_COOKIE['isclear'])) {
 		               echo '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
 		                      <span class="badge badge-pill badge-success">Success</span>
-		                      '.$_COOKIE['isclear'].'
+		                      '.$_COOKIE['message'].'
 		                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		                        <span aria-hidden="true">×</span>
 		                      </button>
@@ -114,7 +114,7 @@
 											$status = 'Belum Dibayar';
 										} else if($tagihan['tagihan_status']=='waiting') {
 											$color = 'orange';
-											$status = 'Menunggu Konfirmasi';
+											$status = 'Menunggu Verifikasi';
 										} else if($tagihan['tagihan_status']=='paid' ) {
 											$color = 'green';
 											$status = 'Lunas';

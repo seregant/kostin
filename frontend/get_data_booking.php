@@ -5,7 +5,7 @@
     <!-- FORM GET DATA BOOKING -->
     <form class="form-cust" method="get" action="index.php">
         <div class="col-md-6 mx-auto form-bg form-border" >
-            <center style="padding-top: 1em;"><h4>Masukkan Nomor Invoice Anda</h4></center>
+            <center style="padding-top: 1em;"><h4>Masukkan Nomor Invoice Booking Anda</h4></center>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">No. Invoice</label><br>
                         <input type="text" class="form-control " id="usr" name="no_invoice" >

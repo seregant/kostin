@@ -39,8 +39,10 @@
                 </div>   
             </form>
         ';
-    } else {
+    } else if ($bookingBill['tagihan_status'] == 'paid'){
         $done = "Tagihan anda sudah lunas !";
+    } else {
+        $done = "Tagihan anda sedang diverifikasi...";
     }
 ?>
     <!-- DATA TAGIHAN BOOKING-->

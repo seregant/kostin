@@ -14,7 +14,17 @@
 						WHERE `kostin_tagihan`.`tagihan_id` = '".$_GET['id']."'";
 
 	$dataTagihan = mysqli_fetch_assoc(mysqli_query($conn, $sqlTagihan));
-	$addonsData = getSewaAddon($dataTagihan['sewa_id']);
+	
+	$sqlAddon = "
+				SELECT
+					`kostin_addons`.`ao_name`,
+					`kostin_addons`.`ao_price`,
+					`kostin_sewa_ao`.`jumlah`
+				FROM `kostin_sewa_ao`
+				INNER JOIN `kostin_addons` ON `kostin_addons`.`ao_id` = `kostin_sewa_ao`.`ao_id`
+				WHERE `kostin_sewa_ao`.`sewa_id` = '".$dataTagihan['sewa_id']."'
+			";
+	$addonsData = mysqli_query($conn, $sqlAddon);
 
 	$convertMonth = DateTime::createFromFormat('!m', date("m",strtotime($dataTagihan['tagihan_duedate'])));
 
@@ -27,7 +37,7 @@
 		$status = 'Belum Dibayar';
 	} else if($dataTagihan['tagihan_status']=='waiting') {
 		$color = 'orange';
-		$status = 'Menunggu Konfirmasi';
+		$status = 'Menunggu Verifikasi';
 	} else if($dataTagihan['tagihan_status']=='paid') {
 		$color = 'green';
 		$status = 'Lunas';
@@ -94,24 +104,28 @@
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<th>Harga</th>
+											<th>Jumlah</th>
+											<th>Harga @</th>
+											<th>Total</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 											foreach ($addonsData as $addon) {
-												$sqlAddon = "select * from kostin_addons where ao_id ='".$addon['ao_id']."'";
-												$addonData = mysqli_fetch_assoc(mysqli_query($conn,$sqlAddon));
 												echo '
 													<tr>
-														<td>'.$addonData['ao_name'].'</td>
-														<td>Rp. '.number_format($addonData['ao_price']).'</td>
+														<td>'.$addon['ao_name'].'</td>
+														<td>'.$addon['jumlah'].'</td>
+														<td>Rp. '.number_format($addon['ao_price']).'</td>
+														<td>Rp. '.number_format($addon['ao_price']*$addon['jumlah']).'</td>
 													</tr>
 												';
+												$aoPrice += $addon['ao_price']*$addon['jumlah'];
 											}
+											$totalPrice = $aoPrice + $dataTagihan['kamar_harga'];
 										?>
 										<tr>
-											<td><h5 class="pb-2 display-5">Total Tagihan</h5></td>
+											<td colspan="3"><h5 class="pb-2 display-5">Total Tagihan</h5></td>
 											<td><h5 class="pb-2 display-5"><?php echo 'Rp. '.number_format($dataTagihan['tagihan_jumlah']); ?></h5></td>
 										</tr>
 									</tbody>
